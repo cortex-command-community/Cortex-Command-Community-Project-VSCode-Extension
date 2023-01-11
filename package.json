@@ -1,0 +1,25 @@
+{
+  "name": "cortex-command-community-project-language-support",
+  "displayName": "Cortex Command Community Project Language Support",
+  "description": "INI and Lua language support for development of content for the game Cortex Command",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [{
+      "id": "ccini",
+      "aliases": ["INI (Cortex Command)", "ccini"],
+      "extensions": [".ini",".lua"],
+      "configuration": "./language-configuration.json"
+    }],
+    "grammars": [{
+      "language": "ccini",
+      "scopeName": "source.ccini",
+      "path": "./syntaxes/ccini.tmLanguage.json"
+    }]
+  }
+}
