@@ -1,7 +1,7 @@
 {
   "name": "cortex-command-community-project-language-support",
   "displayName": "Cortex Command Community Project Language Support",
-  "description": "INI and Lua language support for development of content for the game Cortex Command",
+  "description": "INI language support for development of content for the game Cortex Command",
   "version": "0.0.1",
   "repository": {
     "type": "git",
@@ -22,8 +22,7 @@
           "ccini"
         ],
         "extensions": [
-          ".ini",
-          ".lua"
+          ".ini"
         ],
         "configuration": "./language-configuration.json"
       }
