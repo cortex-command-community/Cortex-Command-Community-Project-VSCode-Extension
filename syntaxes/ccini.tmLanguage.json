@@ -3,31 +3,42 @@
 	"name": "INI (Cortex Command)",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#comments"
 		},
 		{
-			"include": "#strings"
+			"include": "#operators"
+		},
+		{
+			"include": "#keywords"
 		}
 	],
 	"repository": {
-		"keywords": {
+		"comments": {
 			"patterns": [
 				{
-					"name": "keyword.control.ccini",
-					"match": "\\b(if|while|for|return)\\b"
+					"name": "comment.line",
+					"begin": "//",
+					"beginCaptures": {
+						"0": {
+							"name": "comment.line.double-slash"
+						}
+					},
+					"end": "\\n"
+				},
+				{
+					"name": "comment.block",
+					"begin": "\/\\*",
+					"end": "\\*\/"
 				}
 			]
 		},
-		"strings": {
-			"name": "string.quoted.double.ccini",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.ccini",
-					"match": "\\\\."
-				}
-			]
+		"operators:": {
+			"name": "keyword.operator",
+			"match": "(\\b=\\b)"
+		},
+		"keywords": {
+			"name": "keyword",
+			"match": "^(\\s)*([A-Z][A-z0-9]*)\\b"
 		}
 	},
 	"scopeName": "source.ccini"
