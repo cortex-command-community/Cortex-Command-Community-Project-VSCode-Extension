@@ -13,30 +13,19 @@
 		"comments": {
 			"patterns": [
 				{
-					"begin": "(^[ \\t]+)?(?=//)",
+					"begin": "(//)",
 					"beginCaptures": {
 						"1": {
-							"name": "punctuation.whitespace.comment.leading.cpp"
+							"name": "comment.line.double-slash"
 						}
 					},
-					"end": "(?!\\G)",
-					"patterns": [
-						{
-							"begin": "//",
-							"beginCaptures": {
-								"0": {
-									"name": "comment.line.double-slash"
-								}
-							},
-							"end": "\\n",
-							"name": "comment.line"
-						}
-					]
+					"end": "($)",
+					"name": "comment.line"
 				},
 				{
 					"name": "comment.block",
-					"begin": "\/\\*",
-					"end": "\\*\/"
+					"begin": "/\\*",
+					"end": "\\*/"
 				}
 			]
 		},
@@ -84,109 +73,121 @@
 			"name": "support.class",
 			"patterns": [
 				{
-					"name": "support.class",
-					"match": "Vector$"
+					"include": "#comments"
 				},
 				{
 					"name": "support.class",
-					"match": "ContentFile$"
+					"match": "Vector(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "SpriteFile$"
+					"match": "ContentFile(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "AtomGroup$"
+					"match": "SpriteFile(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Atom$"
+					"match": "AtomGroup(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "SoundContainer$"
+					"match": "Atom(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Material$"
+					"match": "SoundContainer(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Color$"
+					"match": "Material(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Actor$"
+					"match": "Color(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "MOSRotating$"
+					"match": "Actor(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Gib$"
+					"match": "MOSRotating(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "MOPixel$"
+					"match": "Gib(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "AEmitter$"
+					"match": "MOPixel(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "MOSParticle$"
+					"match": "AEmitter(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Attachable$"
+					"match": "MOSParticle(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Wound$"
+					"match": "Attachable(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "AHuman$"
+					"match": "Wound(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "ACraft$"
+					"match": "AHuman(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "ACRocket$"
+					"match": "ACraft(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "ACDropship$"
+					"match": "ACRocket(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Arm$"
+					"match": "ACDropship(\\s*)$"
 				},
 				{
 					"name": "support.class",
-					"match": "Leg$"
+					"match": "Arm(\\s*)$"
+				},
+				{
+					"name": "support.class",
+					"match": "Leg(\\s*)$"
 				}
 			]
 		},
 		"modulePaths": {
 			"name": "markup.underline.link",
-			"match": "(([A-Z][A-z0-9]*\\.rte)(\\/[A-z0-9]*)*(\\/[A-z0-9]+\\.(wav|flac|png|bmp)))"
+			"match": "(([A-Z][A-z0-9]*\\.rte)(\\/[A-z0-9]*)*(\\/[A-z0-9]+\\.(wav|flac|png|bmp))(\\s*)$)"
 		},
 		"numbers": {
 			"name": "constant.numeric",
-			"match": "(-?[0-9]+\\.[0-9]+)|(-?[0-9]+)"
+			"match": "((-?[0-9]+\\.[0-9]+)|(-?[0-9]+))(\\s*)$",
+			"captures": {
+				"4": {
+					"name": "whitespace.trailing"
+				}
+			}
 		},
 		"strings": {
 			"name": "string.unquoted",
 			"begin": "[[:print:]]",
-			"end": "(\\n|\/\/)"
+			"end": "(?=(\\n|//|/\\*))",
+			"patterns": [
+				{
+					"include": "#comments"
+				}
+			]
 		}
-
 	},
 	"scopeName": "source.ccini"
 }
