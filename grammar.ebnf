@@ -1,0 +1,99 @@
+
+Grammar = Keyword | PresetDeclaration;
+
+PresetDeclaration = "Add", ClassName, " = ", EntityDeclaration;
+
+EntityDeclaration = ClassName, NEWLINE, INDENT, { PropertyDeclaration } DEDENT;
+
+PropertyDeclaration = ? PropertyName ?, " = ", Assignment;
+
+Assignment = Number | String | EntityDeclaration;
+
+Number = Integer | Float;
+
+Float = Integer {".", digits {digits}};
+Integer = ["-"], digits, {digits};
+
+digits = digit, {digit};
+digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+
+ClassName = "Vector" 
+    | "Matrix" 
+    | "InputScheme" 
+    | "InputMapping" 
+    | "GenericSavedData" 
+    | "Entity" 
+    | "DataModule" 
+    | "ContentFile" 
+    | "Color" 
+    | "Box" 
+    | "Atom" 
+    | "Turret" 
+    | "ThrownDevice" 
+    | "TerrainObject" 
+    | "TerrainFrosting" 
+    | "TerrainDebris" 
+    | "TDExplosive" 
+    | "SoundSet" 
+    | "SoundContainer" 
+    | "SLTerrain" 
+    | "SLBackground" 
+    | "SOPlacer" 
+    | "SceneObject" 
+    | "SceneLayer" 
+    | "Area" 
+    | "Scene" 
+    | "Round" 
+    | "PieSlice" 
+    | "PEmitter" 
+    | "MovableObject" 
+    | "MOSRotating" 
+    | "MOSprite" 
+    | "MOSParticle" 
+    | "MOPixel" 
+    | "MetaSave" 
+    | "MetaPlayer" 
+    | "Material" 
+    | "Magazine" 
+    | "Loadout" 
+    | "LimbPath" 
+    | "Leg" 
+    | "Icon" 
+    | "HeldDevice" 
+    | "HDFirearm" 
+    | "GlobalScript" 
+    | "Gib" 
+    | "Emission" 
+    | "Deployment" 
+    | "BunkerAssemblyScheme" 
+    | "BunkerAssembly" 
+    | "Attachable" 
+    | "AtomGroup" 
+    | "Arm" 
+    | "AHuman" 
+    | "AEmitter" 
+    | "ADSensor" 
+    | "ADoor" 
+    | "Actor" 
+    | "Activity" 
+    | "ACRocket" 
+    | "Exit" 
+    | "ACraft" 
+    | "ACrab" 
+    | "ACDropShip" 
+    | "SceneEditor" 
+    | "MultiplayerServerLobby" 
+    | "MultiplayerGame" 
+    | "GibEditor" 
+    | "GATutorial" 
+    | "GAScripted" 
+    | "GameActivity" 
+    | "EditorActivity" 
+    | "BaseEditor" 
+    | "AssemblyEditor" 
+    | "AreaEditor" 
+    | "ActorEditor";
+ 
+
+(* Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|DataModule|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|SceneEditor|MultiplayerServerLobby|MultiplayerGame|GibEditor|GATutorial|GAScripted|GameActivity|EditorActivity|BaseEditor|AssemblyEditor|AreaEditor|ActorEditor *)
