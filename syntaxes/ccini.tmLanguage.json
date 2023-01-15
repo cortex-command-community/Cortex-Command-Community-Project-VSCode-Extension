@@ -43,7 +43,7 @@
     },
     "strings": {
       "name": "string.unquoted",
-      "begin": "\\w",
+      "begin": "(?=\\w)",
       "end": "(?=\\n|//|/\\*)",
       "patterns": [
         {
