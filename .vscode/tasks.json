@@ -1,0 +1,16 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "build",
+			"group": {
+				"kind": "test",
+				"isDefault": true
+			},
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json"
+		}
+	]
+}
