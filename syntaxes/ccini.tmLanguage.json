@@ -10,30 +10,19 @@
 		"comments": {
 			"patterns": [
 				{
-					"begin": "(^[ \\t]+)?(?=//)",
+					"begin": "(//)",
 					"beginCaptures": {
 						"1": {
-							"name": "punctuation.whitespace.comment.leading.cpp"
+							"name": "comment.line.double-slash"
 						}
 					},
-					"end": "(?!\\G)",
-					"patterns": [
-						{
-							"begin": "//",
-							"beginCaptures": {
-								"0": {
-									"name": "comment.line.double-slash"
-								}
-							},
-							"end": "\\n",
-							"name": "comment.line"
-						}
-					]
+					"end": "($)",
+					"name": "comment.line"
 				},
 				{
 					"name": "comment.block",
-					"begin": "\/\\*",
-					"end": "\\*\/"
+					"begin": "/\\*",
+					"end": "\\*/"
 				}
 			]
 		},
@@ -56,7 +45,22 @@
 		},
 		"numbers": {
 			"name": "constant.numeric",
-			"match": "^(-?[0-9]+\\.[0-9]+)|(-?[0-9]+)"
+			"match": "((-?[0-9]+\\.[0-9]+)|(-?[0-9]+))(\\s*)$",
+			"captures": {
+				"4": {
+					"name": "whitespace.trailing"
+				}
+			}
+		},
+		"strings": {
+			"name": "string.unquoted",
+			"begin": "[[:print:]]",
+			"end": "(?=(\\n|//|/\\*))",
+			"patterns": [
+				{
+					"include": "#comments"
+				}
+			]
 		}
 	},
 	"scopeName": "source.ccini"

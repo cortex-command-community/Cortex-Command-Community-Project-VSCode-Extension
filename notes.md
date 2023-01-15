@@ -1,0 +1,2 @@
+- trailing spaces are trimmed, need to allow
+- multiline comments are fucky, especially ater strings or reconised tokens
