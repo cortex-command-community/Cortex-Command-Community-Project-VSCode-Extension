@@ -4,9 +4,6 @@
 	"patterns": [
 		{
 			"include": "#comments"
-		},
-		{
-			"include": "#assignments"
 		}
 	],
 	"repository": {
@@ -40,146 +37,22 @@
 				}
 			]
 		},
-		"assignments": {
-			"name": "",
-			"match": "^(\\t*)([[:alnum:]]*?)( = )(.*?)(\\n|\\Z)",
+		"strings": {
+			"name": "string.unquoted",
+			"match": "(.*)",
 			"captures": {
-				"2": {
-					"name": "keyword",
+				"0": {
 					"patterns": [
-						{
-							"include": "#keywords"
-						}
-					]
-				},
-				"3": {
-					"name": "keyword.operator"
-				},
-				"4": {
-					"patterns": [
-						{
-							"include": "#comments"
-						},
 						{
 							"include": "#modulePaths"
-						},
-						{
-							"include": "#declarations"
-						},
-						{
-							"include": "#numbers"
-						},
-						{
-							"include": "#strings"
 						}
 					]
 				}
 			}
 		},
-		"keywords": {
-			"name": "keyword",
-			"match": "(Add[A-Z][A-z0-9]*)"
-		},
-		"declarations": {
-			"name": "support.class",
-			"patterns": [
-				{
-					"name": "support.class",
-					"match": "Vector$"
-				},
-				{
-					"name": "support.class",
-					"match": "ContentFile$"
-				},
-				{
-					"name": "support.class",
-					"match": "SpriteFile$"
-				},
-				{
-					"name": "support.class",
-					"match": "AtomGroup$"
-				},
-				{
-					"name": "support.class",
-					"match": "Atom$"
-				},
-				{
-					"name": "support.class",
-					"match": "SoundContainer$"
-				},
-				{
-					"name": "support.class",
-					"match": "Material$"
-				},
-				{
-					"name": "support.class",
-					"match": "Color$"
-				},
-				{
-					"name": "support.class",
-					"match": "Actor$"
-				},
-				{
-					"name": "support.class",
-					"match": "MOSRotating$"
-				},
-				{
-					"name": "support.class",
-					"match": "Gib$"
-				},
-				{
-					"name": "support.class",
-					"match": "MOPixel$"
-				},
-				{
-					"name": "support.class",
-					"match": "AEmitter$"
-				},
-				{
-					"name": "support.class",
-					"match": "MOSParticle$"
-				},
-				{
-					"name": "support.class",
-					"match": "Attachable$"
-				},
-				{
-					"name": "support.class",
-					"match": "Wound$"
-				},
-				{
-					"name": "support.class",
-					"match": "AHuman$"
-				},
-				{
-					"name": "support.class",
-					"match": "ACraft$"
-				},
-				{
-					"name": "support.class",
-					"match": "ACRocket$"
-				},
-				{
-					"name": "support.class",
-					"match": "ACDropship$"
-				},
-				{
-					"name": "support.class",
-					"match": "Arm$"
-				},
-				{
-					"name": "support.class",
-					"match": "Leg$"
-				}
-			]
-		},
 		"modulePaths": {
 			"name": "markup.underline.link",
-			"match": "(([A-Z][A-z0-9]*\\.rte)(\\/[A-z0-9]*)*(\\/[A-z0-9]+\\.(wav|flac|png|bmp)))"
-		},
-		"strings": {
-			"name": "string.unquoted",
-			"match": ".+?(?!=(\/\/|\n))"
+			"match": "(([A-Z][A-z0-9]*\\.rte)(\/[A-z0-9]*)*(\/[A-z0-9]+\\.(wav|flac|png|bmp)))"
 		},
 		"numbers": {
 			"name": "constant.numeric",

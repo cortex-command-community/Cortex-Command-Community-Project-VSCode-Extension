@@ -11,11 +11,11 @@ Assignment = Number | String | EntityDeclaration;
 
 Number = Integer | Float;
 
-Float = Integer {".", digits {digits}};
-Integer = ["-"], digits, {digits};
+Float = Integer {".", Digits {Digits}};
+Integer = ["-"], Digits, {Digits};
 
-digits = digit, {digit};
-digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+Digits = Digit, {Digit};
+Digit = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 
 
 ClassName = "Vector" 
