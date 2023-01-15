@@ -1,0 +1,38 @@
+# yaml-language-server: $schema=../.vscode/tmLanguage.json
+
+name: "INI (Cortex Command)"
+scopeName: source.ccini
+patterns:
+  - { include: "#comments" }
+  - { include: "#strings" }
+
+repository:
+  comments:
+    patterns:
+      - name: comment.block,
+        begin: /\*
+        end: \*/
+
+      - name: comment.line.double-slash
+        begin: (^[ \t]+)?(?=//)
+        beginCaptures:
+          "1":
+            name: punctuation.whitespace.comment.leading.ccini
+        end: "(?!\\G)"
+        patterns:
+          - name: comment.line
+            begin: //
+            beginCaptures:
+              "0":
+                name: comment.line.double-slash
+            end: $
+  strings:
+    name: string.unquoted
+    begin: \w
+    end: (?=\n|//|/\*)
+    patterns:
+      - include: "#modulePath"
+
+  modulePath:
+    name: markup.underline.link
+    match: (([A-Z][A-z0-9]*\.rte)(\/[A-z0-9]*)*(\/[A-z0-9]+\.(wav|flac|png|bmp)))
