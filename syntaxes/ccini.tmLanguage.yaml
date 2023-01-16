@@ -5,18 +5,14 @@ scopeName: source.ccini
 patterns:
   - { include: "#comments" }
   - { include: "#assignments" }
-  - { include: "#comments" }
   # - { include: "#presetDefinition" }
   # - { include: "#numbers" }
   # - { include: "#strings" }
 
 repository:
   assignments:
-    begin: >
-      ((\t*)(\w+)\s+(=)\s+([[:print:]]+?)\s*)
-    end: (^(?!\t)|/\*)
-    name: meta.block
-    beginCaptures:
+    match: (\t*)((\w+)\s+(=)\s+([[:print:]]+?)\s*)$
+    captures:
       "0":
         name: meta.expression.assignment
       "3":
@@ -27,66 +23,15 @@ repository:
         name: keyword.operator.assignment
       "5":
         patterns:
-          - { include: "#comments" }
           - { include: "#classNames" }
           - { include: "#numbers" }
           - { include: "#strings" }
-          - { include: "#comments" }
-    patterns:
-      - { include: "#comments" }
-      - { include: "#assignments" }
-      - { include: "#comments" }
-
-    # captures:
-    #   "2":
-    #     name: meta.expression.assignment
-    #   "3":
-    #     name: variable.name
-    #     patterns:
-    #       - { include: "#presetDeclarations" }
-    #   "4":
-    #     name: keyword.operator.assignment
-    #   "5":
-    #     patterns:
-    #       - { include: "#comments" }
-    #       - { include: "#classNames" }
-    #       - { include: "#numbers" }
-    #       - { include: "#strings" }
-    #   "6":
-    #     name: meta.block
-    #     patterns:
-    #       - { include: "#comments" }
-    #       - { include: "#presetDefinition" }
-
-  # presetDefinitions:
-  #   match: >
-  #     (?x)^(\t*)((\w+)\s+(=)\s+([[:print:]]+?)\s*)$((?:\n(?:\1\t+(?:\w+\s+=\s+[[:print:]]+)$))*)
-  #   captures:
-  #     "2":
-  #       name: meta.expression.assignment
-  #     "3":
-  #       name: variable.name
-  #       patterns:
-  #         - { include: "#presetDeclarations" }
-  #     "4":
-  #       name: keyword.operator.assignment
-  #     "5":
-  #       patterns:
-  #         - { include: "#comments" }
-  #         - { include: "#classNames" }
-  #         - { include: "#numbers" }
-  #         - { include: "#strings" }
-  #     "6":
-  #       name: meta.block
-  #       patterns:
-  #         - { include: "#comments" }
-  #         - { include: "#presetDefinition" }
 
   comments:
     patterns:
-      - name: comment.block,
+      - name: comment.block
         begin: \/\*
-        end: \*/
+        end: \*\/
 
       - name: comment.line.double-slash
         begin: (^[ \t]+)?(?=//)
@@ -113,9 +58,8 @@ repository:
   strings:
     name: string.unquoted
     begin: (?=\w)
-    end: $
+    end: (?=\n|$|(\/\*)|(\/\/))
     patterns:
-      - include: "#comments"
       - include: "#modulePath"
 
   modulePath:

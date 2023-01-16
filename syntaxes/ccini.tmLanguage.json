@@ -7,17 +7,12 @@
     },
     {
       "include": "#assignments"
-    },
-    {
-      "include": "#comments"
     }
   ],
   "repository": {
     "assignments": {
-      "begin": "((\\t*)(\\w+)\\s+(=)\\s+([[:print:]]+?)\\s*)\n",
-      "end": "(^(?!\\t)|/\\*)",
-      "name": "meta.block",
-      "beginCaptures": {
+      "match": "(\\t*)((\\w+)\\s+(=)\\s+([[:print:]]+?)\\s*)$",
+      "captures": {
         "0": {
           "name": "meta.expression.assignment"
         },
@@ -35,9 +30,6 @@
         "5": {
           "patterns": [
             {
-              "include": "#comments"
-            },
-            {
               "include": "#classNames"
             },
             {
@@ -45,31 +37,17 @@
             },
             {
               "include": "#strings"
-            },
-            {
-              "include": "#comments"
             }
           ]
         }
-      },
-      "patterns": [
-        {
-          "include": "#comments"
-        },
-        {
-          "include": "#assignments"
-        },
-        {
-          "include": "#comments"
-        }
-      ]
+      }
     },
     "comments": {
       "patterns": [
         {
-          "name": "comment.block,",
-          "begin": "(?<![^/])\\/\\*",
-          "end": "(\\*/)"
+          "name": "comment.block",
+          "begin": "\\/\\*",
+          "end": "\\*\\/"
         },
         {
           "name": "comment.line.double-slash",
@@ -106,11 +84,8 @@
     "strings": {
       "name": "string.unquoted",
       "begin": "(?=\\w)",
-      "end": "$",
+      "end": "(?=\\n|$|(\\/\\*)|(\\/\\/))",
       "patterns": [
-        {
-          "include": "#comments"
-        },
         {
           "include": "#modulePath"
         }
