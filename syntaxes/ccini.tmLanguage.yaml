@@ -11,7 +11,7 @@ patterns:
 
 repository:
   assignments:
-    match: (\t*)((\w+)\s+(=)\s+([[:print:]]+?)\s*)$
+    match: (\t*)((\w+)\s+(=)\s+(.+?(?=(\/\*(?!.*\*\/))|\/\/|\n)))
     captures:
       "0":
         name: meta.expression.assignment
@@ -23,6 +23,7 @@ repository:
         name: keyword.operator.assignment
       "5":
         patterns:
+          - { include: "#comments" }
           - { include: "#classNames" }
           - { include: "#numbers" }
           - { include: "#strings" }
@@ -32,6 +33,9 @@ repository:
       - name: comment.block
         begin: \/\*
         end: \*\/
+
+      - name: comment.block.inline
+        match: (\/\*).*?(?=\*\/)(\*\/)
 
       - name: comment.line.double-slash
         begin: (^[ \t]+)?(?=//)
@@ -60,6 +64,7 @@ repository:
     begin: (?=\w)
     end: (?=\n|$|(\/\*)|(\/\/))
     patterns:
+      - include: "#comments"
       - include: "#modulePath"
 
   modulePath:
