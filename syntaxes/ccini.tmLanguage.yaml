@@ -11,17 +11,29 @@ patterns:
 
 repository:
   assignments:
-    match: (\t*)((\w+)\s+(=)\s+(.+?(?=(\/\*(?!.*\*\/))|\/\/|\n)))
+    match: (?:\t*)((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
+    # match: |
+    #   (?:\t*)       # leading tabs for the line
+    #   (             # 1: capture whole line not including leading tabs
+    #     (\w+)           2: capture first token, at least one word character
+    #     \s+(=)\s+       3: capture "=" surrounded by whitespace
+    #     (?:(.+?)(?:\s*?))   4: capture whatever text is next, discarding any trailing space with the non-capturing group (?:\s*?)
+    #     (?=                 do this until we find:
+    #       (?:\/\*(?!.*\*\/))    A "/*" with no matching "*/" on this line
+    #       |\/\/                 A  "//" comment
+    #       |\n                   A newline
+    #     )
+    #   )
     captures:
       "0":
         name: meta.expression.assignment
-      "3":
+      "2":
         name: support.type.property-name
         patterns:
           - include: "#presetDeclarations"
-      "4":
+      "3":
         name: keyword.operator.assignment
-      "5":
+      "4":
         patterns:
           - { include: "#comments" }
           - { include: "#classNames" }

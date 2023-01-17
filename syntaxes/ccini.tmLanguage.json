@@ -11,12 +11,12 @@
   ],
   "repository": {
     "assignments": {
-      "match": "(\\t*)((\\w+)\\s+(=)\\s+(.+?(?=(\\/\\*(?!.*\\*\\/))|\\/\\/|\\n)))",
+      "match": "(?:\\t*)((\\w+)\\s+(=)\\s+(?:(.+?)(?:\\s*?))(?=(?:\\/\\*(?!.*\\*\\/))|\\/\\/|\\n))",
       "captures": {
         "0": {
           "name": "meta.expression.assignment"
         },
-        "3": {
+        "2": {
           "name": "support.type.property-name",
           "patterns": [
             {
@@ -24,10 +24,10 @@
             }
           ]
         },
-        "4": {
+        "3": {
           "name": "keyword.operator.assignment"
         },
-        "5": {
+        "4": {
           "patterns": [
             {
               "include": "#comments"
