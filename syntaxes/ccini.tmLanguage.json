@@ -45,16 +45,24 @@
         }
       }
     },
-    "comments": {
+    "commentBlock": {
       "patterns": [
         {
           "name": "comment.block",
           "begin": "\\/\\*",
-          "end": "\\*\\/"
-        },
+          "end": "\\*\\/",
+          "patterns": [
+            {
+              "include": "#commentBlock"
+            }
+          ]
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
         {
-          "name": "comment.block.inline",
-          "match": "(\\/\\*).*?(?=\\*\\/)(\\*\\/)"
+          "include": "#commentBlock"
         },
         {
           "name": "comment.line.double-slash",
@@ -90,8 +98,8 @@
     },
     "strings": {
       "name": "string.unquoted",
-      "begin": "(?=\\w)",
-      "end": "(?=\\n|$|(\\/\\*)|(\\/\\/))",
+      "begin": "(?=[\\w\\-])",
+      "end": "(?=\\n|$|(\\/\\*(?!.*\\*\\/))|(\\/\\/))",
       "patterns": [
         {
           "include": "#comments"

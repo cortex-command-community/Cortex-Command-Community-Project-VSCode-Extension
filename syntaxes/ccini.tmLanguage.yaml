@@ -40,14 +40,20 @@ repository:
           - { include: "#numbers" }
           - { include: "#strings" }
 
-  comments:
+  commentBlock:
     patterns:
       - name: comment.block
         begin: \/\*
         end: \*\/
+        patterns:
+          - include: "#commentBlock"
 
-      - name: comment.block.inline
-        match: (\/\*).*?(?=\*\/)(\*\/)
+  comments:
+    patterns:
+      - include: "#commentBlock"
+
+      # - name: comment.block.inline
+      #   match: (\/\*).*?(?=\*\/)(\*\/)
 
       - name: comment.line.double-slash
         begin: (^[ \t]+)?(?=//)
@@ -73,8 +79,8 @@ repository:
 
   strings:
     name: string.unquoted
-    begin: (?=\w)
-    end: (?=\n|$|(\/\*)|(\/\/))
+    begin: (?=[\w\-])
+    end: (?=\n|$|(\/\*(?!.*\*\/))|(\/\/))
     patterns:
       - include: "#comments"
       - include: "#modulePath"
