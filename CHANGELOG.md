@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.1...v1.0.2) (2023-01-19)
+
+
+### Bug Fixes
+
+* enable updates to the package.json on publish ([0f8956d](https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension/commit/0f8956d9f814b32d39b088da2ad0d3b2bdeca4f2))
+
 ## [1.0.1](https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.0...v1.0.1) (2023-01-19)
 
 
