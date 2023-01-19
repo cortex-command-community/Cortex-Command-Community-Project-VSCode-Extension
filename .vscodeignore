@@ -2,3 +2,10 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
+testcases/**
+docs/**
+.husky/**
+.github/**
+.commitlintrc.json
+notes.md
+.releaserc.json
