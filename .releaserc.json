@@ -13,6 +13,12 @@
             }
         ],
         [
+            "@semantic-release/npm",
+            {
+                "npmPublish": false
+            }
+        ],
+        [
             "@semantic-release/exec",
             {
                 "publishCmd": "npx vsce publish --no-git-tag-version ${nextRelease.version}"
