@@ -1,0 +1,48 @@
+{
+    "branches": [
+        "main"
+    ],
+    "repositoryUrl": "https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension",
+    "debug": "true",
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        [
+            "@semantic-release/changelog",
+            {
+                "changelogFile": "CHANGELOG.md"
+            }
+        ],
+        [
+            "@semantic-release/exec",
+            {
+                "publishCmd": "npm publish -- ${nextRelease.version}"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "assets": [
+                    "package.json",
+                    "CHANGELOG.md",
+                    "syntaxes/ccini.tmLanguage.json"
+                ]
+            }
+        ],
+        [
+            "@semantic-release/github",
+            {
+                "assets": [
+                    {
+                        "path": "cortex-command-community-project-language-support-${nextRelease.version}.vsix"
+                    }
+                ],
+                "successComment": false,
+                "failComment": false,
+                "failTitle": false,
+                "releasedLabels": false,
+                "labels": false
+            }
+        ]
+    ]
+}

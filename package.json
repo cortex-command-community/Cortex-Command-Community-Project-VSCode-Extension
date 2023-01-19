@@ -48,6 +48,7 @@
   "scripts": {
     "prepare": "husky install",
     "semantic-release": "semantic-release",
-    "build": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json""publish": ""
+    "build": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json",
+    "publish": "vsce publish"
   }
 }
