@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.0...v1.0.1) (2023-01-19)
+
+
+### Bug Fixes
+
+* test commit to trigger CI ([a0fe47e](https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension/commit/a0fe47ec6d646840f08d8bf0dd01fc8c2ebf560e))
+
 # 1.0.0 (2023-01-19)
 
 
