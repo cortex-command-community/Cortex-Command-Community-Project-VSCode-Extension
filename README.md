@@ -10,7 +10,7 @@ Adds syntax highlighting, including support for:
 - Comment , including block comments matching the project's format
 - Module reference underlines
 
-\!\[syntax_highlighting\]\(docs/syntax_highlighting.png\)
+![syntax_highlighting](docs/syntax_highlighting.png)
 
 ## Extension Settings
 
