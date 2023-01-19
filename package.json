@@ -38,6 +38,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.4.1",
     "@commitlint/config-conventional": "^17.4.0",
+    "@vscode/vsce": "^2.16.0",
     "husky": "^8.0.3",
     "js-yaml": "^4.1.0",
     "semantic-release": "^20.0.2"
