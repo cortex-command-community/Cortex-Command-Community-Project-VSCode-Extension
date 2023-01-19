@@ -2,10 +2,12 @@
   "name": "cortex-command-community-project-language-support",
   "displayName": "Cortex Command Community Project Language Support",
   "description": "INI language support for development of content for the game Cortex Command",
+  "icon": "icon.png",
   "version": "0.0.1",
+  "license": "LICENSE.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension.git"
+    "url": "https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension.git"
   },
   "engines": {
     "vscode": "^1.74.0"
@@ -46,6 +48,7 @@
   "scripts": {
     "prepare": "husky install",
     "semantic-release": "semantic-release",
-    "build": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json"
+    "build": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json",
+    "publish": "vsce publish"
   }
 }
