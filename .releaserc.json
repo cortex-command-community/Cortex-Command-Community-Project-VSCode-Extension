@@ -16,7 +16,7 @@
         [
             "@semantic-release/exec",
             {
-                "publishCmd": "npm publish -- ${nextRelease.version}"
+                "publishCmd": "npx vsce publish ${nextRelease.version}"
             }
         ],
         [
