@@ -71,7 +71,11 @@ repository:
 
   classNames:
     name: entity.name.class
-    match: (Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|DataModule|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|MultiplayerServerLobby|MultiplayerGame|GATutorial|GAScripted|GameActivity)$
+    match: (Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|DataModule|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|MultiplayerServerLobby|MultiplayerGame|GATutorial|GAScripted|GameActivity)(\s*?\/\*.*?\*\/\s*?)?$
+    captures:
+      "0":
+        patterns:
+          - include: "#comments"
 
   presetDeclarations:
     name: keyword
@@ -86,14 +90,22 @@ repository:
       - include: "#modulePath"
 
   modulePath:
-    name: markup.underline.link
-    match: (([A-Z][A-z0-9]*\.rte)(\/[A-z0-9]*)*(\/[A-z0-9]+\.(wav|flac|png|bmp)))$
+    match: (([A-Z][A-z0-9]*\.rte)(\/[A-z0-9]*)*(\/[A-z0-9]+\.(wav|flac|png|bmp)))(\s*?\/\*.*?\*\/\s*?)?$
+    captures:
+      "1":
+        name: markup.underline.link
+      "6":
+        patterns:
+          - include: "#comments"
 
   numbers:
     name: constant.numeric
-    match: ((-?[0-9]+\.[0-9]+)|(-?[0-9]+))$
+    match: ((-?[0-9]+\.[0-9]+)|(-?[0-9]+))(\s*?\/\*.*?\*\/\s*?)?$
     captures:
       "2":
         name: constant.numeric.float
       "3":
         name: constant.numeric.integer
+      "4":
+        patterns:
+          - include: "#comments"
