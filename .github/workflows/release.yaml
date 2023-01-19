@@ -33,4 +33,4 @@ jobs:
         run: npm run build
 
       - name: "Semantic Release"
-        run: npx semantic-release --dry-run
+        run: npx semantic-release
