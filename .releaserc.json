@@ -2,7 +2,6 @@
     "branches": [
         "main"
     ],
-    "repositoryUrl": "https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension",
     "debug": "true",
     "plugins": [
         "@semantic-release/commit-analyzer",
