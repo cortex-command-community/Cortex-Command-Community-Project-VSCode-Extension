@@ -8,7 +8,7 @@
   "license": "LICENSE.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension.git"
+    "url": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension.git"
   },
   "engines": {
     "vscode": "^1.74.0"
