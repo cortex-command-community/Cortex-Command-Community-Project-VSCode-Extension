@@ -1,6 +1,10 @@
 {
   "name": "ccini-server",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension.git"
+  },
   "engines": {
     "node": "*"
   },

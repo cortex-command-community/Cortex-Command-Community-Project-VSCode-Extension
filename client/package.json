@@ -1,8 +1,12 @@
 {
   "name": "ccini-client",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension.git"
+  },
   "engines": {
-    "vscode": "^1.63.0"
+    "vscode": "^1.74.0"
   },
   "dependencies": {
     "vscode-languageclient": "^7.0.0"
