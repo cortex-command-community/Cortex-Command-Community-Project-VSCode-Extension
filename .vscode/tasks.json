@@ -3,24 +3,15 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "npx nx affected --target=build",
-      "label": "build",
+      "command": "npx nx build syntaxes",
+      "label": "build_syntaxes",
       "problemMatcher": ["$tsc"]
     },
     {
-      "type": "npm",
-      "script": "compile",
-      "group": "build",
-      "presentation": {
-        "panel": "dedicated",
-        "reveal": "never"
-      },
-      "problemMatcher": ["$tsc"]
-    },
-    {
-      "type": "npm",
-      "script": "watch",
+      "type": "shell",
+      "label": "watch",
       "isBackground": true,
+      "command": "npx nx affected --target=build --exclude=syntaxes -- --watch",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -29,7 +20,8 @@
         "panel": "dedicated",
         "reveal": "never"
       },
-      "problemMatcher": ["$tsc-watch"]
+      "problemMatcher": ["$tsc-watch"],
+      "dependsOn": "build_syntaxes"
     }
   ]
 }
