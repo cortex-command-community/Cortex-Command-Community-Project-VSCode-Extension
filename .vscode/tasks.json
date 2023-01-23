@@ -3,13 +3,39 @@
 	"tasks": [
 		{
 			"type": "shell",
+			"command": "npx nx affected --target=build",
+			"label": "build",
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"type": "npm",
+			"script": "compile",
+			"group": "build",
+			"presentation": {
+				"panel": "dedicated",
+				"reveal": "never"
+			},
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"type": "npm",
+			"script": "watch",
+			"isBackground": true,
 			"group": {
-				"kind": "test",
+				"kind": "build",
 				"isDefault": true
 			},
-			"command": "npx nx affected --target=build",
-			"problemMatcher": [],
-			"label": "build",
+			"presentation": {
+				"panel": "dedicated",
+				"reveal": "never"
+			},
+			"problemMatcher": [
+				"$tsc-watch"
+			]
 		}
 	]
 }
