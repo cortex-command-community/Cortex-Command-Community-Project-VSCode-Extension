@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "command": "npx js-yaml syntaxes/src/ccini.tmLanguage.yaml > dist/syntaxes/ccini.tmLanguage.json",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/syntaxes",
         "tsConfig": "syntaxes/tsconfig.lib.json"
