@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=../.vscode/tmLanguage.json
+# yaml-language-server: $schema=../../.vscode/tmLanguage.json
 
 name: "INI (Cortex Command)"
 scopeName: source.ccini
