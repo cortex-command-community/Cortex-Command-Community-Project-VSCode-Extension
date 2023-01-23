@@ -3,8 +3,8 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 import * as path from 'path';
-import * as Mocha from 'mocha';
-import {glob} from glob
+import { glob } from 'glob';
+import Mocha = require('mocha');
 
 export function run(): Promise<void> {
   // Create the mocha test
