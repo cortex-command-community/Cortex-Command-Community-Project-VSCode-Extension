@@ -23,7 +23,7 @@
     "CCCP",
     "Cortex Command Community Project"
   ],
-  "main": "./dist/client/extension",
+  "main": "dist/packages/client/src/extension",
   "contributes": {
     "configuration": {
       "type": "object",
@@ -43,12 +43,21 @@
             "messages",
             "verbose"
           ],
-          "default": "off",
+          "default": "verbose",
           "description": "Traces the communication between VS Code and the language server."
         }
       }
     },
     "languages": [
+      {
+        "id": "plaintext",
+        "extensions": [
+          ".txt"
+        ],
+        "aliases": [
+          "Plain Text"
+        ]
+      },
       {
         "id": "ccini",
         "aliases": [
@@ -58,14 +67,14 @@
         "extensions": [
           ".ini"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "packages/syntaxes/src/language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "ccini",
         "scopeName": "source.ccini",
-        "path": "dist/syntaxes/ccini.tmLanguage.json"
+        "path": "dist/packages/syntaxes/ccini.tmLanguage.json"
       }
     ]
   },
