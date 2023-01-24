@@ -50,15 +50,6 @@
     },
     "languages": [
       {
-        "id": "plaintext",
-        "extensions": [
-          ".txt"
-        ],
-        "aliases": [
-          "Plain Text"
-        ]
-      },
-      {
         "id": "ccini",
         "aliases": [
           "INI (Cortex Command)",

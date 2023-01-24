@@ -1,7 +1,6 @@
 .vscode/**
 .vscode-test/**
 .gitignore
-vsc-extension-quickstart.md
 tests/**
 docs/**
 .husky/**
