@@ -1,17 +1,52 @@
-# yaml-language-server: $schema=../../.vscode/tmLanguage.json
+# yaml-language-server: $schema=../../../.vscode/tmLanguage.json
 
 name: 'INI (Cortex Command)'
 scopeName: source.ccini
 patterns:
   - { include: '#comments' }
-  - { include: '#assignments' }
+  - { include: '#moduleDeclarations' }
+  - { include: '#definitions' }
+  # - { include: '#assignments' }
   # - { include: "#presetDefinition" }
   # - { include: "#numbers" }
   # - { include: "#strings" }
 
 repository:
+  moduleDeclarations:
+    name: meta.definition.module
+    begin: ^(DataModule)$
+    beginCaptures:
+      '1':
+        name: keyword
+    end: ^(?!\t+)
+    patterns:
+      - include: '#comments'
+      - include: '#assignments'
+
+  definitions:
+    name: meta.definition.block
+    begin: ^((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
+    end: ^(?!\t+)
+    beginCaptures:
+      '0':
+        name: meta.expression.assignment
+      '2':
+        name: support.type.property-name
+        patterns:
+          - include: '#presetDeclarations'
+      '3':
+        name: keyword.operator.assignment
+      '4':
+        patterns:
+          - { include: '#comments' }
+          - { include: '#classNames' }
+
+    patterns:
+      - { include: '#comments' }
+      - { include: '#assignments' }
+
   assignments:
-    match: (?:\t*)((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
+    match: (?:\t+)((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
     # match: |
     #   (?:\t*)       # leading tabs for the line
     #   (             # 1: capture whole line not including leading tabs
@@ -71,7 +106,7 @@ repository:
 
   classNames:
     name: entity.name.class
-    match: (Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|DataModule|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|MultiplayerServerLobby|MultiplayerGame|GATutorial|GAScripted|GameActivity)(\s*?\/\*.*?\*\/\s*?)?$
+    match: (Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|MultiplayerServerLobby|MultiplayerGame|GATutorial|GAScripted|GameActivity)(\s*?\/\*.*?\*\/\s*?)?$
     captures:
       '0':
         patterns:
@@ -79,7 +114,7 @@ repository:
 
   presetDeclarations:
     name: keyword
-    match: (AddEntity|AddEffect)
+    match: Add(Activity|Actor|Deployment|Device|Effect|Loadout|Material|Scene|SoundContainer|TerrainDebris)
 
   strings:
     name: string.unquoted
@@ -90,7 +125,7 @@ repository:
       - include: '#modulePath'
 
   modulePath:
-    match: (([A-Z][A-z0-9]*\.rte)(\/[A-z0-9]*)*(\/[A-z0-9]+\.(wav|flac|png|bmp)))(\s*?\/\*.*?\*\/\s*?)?$
+    match: (([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.(wav|flac|png|bmp|ini)))(\s*?\/\*.*?\*\/\s*?)?$
     captures:
       '1':
         name: markup.underline.link
