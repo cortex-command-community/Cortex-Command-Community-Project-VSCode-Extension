@@ -4,13 +4,13 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": ["packages/client/tsconfig.*?.json"]
-      },
       "rules": {}
     },
     {
       "files": ["*.ts", "*.tsx"],
+      "parserOptions": {
+        "project": ["packages/client/tsconfig.*?.json"]
+      },
       "rules": {}
     },
     {

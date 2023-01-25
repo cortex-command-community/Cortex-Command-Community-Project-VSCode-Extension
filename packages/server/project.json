@@ -1,18 +1,32 @@
 {
-  "name": "packages/server",
+  "name": "server",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/server/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/server",
         "tsConfig": "packages/server/tsconfig.lib.json",
+        "compiler": "babel",
         "packageJson": "packages/server/package.json",
-        "main": "packages/server/src/index.ts",
-        "assets": ["packages/server/*.md"]
+        "main": "packages/server/src/server.ts",
+        "webpackConfig": "packages/server/webpack.config.js",
+        "externalDependencies": ["commonjs", "vscode"]
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
       }
     },
     "lint": {

@@ -1,17 +1,20 @@
 {
-  "name": "packages/syntaxes",
+  "name": "syntaxes",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/syntaxes/src",
   "projectType": "library",
   "targets": {
     "build": {
       "command": "mkdir -p dist/packages/syntaxes && npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/syntaxes",
         "tsConfig": "packages/syntaxes/tsconfig.lib.json"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
       }
     }
   },

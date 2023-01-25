@@ -1,18 +1,36 @@
 {
-  "name": "packages/client",
+  "name": "client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/client/src",
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/js:tsc",
+      "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/client",
         "tsConfig": "packages/client/tsconfig.lib.json",
+        "compiler": "babel",
         "packageJson": "packages/client/package.json",
-        "main": "packages/client/src/index.ts",
-        "assets": ["packages/client/*.md"]
+        "main": "packages/client/src/extension.ts",
+        "webpackConfig": "packages/client/webpack.config.js",
+        "externalDependencies": [
+          "commonjs",
+          "vscode",
+          "vscode-languageserver-types"
+        ]
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
       }
     },
     "lint": {

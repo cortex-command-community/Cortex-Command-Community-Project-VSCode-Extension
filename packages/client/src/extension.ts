@@ -3,8 +3,8 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  * ------------------------------------------------------------------------------------------ */
 
-import * as path from 'path';
-import { workspace, ExtensionContext } from 'vscode';
+import path = require('path');
+import { ExtensionContext, workspace } from 'vscode';
 
 import {
   LanguageClient,

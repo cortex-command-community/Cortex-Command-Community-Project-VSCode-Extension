@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'packages/client',
+  displayName: 'client',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {

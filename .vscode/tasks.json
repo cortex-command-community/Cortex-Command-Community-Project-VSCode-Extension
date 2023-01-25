@@ -3,7 +3,7 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "npx nx build packages/syntaxes",
+      "command": "npx nx build syntaxes",
       "label": "build_syntaxes",
       "problemMatcher": ["$tsc"]
     },
@@ -11,7 +11,7 @@
       "type": "shell",
       "label": "watch",
       "isBackground": true,
-      "command": "npx nx affected --target=build --exclude=packages/syntaxes -- --watch",
+      "command": "npx nx affected --target=build --exclude=syntaxes -- --watch",
       "group": {
         "kind": "build",
         "isDefault": true

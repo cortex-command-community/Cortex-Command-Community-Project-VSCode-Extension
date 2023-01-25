@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'packages/syntaxes',
+  displayName: 'syntaxes',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {

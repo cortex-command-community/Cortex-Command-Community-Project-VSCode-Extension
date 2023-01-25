@@ -5,4 +5,5 @@
         "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
         "https://json.schemastore.org/github-workflow.json": "file:///d%3A/stuart/Documents/Cortex%20Command%20Community%20Project/Cortex-Command-Community-Project-VSCode-Extension/%2Cgithub/workflows/release.yaml"
     },
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
 }
