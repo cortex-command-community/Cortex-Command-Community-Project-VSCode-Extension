@@ -24,7 +24,9 @@
         ]
       },
       "configurations": {
-        "development": {},
+        "development": {
+          "sourceMap": false
+        },
         "production": {
           "optimization": true,
           "outputHashing": "media",

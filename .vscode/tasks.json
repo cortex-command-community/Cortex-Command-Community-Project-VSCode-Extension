@@ -20,7 +20,12 @@
         "panel": "dedicated",
         "reveal": "never"
       },
-      "problemMatcher": ["$ts-webpack"],
+      "problemMatcher": {
+        "base": "$ts-webpack-watch",
+        "background": {
+          "activeOnStart": true
+        }
+      },
       "dependsOn": "build_syntaxes"
     }
   ]

@@ -5,7 +5,7 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
   // Update the webpack config as needed here.
   // e.g. `config.plugins.push(new MyPlugin())`
 
-  config.devtool = 'source-map';
+  // config.devtool = 'source-map';
 
   config.resolve.extensions = ['.ts', '.js']; // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
 

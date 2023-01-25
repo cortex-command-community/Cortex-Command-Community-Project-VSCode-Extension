@@ -6,7 +6,7 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
   // e.g. `config.plugins.push(new MyPlugin())`
 
   config.resolve.extensions = ['.ts', '.js']; // support reading TypeScript and JavaScript files, 📖 -> https://github.com/TypeStrong/ts-loader
-  config.devtool = 'source-map';
+  // config.devtool = 'source-map';
 
   config.module.rules.push({
     test: /\.ts$/,
