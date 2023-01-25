@@ -10,18 +10,24 @@
       "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/server",
+        "outputFileName": "server.js",
         "tsConfig": "packages/server/tsconfig.lib.json",
         "compiler": "babel",
         "packageJson": "packages/server/package.json",
         "main": "packages/server/src/server.ts",
         "webpackConfig": "packages/server/webpack.config.js",
-        "externalDependencies": ["commonjs", "vscode"]
+        "externalDependencies": [
+          "commonjs",
+          "vscode",
+          "vscode-languageserver-textdocument",
+          "vscode-languageserver-types"
+        ]
       },
       "configurations": {
         "development": {},
         "production": {
           "optimization": true,
-          "outputHashing": "all",
+          "outputHashing": "media",
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,

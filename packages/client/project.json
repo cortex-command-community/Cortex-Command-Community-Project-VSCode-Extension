@@ -10,6 +10,7 @@
       "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/client",
+        "outputFileName": "extension.js",
         "tsConfig": "packages/client/tsconfig.lib.json",
         "compiler": "babel",
         "packageJson": "packages/client/package.json",
@@ -25,7 +26,7 @@
         "development": {},
         "production": {
           "optimization": true,
-          "outputHashing": "all",
+          "outputHashing": "media",
           "sourceMap": false,
           "namedChunks": false,
           "extractLicenses": true,
