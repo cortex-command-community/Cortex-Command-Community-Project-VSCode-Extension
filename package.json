@@ -24,6 +24,7 @@
     "Cortex Command Community Project"
   ],
   "main": "dist/packages/client/src/extension",
+  "activationEvents": [],
   "contributes": {
     "configuration": {
       "type": "object",
