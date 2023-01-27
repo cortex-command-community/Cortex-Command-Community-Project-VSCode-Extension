@@ -5,7 +5,7 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "command": "mkdir -p dist/packages/syntaxes && npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
+      "command": "npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "development",
       "options": {
