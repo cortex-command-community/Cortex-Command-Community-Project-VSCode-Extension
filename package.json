@@ -46,6 +46,13 @@
           ],
           "default": "verbose",
           "description": "Traces the communication between VS Code and the language server."
+        },
+        "languageServerExample.gameDirectoryPath": {
+          "scope": "resource",
+          "type": "string",
+          "default": ".",
+          "description": "The path to the Cortex Command game directory. Required if developing the mod outside the game directory.",
+          "format": "uri"
         }
       }
     },
