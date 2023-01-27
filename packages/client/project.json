@@ -8,36 +8,22 @@
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "defaultConfiguration": "development",
       "options": {
         "outputPath": "dist/packages/client",
         "compiler": "babel",
         "main": "packages/client/src/main.ts",
         "tsConfig": "packages/client/tsconfig.app.json",
-        "webpackConfig": "packages/client/webpack.config.js",
-        "assets": [
-          "packages/client/src/favicon.ico",
-          "packages/client/src/assets"
-        ],
-        "index": "packages/client/src/index.html",
-        "baseHref": "/",
-        "styles": ["packages/client/src/styles.scss"],
-        "scripts": []
+        "webpackConfig": "packages/client/webpack.config.js"
       },
       "configurations": {
+        "development": {},
         "production": {
           "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
+          "outputHashing": "media",
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false,
-          "fileReplacements": [
-            {
-              "replace": "packages/client/src/environments/environment.ts",
-              "with": "packages/client/src/environments/environment.prod.ts"
-            }
-          ]
+          "vendorChunk": false
         }
       }
     },

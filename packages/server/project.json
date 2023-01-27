@@ -14,30 +14,16 @@
         "compiler": "babel",
         "main": "packages/server/src/main.ts",
         "tsConfig": "packages/server/tsconfig.app.json",
-        "webpackConfig": "packages/server/webpack.config.js",
-        "assets": [
-          "packages/server/src/favicon.ico",
-          "packages/server/src/assets"
-        ],
-        "index": "packages/server/src/index.html",
-        "baseHref": "/",
-        "styles": ["packages/server/src/styles.scss"],
-        "scripts": []
+        "webpackConfig": "packages/server/webpack.config.js"
       },
       "configurations": {
+        "development": {},
         "production": {
           "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
+          "outputHashing": "media",
           "namedChunks": false,
           "extractLicenses": true,
-          "vendorChunk": false,
-          "fileReplacements": [
-            {
-              "replace": "packages/server/src/environments/environment.ts",
-              "with": "packages/server/src/environments/environment.prod.ts"
-            }
-          ]
+          "vendorChunk": false
         }
       }
     },

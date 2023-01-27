@@ -1,8 +1,24 @@
 const { composePlugins, withNx, withWeb } = require('@nrwl/webpack');
 
+const withDefaults = require('../../shared.webpack.config');
+const path = require('path');
+
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withWeb(), (config) => {
   // Update the webpack config as needed here.
   // e.g. `config.plugins.push(new MyPlugin())`
-  return config;
+  const /**@type WebpackConfig*/ merged = withDefaults(
+      /**@type WebpackConfig*/ config
+    );
+
+  merged.context = path.join(__dirname);
+  merged.entry = {
+    extension: './src/sampleServer.ts',
+  };
+  merged.output = {
+    filename: 'sampleServer.js',
+    path: path.join(__dirname, 'out'),
+  };
+
+  return merged;
 });
