@@ -16,7 +16,7 @@ import {
 
 export function activate(context: ExtensionContext): void {
   const serverModule = context.asAbsolutePath(
-    path.join('dist', 'packages', 'server', 'server.js')
+    path.join('dist', 'packages', 'server', 'src', 'sampleServer.js')
   );
   const serverOptions: ServerOptions = {
     run: {
@@ -32,24 +32,10 @@ export function activate(context: ExtensionContext): void {
   };
 
   const clientOptions: LanguageClientOptions = {
-    documentSelector: [{ scheme: 'file', language: 'plaintext' }],
+    documentSelector: [{ scheme: 'file', language: 'ccini' }],
     diagnosticCollectionName: 'sample',
     revealOutputChannelOn: RevealOutputChannelOn.Never,
     progressOnInitialization: true,
-    middleware: {
-      executeCommand: async (command, args, next) => {
-        const selected = await Window.showQuickPick([
-          'Visual Studio',
-          'Visual Studio Code',
-        ]);
-        if (selected === undefined) {
-          return next(command, args);
-        }
-        args = args.slice(0);
-        args.push(selected);
-        return next(command, args);
-      },
-    },
   };
 
   let client: LanguageClient;
