@@ -22,17 +22,6 @@
         "production": {}
       }
     },
-    "serve": {
-      "executor": "@nrwl/webpack:dev-server",
-      "options": {
-        "buildTarget": "server:build"
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "server:build:production"
-        }
-      }
-    },
     "watch": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
