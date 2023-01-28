@@ -12,19 +12,14 @@
       "options": {
         "outputPath": "dist/packages/server",
         "compiler": "babel",
-        "main": "packages/server/src/main.ts",
+        "main": "packages/server/src/sampleServer.ts",
         "tsConfig": "packages/server/tsconfig.app.json",
-        "webpackConfig": "packages/server/webpack.config.js"
+        "webpackConfig": "packages/server/webpack.config.js",
+        "target": "node",
+        "outputFileName": "server.js"
       },
       "configurations": {
-        "development": {},
-        "production": {
-          "optimization": true,
-          "outputHashing": "media",
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
+        "production": {}
       }
     },
     "serve": {

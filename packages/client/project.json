@@ -8,23 +8,18 @@
     "build": {
       "executor": "@nrwl/webpack:webpack",
       "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/packages/client",
         "compiler": "babel",
-        "main": "packages/client/src/main.ts",
+        "main": "packages/client/src/extension.ts",
         "tsConfig": "packages/client/tsconfig.app.json",
-        "webpackConfig": "packages/client/webpack.config.js"
+        "webpackConfig": "packages/client/webpack.config.js",
+        "target": "node",
+        "outputFileName": "extension.js"
       },
       "configurations": {
-        "development": {},
-        "production": {
-          "optimization": true,
-          "outputHashing": "media",
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false
-        }
+        "production": {}
       }
     },
     "serve": {
