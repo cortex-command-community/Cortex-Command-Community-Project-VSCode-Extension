@@ -29,14 +29,14 @@ documents.listen(connection);
 connection.onInitialize(() => {
   return {
     capabilities: {
-      codeActionProvider: true,
-      textDocumentSync: {
-        openClose: true,
-        change: TextDocumentSyncKind.Incremental,
-      },
-      executeCommandProvider: {
-        commands: ['sample.fixMe'],
-      },
+      // codeActionProvider: true,
+      // textDocumentSync: {
+      //   openClose: true,
+      //   change: TextDocumentSyncKind.Incremental,
+      // },
+      // executeCommandProvider: {
+      //   commands: ['sample.fixMe'],
+      // },
     },
   };
 });
@@ -55,13 +55,13 @@ function validate(document: TextDocument): void {
   });
 }
 
-documents.onDidOpen((event) => {
-  validate(event.document);
-});
+// documents.onDidOpen((event) => {
+//   validate(event.document);
+// });
 
-documents.onDidChangeContent((event) => {
-  validate(event.document);
-});
+// documents.onDidChangeContent((event) => {
+//   validate(event.document);
+// });
 
 // connection.onCodeAction((params) => {
 // 	const textDocument = documents.get(params.textDocument.uri);
