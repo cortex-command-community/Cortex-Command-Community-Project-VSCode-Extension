@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=../../../.vscode/tmLanguage.json
+
+name: 'INI (Cortex Command)'
+scopeName: source.ccini
+patterns:
+  - { include: '#comments' }
+  - { include: '#moduleDeclarations' }
+  - { include: '#definitions' }
+  # - { include: '#assignments' }
+  # - { include: "#presetDefinition" }
+  # - { include: "#numbers" }
+  # - { include: "#strings" }
+
+repository:
+  moduleDeclarations:
+    name: meta.definition.module
+    begin: ^(DataModule)$
+    beginCaptures:
+      '1':
+        name: keyword
+    end: ^(?!\t+)
+    patterns:
+      - include: '#comments'
+      - include: '#assignments'
+
+  definitions:
+    name: meta.definition.block
+    begin: ^((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
+    end: ^(?!\t+)
+    beginCaptures:
+      '0':
+        name: meta.expression.assignment
+      '2':
+        name: support.type.property-name
+        patterns:
+          - include: '#presetDeclarations'
+      '3':
+        name: keyword.operator.assignment
+      '4':
+        patterns:
+          - { include: '#comments' }
+          - { include: '#classNames' }
+
+    patterns:
+      - { include: '#comments' }
+      - { include: '#assignments' }
+
+  assignments:
+    match: (?:\t+)((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
+    # match: |
+    #   (?:\t*)       # leading tabs for the line
+    #   (             # 1: capture whole line not including leading tabs
+    #     (\w+)           2: capture first token, at least one word character
+    #     \s+(=)\s+       3: capture "=" surrounded by whitespace
+    #     (?:(.+?)(?:\s*?))   4: capture whatever text is next, discarding any trailing space with the non-capturing group (?:\s*?)
+    #     (?=                 do this until we find:
+    #       (?:\/\*(?!.*\*\/))    A "/*" with no matching "*/" on this line
+    #       |\/\/                 A  "//" comment
+    #       |\n                   A newline
+    #     )
+    #   )
+    captures:
+      '0':
+        name: meta.expression.assignment
+      '2':
+        name: support.type.property-name
+        patterns:
+          - include: '#presetDeclarations'
+      '3':
+        name: keyword.operator.assignment
+      '4':
+        patterns:
+          - { include: '#comments' }
+          - { include: '#classNames' }
+          - { include: '#numbers' }
+          - { include: '#strings' }
+
+  commentBlock:
+    patterns:
+      - name: comment.block
+        begin: \/\*
+        end: \*\/
+        patterns:
+          - include: '#commentBlock'
+
+  comments:
+    patterns:
+      - include: '#commentBlock'
+
+      # - name: comment.block.inline
+      #   match: (\/\*).*?(?=\*\/)(\*\/)
+
+      - name: comment.line.double-slash
+        begin: (^[ \t]+)?(?=//)
+        beginCaptures:
+          '1':
+            name: punctuation.whitespace.comment.leading.ccini
+        end: "(?!\\G)"
+        patterns:
+          - name: comment.line
+            begin: //
+            beginCaptures:
+              '0':
+                name: comment.line.double-slash
+            end: $
+
+  classNames:
+    name: entity.name.class
+    match: (Vector|Matrix|InputScheme|InputMapping|GenericSavedData|Entity|ContentFile|Color|Box|Atom|Turret|ThrownDevice|TerrainObject|TerrainFrosting|TerrainDebris|TDExplosive|SoundSet|SoundContainer|SLTerrain|SLBackground|SOPlacer|SceneObject|SceneLayer|Area|Scene|Round|PieSlice|PEmitter|MovableObject|MOSRotating|MOSprite|MOSParticle|MOPixel|MetaSave|MetaPlayer|Material|Magazine|Loadout|LimbPath|Leg|Icon|HeldDevice|HDFirearm|GlobalScript|Gib|Emission|Deployment|BunkerAssemblyScheme|BunkerAssembly|Attachable|AtomGroup|Arm|AHuman|AEmitter|ADSensor|ADoor|Actor|Activity|ACRocket|Exit|ACraft|ACrab|ACDropShip|MultiplayerServerLobby|MultiplayerGame|GATutorial|GAScripted|GameActivity)(\s*?\/\*.*?\*\/\s*?)?$
+    captures:
+      '0':
+        patterns:
+          - include: '#comments'
+
+  presetDeclarations:
+    name: keyword
+    match: Add(Activity|Actor|Deployment|Device|Effect|Loadout|Material|Scene|SoundContainer|TerrainDebris)
+
+  strings:
+    name: string.unquoted
+    begin: (?=[\w\-])
+    end: (?=\n|$|(\/\*(?!.*\*\/))|(\/\/))
+    patterns:
+      - include: '#comments'
+      - include: '#modulePath'
+
+  modulePath:
+    match: (([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.(wav|flac|png|bmp|ini)))(\s*?\/\*.*?\*\/\s*?)?$
+    captures:
+      '1':
+        name: markup.underline.link
+      '6':
+        patterns:
+          - include: '#comments'
+
+  numbers:
+    name: constant.numeric
+    match: ((-?[0-9]+\.[0-9]+)|(-?[0-9]+))(\s*?\/\*.*?\*\/\s*?)?$
+    captures:
+      '2':
+        name: constant.numeric.float
+      '3':
+        name: constant.numeric.integer
+      '4':
+        patterns:
+          - include: '#comments'

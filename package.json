@@ -8,7 +8,7 @@
   "license": "LICENSE.md",
   "repository": {
     "type": "git",
-    "url": "https://github.com/traunts/Cortex-Command-Community-Project-VSCode-Extension.git"
+    "url": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension.git"
   },
   "engines": {
     "vscode": "^1.74.0"
@@ -16,7 +16,46 @@
   "categories": [
     "Programming Languages"
   ],
+  "keywords": [
+    "Cortex",
+    "Cortex Command",
+    "Modding",
+    "CCCP",
+    "Cortex Command Community Project"
+  ],
+  "main": "dist/packages/client/src/extension.js",
+  "activationEvents": [],
   "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Example configuration",
+      "properties": {
+        "languageServerExample.maxNumberOfProblems": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "Controls the maximum number of problems produced by the server."
+        },
+        "languageServerExample.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "verbose",
+          "description": "Traces the communication between VS Code and the language server."
+        },
+        "languageServerExample.gameDirectoryPath": {
+          "scope": "resource",
+          "type": "string",
+          "default": ".",
+          "description": "The path to the Cortex Command game directory. Required if developing the mod outside the game directory.",
+          "format": "uri"
+        }
+      }
+    },
     "languages": [
       {
         "id": "ccini",
@@ -27,31 +66,74 @@
         "extensions": [
           ".ini"
         ],
-        "configuration": "./language-configuration.json"
+        "configuration": "packages/syntaxes/src/language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "ccini",
         "scopeName": "source.ccini",
-        "path": "./syntaxes/ccini.tmLanguage.json"
+        "path": "dist/packages/syntaxes/ccini.tmLanguage.json"
       }
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.1",
-    "@commitlint/config-conventional": "^17.4.0",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
+    "@nrwl/cypress": "15.6.2",
+    "@nrwl/esbuild": "15.5.3",
+    "@nrwl/eslint-plugin-nx": "15.5.3",
+    "@nrwl/jest": "15.6.2",
+    "@nrwl/js": "15.6.2",
+    "@nrwl/linter": "15.5.3",
+    "@nrwl/node": "15.5.3",
+    "@nrwl/nx-cloud": "^15.0.2",
+    "@nrwl/web": "15.6.2",
+    "@nrwl/webpack": "15.6.2",
+    "@nrwl/workspace": "15.5.3",
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@vscode/vsce": "^2.16.0",
+    "@types/glob": "^8.0.1",
+    "@types/jest": "28.1.1",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "18.7.1",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "@vscode/test-electron": "^2.2.2",
+    "@vscode/vsce": "^2.17.0",
+    "babel-jest": "28.1.1",
+    "cypress": "^12.4.0",
+    "esbuild": "^0.15.18",
+    "eslint": "~8.15.0",
+    "eslint-config-prettier": "8.1.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "husky": "^8.0.3",
+    "jest": "28.1.1",
+    "jest-environment-jsdom": "28.1.1",
     "js-yaml": "^4.1.0",
-    "semantic-release": "^20.0.2"
+    "nx": "15.5.3",
+    "prettier": "^2.8.3",
+    "semantic-release": "^20.1.0",
+    "ts-jest": "28.0.5",
+    "ts-loader": "^9.4.2",
+    "ts-node": "10.9.1",
+    "typescript": "^4.9.4"
   },
   "scripts": {
-    "prepare": "husky install",
-    "semantic-release": "semantic-release",
-    "build": "npx js-yaml syntaxes/ccini.tmLanguage.yaml > syntaxes/ccini.tmLanguage.json"
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "core-js": "^3.27.2",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "path": "^0.12.7",
+    "regenerator-runtime": "0.13.7",
+    "tslib": "^2.5.0",
+    "vscode-languageclient": "^7.0.0",
+    "vscode-languageserver": "^7.0.0",
+    "vscode-languageserver-textdocument": "^1.0.8",
+    "vscode-test": "^1.6.1"
   }
 }

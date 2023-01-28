@@ -5,7 +5,7 @@ name: Release Extension
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   release:
@@ -24,13 +24,16 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "npm"
+          cache: 'npm'
 
-      - name: "Install dependencies"
+      - name: 'Install dependencies'
         run: npm ci
 
-      - name: "Build (ensure yaml is transpiled to json)"
-        run: npm run build
+      - name: 'Build syntaxes, client and server. '
+        run: npx nx run-many --target=build
 
-      - name: "Semantic Release"
+      - name: 'Package extension'
+        run: npx vsce package
+
+      - name: 'Semantic Release'
         run: npx semantic-release

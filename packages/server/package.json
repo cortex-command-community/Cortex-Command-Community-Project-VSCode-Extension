@@ -1,0 +1,18 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension.git"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "dependencies": {
+    "vscode-uri": "^3.0.2",
+    "vscode-languageserver": "^7.0.0",
+    "vscode-languageserver-textdocument": "^1.0.1"
+  }
+}
