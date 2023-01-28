@@ -13,8 +13,6 @@
     "paths": {},
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "strict": true,
     "module": "commonjs",
     "target": "es2020",
@@ -23,5 +21,12 @@
     "sourceMap": true
   },
   "exclude": ["node_modules", "tmp"],
-  "references": [{ "path": "./client" }, { "path": "./server" }]
+  "references": [
+    {
+      "path": "./client"
+    },
+    {
+      "path": "./server"
+    }
+  ]
 }

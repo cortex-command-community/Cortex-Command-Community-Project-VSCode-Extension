@@ -23,7 +23,7 @@
     "CCCP",
     "Cortex Command Community Project"
   ],
-  "main": "dist/packages/client/extension.js",
+  "main": "dist/packages/client/src/extension.js",
   "activationEvents": [],
   "contributes": {
     "configuration": {

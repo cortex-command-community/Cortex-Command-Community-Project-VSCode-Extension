@@ -10,22 +10,16 @@
     {
       "type": "shell",
       "label": "watch",
+      "command": "npx nx affected --verbose --target=watch --exclude=syntaxes",
       "isBackground": true,
-      "command": "npx nx affected --target=build --exclude=syntaxes -- --watch",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "presentation": {
-        "panel": "dedicated",
-        "reveal": "never"
+        "panel": "dedicated"
       },
-      "problemMatcher": {
-        "base": "$ts-webpack-watch",
-        "background": {
-          "activeOnStart": true
-        }
-      },
+      "problemMatcher": ["$tsc-watch"],
       "dependsOn": "build_syntaxes"
     }
   ]

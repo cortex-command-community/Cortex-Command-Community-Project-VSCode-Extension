@@ -33,6 +33,15 @@
         }
       }
     },
+    "watch": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/client",
+        "main": "packages/client/src/extension.ts",
+        "tsConfig": "packages/client/tsconfig.app.json"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
