@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/server",
+        "outputPath": "dist/packages/server/src",
         "compiler": "babel",
         "main": "packages/server/src/sampleServer.ts",
         "tsConfig": "packages/server/tsconfig.app.json",
