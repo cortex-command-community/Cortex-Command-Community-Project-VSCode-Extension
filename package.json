@@ -3,7 +3,7 @@
   "displayName": "Cortex Command Community Project Language Support",
   "description": "INI language support for development of content for the game Cortex Command",
   "icon": "icon.png",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "publisher": "CortexCommandCommunityProject",
   "license": "LICENSE.md",
   "repository": {
