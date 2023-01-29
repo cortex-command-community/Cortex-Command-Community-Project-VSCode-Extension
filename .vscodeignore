@@ -1,8 +1,6 @@
 *
 **/*
 
-!node_modules/vscode-languageserver-types
-!node_modules/vscode-languageserver-textdocument
 !dist
 !docs
 !CHANGELOG.md
