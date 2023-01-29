@@ -1,3 +1,17 @@
+# [1.2.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.1.0...v1.2.0) (2023-01-29)
+
+
+### Bug Fixes
+
+* empty newlines no longer break a block (and hence syntax highlighting) ([a9d3247](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/a9d3247f94515ccb17944f955722f4d38e8757cf))
+* language configurations are now correctly included in the build ([473b06b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/473b06b4f38dd2a11ec86b6865bea2e9fc9127c4))
+
+
+### Features
+
+* add language snippets for several atomic classes ([9fa08b6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/9fa08b679ad5f193a99020b5f804968550b77e87))
+* update configuration properties and their titles for the language server ([255260b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255260be333fb9bed2c04bb0e448b0506047493d))
+
 # [1.1.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.2...v1.1.0) (2023-01-29)
 
 
