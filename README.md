@@ -4,13 +4,18 @@ This extension is designed to support the development of content and mods for th
 
 ## Features
 
-Adds syntax highlighting, including support for:
+Syntax highlighting, including support for:
 
 - Keyword and class name recognition
 - Comment , including block comments matching the project's format
 - Module reference underlines
 
 ![syntax_highlighting](docs/syntax_highlighting.png)
+
+Code snippets for small classes, like ContentFile, Vector, Area etc.
+These allow you to quicky create definitions for properties, and tab through their values.
+
+![snippets](docs/snippets.gif)
 
 ## Extension Settings
 

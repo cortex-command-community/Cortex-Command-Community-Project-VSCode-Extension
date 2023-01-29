@@ -5,14 +5,14 @@
 ## TODO:
 
 - [ ] Unit tests for syntax highlighting
-- [ ] Tags in Marketplace
+- [x] Tags in Marketplace
 
-  - [ ] (Incremental) feature demo gifs
+  - [x] (Incremental) feature demo gifs
 
-- [ ] Language Server
+- [x] Language Server
   - [ ] Settings config
 - [ ] Test framework!
-- [ ] Monorepo setup?
+- [x] Monorepo setup?
 - [ ] Changelog formatting!
 
 - [ ] FilePath autocompletion
