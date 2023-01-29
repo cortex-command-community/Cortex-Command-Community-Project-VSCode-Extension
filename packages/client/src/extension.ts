@@ -33,14 +33,17 @@ export function activate(context: ExtensionContext): void {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: [{ scheme: 'file', language: 'ccini' }],
-    diagnosticCollectionName: 'sample',
-    revealOutputChannelOn: RevealOutputChannelOn.Never,
+    revealOutputChannelOn: RevealOutputChannelOn.Error,
     progressOnInitialization: true,
   };
 
   let client: LanguageClient;
   try {
-    client = new LanguageClient('UI Sample', serverOptions, clientOptions);
+    client = new LanguageClient(
+      'Cortex Command Client',
+      serverOptions,
+      clientOptions
+    );
   } catch (err) {
     Window.showErrorMessage(
       `The extension couldn't be started. See the output channel for details.`
