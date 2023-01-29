@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.0...v1.2.1) (2023-01-29)
+
+
+### Bug Fixes
+
+* update workplace extensions and republish docs ([16ff6a7](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/16ff6a79a36c867950950a9f09461c8e372cc1fe))
+
 # [1.2.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.1.0...v1.2.0) (2023-01-29)
 
 
