@@ -10,6 +10,7 @@
         "commands": [
           "npx mkdirp \"dist/packages/syntaxes\"",
           "npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
+          "cp packages/syntaxes/src/snippets.jsonc dist/packages/syntaxes/snippets.json",
           "cp packages/syntaxes/src/language-configuration.json dist/packages/syntaxes/language-configuration.json"
         ],
         "outputPath": "dist/packages/syntaxes"

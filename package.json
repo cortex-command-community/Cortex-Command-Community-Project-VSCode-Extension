@@ -75,6 +75,12 @@
         "scopeName": "source.ccini",
         "path": "dist/packages/syntaxes/ccini.tmLanguage.json"
       }
+    ],
+    "snippets": [
+      {
+        "language": "ccini",
+        "path": "dist/packages/syntaxes/snippets.json"
+      }
     ]
   },
   "devDependencies": {

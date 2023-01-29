@@ -1,0 +1,86 @@
+{
+  // Place your snippets for ccini here. Each snippet is defined under a snippet name and has a prefix, body and
+  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+  // same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+
+  "Vector": {
+    "prefix": "Vector",
+    "body": ["Vector", "\tX = ${1:0}", "\tY = ${2:0}", "$0"]
+  },
+
+  "ContentFile": {
+    "prefix": "ContentFile",
+    "body": ["ContentFile", "\tFilePath = $1", "$0"]
+  },
+
+  "Color": {
+    "prefix": "Color",
+    "body": ["Color", "\tR = ${1:0}", "\tG = ${2:0}", "\tB = ${3:0}", "$0"]
+  },
+
+  "Box": {
+    "prefix": "Box",
+    "body": [
+      "Box",
+      "\tCorner = Vector",
+      "\t\tX = ${1:0}",
+      "\t\tY = ${2:0}",
+      "\tWidth = ${3:0}",
+      "\tHeight = ${4:0}",
+      "$0"
+    ]
+  },
+
+  "Area": {
+    "prefix": "Area",
+    "body": [
+      "Area",
+      "\tName = $1",
+      "\tAddBox = Box",
+      "\t\tCorner = Vector",
+      "\t\t\tX = ${2:0}",
+      "\t\t\tY = ${3:0}",
+      "\t\tWidth = ${4:0}",
+      "\t\tHeight = ${5:0}",
+      "$0"
+    ]
+  },
+
+  "GlobalScript": {
+    "prefix": "GlobalScript",
+    "body": [
+      "GlobalScript",
+      "\tPresetName = ${1}",
+      "\tDescription = ${2}",
+      "\tScriptPath = ${3}",
+      "\tLuaClassName = ${4}",
+      "$0"
+    ]
+  },
+
+  "Exit": {
+    "prefix": "Exit",
+    "body": [
+      "Exit",
+      "\tOffset = Vector",
+      "\t\tX = ${2:0}",
+      "\t\tY = ${3:0}",
+      "\tVelocity = Vector",
+      "\t\tX = ${2:0}",
+      "\t\tY = ${3:0}",
+      "\tRadius = ${4:10}",
+      "\tRange = ${5:35}",
+      "$0"
+    ]
+  }
+}
