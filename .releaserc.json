@@ -1,53 +1,51 @@
 {
-    "branches": [
-        "main"
+  "branches": ["main"],
+  "debug": "true",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/changelog",
+      {
+        "changelogFile": "CHANGELOG.md"
+      }
     ],
-    "debug": "true",
-    "plugins": [
-        "@semantic-release/commit-analyzer",
-        "@semantic-release/release-notes-generator",
-        [
-            "@semantic-release/changelog",
-            {
-                "changelogFile": "CHANGELOG.md"
-            }
-        ],
-        [
-            "@semantic-release/npm",
-            {
-                "npmPublish": false
-            }
-        ],
-        [
-            "@semantic-release/exec",
-            {
-                "publishCmd": "npx vsce publish --no-git-tag-version ${nextRelease.version}"
-            }
-        ],
-        [
-            "@semantic-release/git",
-            {
-                "assets": [
-                    "package.json",
-                    "CHANGELOG.md",
-                    "syntaxes/ccini.tmLanguage.json"
-                ]
-            }
-        ],
-        [
-            "@semantic-release/github",
-            {
-                "assets": [
-                    {
-                        "path": "cortex-command-community-project-language-support-${nextRelease.version}.vsix"
-                    }
-                ],
-                "successComment": false,
-                "failComment": false,
-                "failTitle": false,
-                "releasedLabels": false,
-                "labels": false
-            }
+    [
+      "@semantic-release/npm",
+      {
+        "npmPublish": false
+      }
+    ],
+    [
+      "@semantic-release/exec",
+      {
+        "publishCmd": "npx vsce publish --no-git-tag-version ${nextRelease.version}"
+      }
+    ],
+    [
+      "@semantic-release/git",
+      {
+        "assets": [
+          "package.json",
+          "CHANGELOG.md",
+          "syntaxes/ccini.tmLanguage.json"
         ]
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          {
+            "path": "cortex-command-community-project-language-support-*.vsix"
+          }
+        ],
+        "successComment": false,
+        "failComment": false,
+        "failTitle": false,
+        "releasedLabels": false,
+        "labels": false
+      }
     ]
+  ]
 }
