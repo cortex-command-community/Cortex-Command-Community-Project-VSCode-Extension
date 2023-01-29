@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "firsttris.vscode-jest-runner",
+    "bierner.markdown-checkbox",
+    "bierner.markdown-preview-github-styles",
+    "nrwl.angular-console",
+    "esbenp.prettier-vscode"
+  ]
+}
