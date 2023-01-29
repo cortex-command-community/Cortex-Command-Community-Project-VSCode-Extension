@@ -1,6 +1,7 @@
 ## Issues:
 
 - trailing spaces are trimmed, need to allow
+- Docs updates don't trigger releases.
 
 ## TODO:
 
