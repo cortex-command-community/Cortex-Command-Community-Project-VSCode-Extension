@@ -1,7 +1,6 @@
 ## Issues:
 
 - trailing spaces are trimmed, need to allow
-- Block syntax in ini means that empty lines beteween indednted lines end the block, and incorrectly highlight the rest.
 
 ## TODO:
 
