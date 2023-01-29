@@ -5,15 +5,18 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "command": "npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "development",
+      "executor": "nx:run-commands",
       "options": {
-        "outputPath": "dist/packages/syntaxes",
-        "tsConfig": "packages/syntaxes/tsconfig.lib.json"
+        "commands": [
+          "npx mkdirp \"dist/packages/syntaxes\"",
+          "npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
+          "cp packages/syntaxes/src/language-configuration.json dist/packages/syntaxes/language-configuration.json"
+        ],
+        "outputPath": "dist/packages/syntaxes"
       },
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "configurations": {
-        "development": {},
         "production": {}
       }
     }
