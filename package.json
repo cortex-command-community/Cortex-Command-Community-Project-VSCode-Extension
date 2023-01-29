@@ -28,15 +28,15 @@
   "contributes": {
     "configuration": {
       "type": "object",
-      "title": "Example configuration",
+      "title": "Cortex Command INI Language Options",
       "properties": {
-        "languageServerExample.maxNumberOfProblems": {
+        "cortex-command-community-project-language-support.maxNumberOfProblems": {
           "scope": "resource",
           "type": "number",
           "default": 100,
           "description": "Controls the maximum number of problems produced by the server."
         },
-        "languageServerExample.trace.server": {
+        "cortex-command-community-project-language-support.trace.server": {
           "scope": "window",
           "type": "string",
           "enum": [
@@ -47,7 +47,7 @@
           "default": "verbose",
           "description": "Traces the communication between VS Code and the language server."
         },
-        "languageServerExample.gameDirectoryPath": {
+        "cortex-command-community-project-language-support.gameDirectoryPath": {
           "scope": "resource",
           "type": "string",
           "default": ".",
