@@ -26,7 +26,7 @@ repository:
   definitions:
     name: meta.definition.block
     begin: ^((\w+)\s+(=)\s+(?:(.+?)(?:\s*?))(?=(?:\/\*(?!.*\*\/))|\/\/|\n))
-    end: ^(?!\t+)
+    end: ^(?=\w)
     beginCaptures:
       '0':
         name: meta.expression.assignment
