@@ -7,7 +7,10 @@
       "request": "launch",
       "name": "Launch Client",
       "runtimeExecutable": "${execPath}",
-      "args": ["--extensionDevelopmentPath=${workspaceRoot}"],
+      "args": [
+        "--extensionDevelopmentPath=${workspaceRoot}",
+        "--disableExtension=cortex-command-community-project-language-support"
+      ],
       "outFiles": ["${workspaceRoot}/dist/client/out/**/*.js"],
       "autoAttachChildProcesses": true,
       "preLaunchTask": "watch"
