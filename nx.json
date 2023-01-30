@@ -19,6 +19,9 @@
     },
     "build": {
       "dependsOn": ["^build"]
+    },
+    "watch": {
+      "dependsOn": ["^build"]
     }
   },
   "workspaceLayout": {
@@ -35,6 +38,11 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
+    }
+  },
+  "pluginsConfig": {
+    "@nrwl/js": {
+      "analyzeSourceFiles": true
     }
   }
 }

@@ -35,6 +35,7 @@ export function activate(context: ExtensionContext): void {
     documentSelector: [{ scheme: 'file', language: 'ccini' }],
     revealOutputChannelOn: RevealOutputChannelOn.Error,
     progressOnInitialization: true,
+    
   };
 
   let client: LanguageClient;
