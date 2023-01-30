@@ -12,6 +12,7 @@ import {
   Diagnostic,
   DiagnosticSeverity,
   DidChangeConfigurationNotification,
+  DidChangeWatchedFilesNotification,
   InitializeParams,
   InitializeResult,
   Position,
@@ -29,6 +30,7 @@ import {
   CortexCommandLanguageSupportConfiguration,
 } from './services/configuration.service';
 import { validateFilePaths } from './validations/validateFilePath';
+import { fileSystemService } from './services/fs.service';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -66,6 +68,13 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
     },
   };
 
+  if (configService.hasWorkspaceFolderCapability && params.workspaceFolders) {
+    fileSystemService.registerWorkspaces(params.workspaceFolders);
+    fileSystemService.fileList.forEach((file) => {
+      connection.console.log(file);
+    });
+  }
+
   if (configService.hasWorkspaceFolderCapability) {
     result.capabilities.workspace = {
       workspaceFolders: {
@@ -85,6 +94,9 @@ connection.onInitialized(() => {
       undefined
     );
   }
+
+  connection.client.register(DidChangeWatchedFilesNotification.type);
+
   if (configService.hasWorkspaceFolderCapability) {
     connection.workspace.onDidChangeWorkspaceFolders((_event) => {
       connection.console.log('Workspace folder change event received.');
@@ -104,6 +116,12 @@ connection.onDidChangeConfiguration((change) => {
 
   // Revalidate all open text documents
   documents.all().forEach(validate);
+});
+
+connection.onDidChangeWatchedFiles((change) => {
+  change.changes.forEach((change) => {
+    connection.console.log(change.type.toString() + change.uri);
+  });
 });
 
 function validate(document: TextDocument): void {

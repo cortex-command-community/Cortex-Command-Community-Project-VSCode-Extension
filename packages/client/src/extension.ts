@@ -5,7 +5,7 @@
 'use strict';
 
 import * as path from 'path';
-import { ExtensionContext, window as Window } from 'vscode';
+import { ExtensionContext, window as Window, workspace } from 'vscode';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -35,7 +35,11 @@ export function activate(context: ExtensionContext): void {
     documentSelector: [{ scheme: 'file', language: 'ccini' }],
     revealOutputChannelOn: RevealOutputChannelOn.Error,
     progressOnInitialization: true,
-    
+    synchronize: {
+      fileEvents: workspace.createFileSystemWatcher(
+        '**/*.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}'
+      ),
+    },
   };
 
   let client: LanguageClient;
