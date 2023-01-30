@@ -3,6 +3,10 @@
 - trailing spaces are trimmed, need to allow
 - Docs updates don't trigger releases.
 
+      SkinFile = Browncoats.rte/BuyMenuSkin.ini
+      BackgroundColorIndex = 62
+      LogoFile = Browncoats.rte/GUIs/BuyMenuLogo.png
+
 ## TODO:
 
 - [ ] Unit tests for syntax highlighting

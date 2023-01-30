@@ -70,7 +70,7 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   if (configService.hasWorkspaceFolderCapability && params.workspaceFolders) {
     fileSystemService.registerWorkspaces(params.workspaceFolders);
-    fileSystemService.fileList.forEach((file) => {
+    fileSystemService.moduleFileList.forEach((file) => {
       connection.console.log(file);
     });
   }

@@ -10,7 +10,8 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 
   // The validator creates diagnostics for all uppercase words length 2 and more
   const text = textDocument.getText();
-  const pattern = /(\t*(?:FilePath|IncludeFile)\s*=\s*)(.*)/dg;
+  const pattern =
+    /(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*)/dg;
   let m: RegExpExecArray | null;
 
   let problems = 0;
@@ -21,7 +22,7 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
     const normalizedPath = normalize(m[2]);
-    if (!fileSystemService.fileList.includes(normalizedPath)) {
+    if (!fileSystemService.moduleFileList.includes(normalizedPath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,

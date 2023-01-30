@@ -4,7 +4,7 @@ import { WorkspaceFolder } from 'vscode-languageserver';
 import { URI } from 'vscode-uri';
 
 class FileSystemService {
-  public fileList: string[] = [];
+  public moduleFileList: string[] = [];
 
   public registerWorkspaces(workspaces: WorkspaceFolder[]) {
     workspaces.forEach((folder) => {
@@ -12,7 +12,7 @@ class FileSystemService {
       const workspaceFileList = this.getAllFiles(workspacePath);
 
       for (const file of workspaceFileList) {
-        this.fileList.push(relative(workspacePath, file));
+        this.moduleFileList.push(relative(workspacePath, file));
       }
     });
   }
@@ -21,20 +21,25 @@ class FileSystemService {
   //     this.fileList = this.getAllFiles(rootUri);
   //   }
 
-  private getAllFiles(dirPath: string): string[] {
+  private getAllFiles(dirPath: string, isRoot = true): string[] {
     const files = readdirSync(dirPath);
 
-    const fileList: string[] = [];
+    const foundFileList: string[] = [];
 
     files.forEach((file) => {
-      if (statSync(dirPath + '/' + file).isDirectory()) {
-        fileList.push(...this.getAllFiles(join(dirPath, file)));
+      if (isRoot && !file.endsWith('.rte')) {
+        return;
+      }
+
+      const fileStats = statSync(dirPath + '/' + file);
+      if (fileStats.isDirectory()) {
+        foundFileList.push(...this.getAllFiles(join(dirPath, file), false));
       } else {
-        fileList.push(join(dirPath, file));
+        foundFileList.push(join(dirPath, file));
       }
     });
 
-    return fileList;
+    return foundFileList;
   }
 }
 
