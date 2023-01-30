@@ -2,3 +2,7 @@
 ".ini", ".txt", ".lua", ".cfg", ".bmp", ".png", ".jpg", ".jpeg", ".wav", ".ogg", ".mp3", ".flac" 
 
 *.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}
+(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)
+
+
+(ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)
