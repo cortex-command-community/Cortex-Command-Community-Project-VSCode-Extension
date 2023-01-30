@@ -125,7 +125,7 @@ repository:
       - include: '#modulePath'
 
   modulePath:
-    match: (([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.(wav|flac|png|bmp|ini)))(\s*?\/\*.*?\*\/\s*?)?$
+    match: (([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)))(\s*?\/\*.*?\*\/\s*?)?$
     captures:
       '1':
         name: markup.underline.link
