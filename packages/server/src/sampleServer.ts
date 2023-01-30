@@ -11,7 +11,9 @@ import {
   createConnection,
   Diagnostic,
   DiagnosticSeverity,
+  DidChangeConfigurationNotification,
   InitializeParams,
+  InitializeResult,
   Position,
   ProposedFeatures,
   Range,
@@ -21,8 +23,13 @@ import {
   TextEdit,
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
-import { configService } from './services/configuration.service';
-import { validateFilePaths } from './validations/validate';
+
+import {
+  configService,
+  CortexCommandLanguageSupportConfiguration,
+} from './services/configuration.service';
+import { validateFilePaths } from './validations/validateFilePath';
+import { fsService } from './services/fileSystem.service';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -33,7 +40,7 @@ connection.console.info(
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
 documents.listen(connection);
 
-connection.onInitialize((params: InitializeParams) => {
+connection.onInitialize((params: InitializeParams): InitializeResult => {
   const capabilities = params.capabilities;
 
   // Does the client support the `workspace/configuration` request?
@@ -47,7 +54,9 @@ connection.onInitialize((params: InitializeParams) => {
   configService.hasDiagnosticRelatedInformationCapability =
     !!capabilities.textDocument?.publishDiagnostics?.relatedInformation;
 
-  return {
+  fsService.workspaceFolders = params.workspaceFolders ?? [];
+
+  const result: InitializeResult = {
     capabilities: {
       // codeActionProvider: true,
       textDocumentSync: {
@@ -59,6 +68,45 @@ connection.onInitialize((params: InitializeParams) => {
       // },
     },
   };
+
+  if (configService.hasWorkspaceFolderCapability) {
+    result.capabilities.workspace = {
+      workspaceFolders: {
+        supported: true,
+      },
+    };
+  }
+
+  return result;
+});
+
+connection.onInitialized(() => {
+  if (configService.hasConfigurationCapability) {
+    // Register for all configuration changes.
+    connection.client.register(
+      DidChangeConfigurationNotification.type,
+      undefined
+    );
+  }
+  if (configService.hasWorkspaceFolderCapability) {
+    connection.workspace.onDidChangeWorkspaceFolders((_event) => {
+      connection.console.log('Workspace folder change event received.');
+    });
+  }
+});
+
+connection.onDidChangeConfiguration((change) => {
+  if (configService.hasConfigurationCapability) {
+    // Reset all cached document settings
+    configService.documentSettings.clear();
+  } else if (change.settings['cortexCommandLanguageSupport']) {
+    configService.globalSettings = <CortexCommandLanguageSupportConfiguration>(
+      change.settings['cortexCommandLanguageSupport']
+    );
+  }
+
+  // Revalidate all open text documents
+  documents.all().forEach(validate);
 });
 
 function validate(document: TextDocument): void {
