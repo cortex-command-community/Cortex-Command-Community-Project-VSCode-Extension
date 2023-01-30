@@ -29,7 +29,6 @@ import {
   CortexCommandLanguageSupportConfiguration,
 } from './services/configuration.service';
 import { validateFilePaths } from './validations/validateFilePath';
-import { fsService } from './services/fileSystem.service';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -53,8 +52,6 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
   );
   configService.hasDiagnosticRelatedInformationCapability =
     !!capabilities.textDocument?.publishDiagnostics?.relatedInformation;
-
-  fsService.workspaceFolders = params.workspaceFolders ?? [];
 
   const result: InitializeResult = {
     capabilities: {

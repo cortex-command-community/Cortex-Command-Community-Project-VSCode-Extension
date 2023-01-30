@@ -1,8 +1,6 @@
-import { Uri } from 'vscode';
-
 export interface CortexCommandLanguageSupportConfiguration {
   maxNumberOfProblems: number;
-  gameDirectoryPath: Uri;
+  gameDirectoryPath: string;
 }
 
 class ConfigurationService {
@@ -15,7 +13,7 @@ class ConfigurationService {
   // but could happen with other clients.
   public globalSettings: CortexCommandLanguageSupportConfiguration = {
     maxNumberOfProblems: 100,
-    gameDirectoryPath: Uri.parse('.'),
+    gameDirectoryPath: '',
   };
 
   // Cache the settings of all open documents
