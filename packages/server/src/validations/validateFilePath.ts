@@ -2,10 +2,6 @@ import { Diagnostic, DiagnosticSeverity } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 
-const settings = {
-  maxNumberOfProblems: 100,
-};
-
 export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // In this simple example we get the settings for every validate run.
   //   const settings = await getDocumentSettings(textDocument.uri);
@@ -18,7 +14,10 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   let problems = 0;
   const diagnostics: Diagnostic[] = [];
 
-  while ((m = pattern.exec(text)) && problems < settings.maxNumberOfProblems) {
+  while (
+    (m = pattern.exec(text)) &&
+    problems < configService.globalSettings.maxNumberOfProblems
+  ) {
     problems++;
     const diagnostic: Diagnostic = {
       severity: DiagnosticSeverity.Error,
