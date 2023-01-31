@@ -1,6 +1,7 @@
 const { composePlugins, withNx, withWeb } = require('@nrwl/webpack');
 
 const path = require('path');
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withWeb(), (config) => {
@@ -13,6 +14,11 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
   };
 
   config.resolve = {
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: path.join(__dirname, 'tsconfig.app.json'),
+      }),
+    ],
     mainFields: ['module', 'main'],
     extensions: ['.ts', '.js'], // support ts-files and js-files
   };

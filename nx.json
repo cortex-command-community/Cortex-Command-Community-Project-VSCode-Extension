@@ -21,7 +21,7 @@
       "dependsOn": ["^build"]
     },
     "watch": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^watch"]
     }
   },
   "workspaceLayout": {
@@ -40,9 +40,5 @@
       "unitTestRunner": "jest"
     }
   },
-  "pluginsConfig": {
-    "@nrwl/js": {
-      "analyzeSourceFiles": true
-    }
-  }
+  "pluginsConfig": {}
 }
