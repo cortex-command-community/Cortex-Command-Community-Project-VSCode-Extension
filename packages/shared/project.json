@@ -8,7 +8,7 @@
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/shared",
+        "outputPath": "dist/packages/node_modules/shared",
         "main": "packages/shared/src/index.ts",
         "tsConfig": "packages/shared/tsconfig.lib.json"
       }
@@ -17,7 +17,7 @@
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/shared",
+        "outputPath": "dist/packages/node_modules/shared",
         "main": "packages/shared/src/index.ts",
         "tsConfig": "packages/shared/tsconfig.lib.json"
       }

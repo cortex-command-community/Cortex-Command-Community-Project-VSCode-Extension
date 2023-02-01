@@ -13,7 +13,7 @@
     "paths": {
       "shared": [
         "packages/shared/src/index.ts",
-        "dist/packages/shared/src/index.js"
+        "dist/packages/node_modules/shared/src/index.js"
       ]
     },
     "noImplicitAny": true,
