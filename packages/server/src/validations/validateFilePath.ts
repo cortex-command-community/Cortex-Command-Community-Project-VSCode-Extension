@@ -1,8 +1,9 @@
-import { normalize } from 'path';
+import { extname, normalize } from 'path';
 import { Diagnostic, DiagnosticSeverity } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 import { fileSystemService } from '../services/fs.service';
+import { imageFileExtensions } from 'shared';
 
 export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // In this simple example we get the settings for every validate run.
@@ -22,7 +23,7 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
     const normalizedPath = normalize(m[2]);
-    if (!fileSystemService.moduleFileList.includes(normalizedPath)) {
+    if (!checkIfPathExists(normalizedPath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,
@@ -51,4 +52,23 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 
   // Send the computed diagnostics to VSCode.
   return diagnostics;
+}
+
+function checkIfPathExists(filePath: string): boolean {
+  if (fileSystemService.moduleFileList.includes(filePath)) {
+    return true;
+  }
+
+  if (imageFileExtensions.includes(extname(filePath))) {
+    const index = filePath.lastIndexOf('.');
+    if (index < 0) {
+      return false;
+    }
+
+    filePath = filePath.substring(0, index) + '000' + filePath.substring(index);
+
+    return fileSystemService.moduleFileList.includes(filePath);
+  }
+
+  return false;
 }
