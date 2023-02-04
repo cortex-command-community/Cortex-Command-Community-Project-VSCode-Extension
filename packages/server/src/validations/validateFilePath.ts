@@ -27,13 +27,9 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     (m = pattern.exec(text)) &&
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
-    console.log(m);
     let skip = false;
     for (const comment of text.matchAll(commentPattern)) {
-      console.log('Comment:', comment);
       if (!comment.index) {
-        console.log('no index');
-
         continue;
       }
 
@@ -42,7 +38,6 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
           comment.index + comment[0].length >= m.index) ||
         (comment.index >= m.index && comment.index <= m.index + m[0].length);
 
-      console.log('Skip: ', skip);
       if (skip) {
         break;
       }

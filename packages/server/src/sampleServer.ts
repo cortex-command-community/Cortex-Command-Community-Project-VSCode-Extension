@@ -70,9 +70,6 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   if (configService.hasWorkspaceFolderCapability && params.workspaceFolders) {
     fileSystemService.registerWorkspaces(params.workspaceFolders);
-    // fileSystemService.moduleFileList.forEach((file) => {
-    //   connection.console.log(file);
-    // });
   }
 
   if (configService.hasWorkspaceFolderCapability) {
@@ -119,9 +116,9 @@ connection.onDidChangeConfiguration((change) => {
 });
 
 connection.onDidChangeWatchedFiles((change) => {
-  change.changes.forEach((change) => {
-    connection.console.log(change.type.toString() + change.uri);
-  });
+  // change.changes.forEach((change) => {
+  //   connection.console.log(change.type.toString() + change.uri);
+  // });
 });
 
 function validate(document: TextDocument): void {
