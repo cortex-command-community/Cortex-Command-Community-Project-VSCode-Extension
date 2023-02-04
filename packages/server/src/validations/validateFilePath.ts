@@ -15,7 +15,7 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   const pattern =
     /(?:\/\*.*?(?=\*\/))|(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*?)(?=(?:$|\/\/|\/\*|(?:\s+(?:\/\/.*|\/\*.*))))/dgms;
 
-  const commentPattern = /(\/\/[^\n]*\n)|(\/\*.*?\*\/)/dgms;
+  const commentPattern = /(\/\/[^\n]*[\r\n])|(\/\*.*(\*\/))/dgms;
   const commentRanges = text.matchAll(commentPattern);
 
   let m: RegExpExecArray | null;
@@ -27,21 +27,29 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     (m = pattern.exec(text)) &&
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
+    console.log(m);
     let skip = false;
-    for (const comment of commentRanges) {
-      if (!(comment.index && comment.length)) {
+    for (const comment of text.matchAll(commentPattern)) {
+      console.log('Comment:', comment);
+      if (!comment.index) {
+        console.log('no index');
+
         continue;
       }
+
       skip =
-        (comment.index < m.index && comment.index + comment.length > m.index) ||
-        (comment.index > m.index && comment.index < m.index + m.length);
+        (comment.index <= m.index &&
+          comment.index + comment[0].length >= m.index) ||
+        (comment.index >= m.index && comment.index <= m.index + m[0].length);
+
+      console.log('Skip: ', skip);
+      if (skip) {
+        break;
+      }
     }
 
-    if (skip) {
-      continue;
-    }
     const normalizedPath = m[2] ? normalize(m[2].trim()) : null;
-    if (normalizedPath && !checkIfPathExists(normalizedPath)) {
+    if (!skip && normalizedPath && !checkIfPathExists(normalizedPath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,
