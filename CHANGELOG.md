@@ -1,3 +1,23 @@
+# [1.3.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.2...v1.3.0) (2023-02-04)
+
+
+### Bug Fixes
+
+* remove breaking references to `vscode` externals ([108c75a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/108c75a8693a24f84ac8efa95766f3d87263ced9))
+* stop file path validation firing on commented out lines ([183974d](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/183974deeb3d047be15cf40c3b4cbceb55ca464d))
+
+
+### Features
+
+* add crude filepath detection to flag errors ([6a44787](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/6a44787b4d7e88354b3756b7056a28f878e47baf))
+* add simple filepath validation to all ini files ([3186ac4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/3186ac4a05b29f16c5e5e62a09335906f362de8d))
+* ensure filepath validation accounts for image paths with trailing frame numbers ([d6b5bbc](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d6b5bbc8136a0d4c63d2eac149f04672fb614c50))
+* extend recognised file extension for syntax highlighting ([255221c](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255221cc44ef40b84c66af8554412046d2f8ca8b))
+* fix comments not disabling filepath validation ([4ce070f](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/4ce070f39449d85f0c1597b42179402209a39c1b))
+* generate module filelist on activation use it in validation ([ed2e4e2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/ed2e4e2572015493f4652987640fb1fb12c29971))
+* update configuration and revalidate files when extension config is changed ([d71c54a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d71c54a9899aa336d12d5775948a7d5a27546912))
+* update filetree when watched files are changed to revalidate text ([d57698b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d57698b0357b9c93434c9a56b4bdd766b7e976cd))
+
 ## [1.2.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.1...v1.2.2) (2023-01-29)
 
 
