@@ -5,9 +5,20 @@ import { URI } from 'vscode-uri';
 
 class FileSystemService {
   public moduleFileList: string[] = [];
+  private workspaces: WorkspaceFolder[] = [];
 
   public registerWorkspaces(workspaces: WorkspaceFolder[]) {
-    workspaces.forEach((folder) => {
+    this.workspaces = workspaces;
+    this.updateFileList();
+  }
+
+  //   public init(rootUri: URI): void {
+  //     this.fileList = this.getAllFiles(rootUri);
+  //   }
+
+  public updateFileList(): void {
+    this.moduleFileList = [];
+    this.workspaces.forEach((folder) => {
       const workspacePath = URI.parse(folder.uri).fsPath;
       const workspaceFileList = this.getAllFiles(workspacePath);
 
@@ -16,10 +27,6 @@ class FileSystemService {
       }
     });
   }
-
-  //   public init(rootUri: URI): void {
-  //     this.fileList = this.getAllFiles(rootUri);
-  //   }
 
   private getAllFiles(dirPath: string, isRoot = true): string[] {
     const files = readdirSync(dirPath);

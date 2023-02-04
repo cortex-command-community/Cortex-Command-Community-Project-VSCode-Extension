@@ -115,7 +115,11 @@ connection.onDidChangeConfiguration((change) => {
   documents.all().forEach(validate);
 });
 
-connection.onDidChangeWatchedFiles((change) => {
+connection.onDidChangeWatchedFiles((changes) => {
+  console.log(changes);
+  fileSystemService.updateFileList();
+  documents.all().forEach(validate);
+
   // change.changes.forEach((change) => {
   //   connection.console.log(change.type.toString() + change.uri);
   // });
