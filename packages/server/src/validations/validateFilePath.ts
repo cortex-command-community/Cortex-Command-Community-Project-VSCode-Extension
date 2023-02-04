@@ -11,8 +11,13 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 
   // The validator creates diagnostics for all uppercase words length 2 and more
   const text = textDocument.getText();
+
   const pattern =
-    /(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*)/dg;
+    /(?:\/\*.*?(?=\*\/))|(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*?)(?=(?:$|\/\/|\/\*|(?:\s+(?:\/\/.*|\/\*.*))))/dgms;
+
+  const commentPattern = /(\/\/[^\n]*\n)|(\/\*.*?\*\/)/dgms;
+  const commentRanges = text.matchAll(commentPattern);
+
   let m: RegExpExecArray | null;
 
   let problems = 0;
@@ -22,8 +27,21 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     (m = pattern.exec(text)) &&
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
-    const normalizedPath = normalize(m[2]);
-    if (!checkIfPathExists(normalizedPath)) {
+    let skip = false;
+    for (const comment of commentRanges) {
+      if (!(comment.index && comment.length)) {
+        continue;
+      }
+      skip =
+        (comment.index < m.index && comment.index + comment.length > m.index) ||
+        (comment.index > m.index && comment.index < m.index + m.length);
+    }
+
+    if (skip) {
+      continue;
+    }
+    const normalizedPath = m[2] ? normalize(m[2].trim()) : null;
+    if (normalizedPath && !checkIfPathExists(normalizedPath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,
