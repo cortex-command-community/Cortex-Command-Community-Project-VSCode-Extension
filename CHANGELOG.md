@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.0...v1.3.1) (2023-02-04)
+
+
+### Bug Fixes
+
+* republish to package the correct version ([8b856f6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/8b856f6ededc33319510281aaa4c996bd51fdedc))
+
 # [1.3.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.2...v1.3.0) (2023-02-04)
 
 
