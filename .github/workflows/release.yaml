@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
   push:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   release:
@@ -26,16 +26,13 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: "npm"
+          cache: 'npm'
 
-      - name: "Install dependencies"
+      - name: 'Install dependencies'
         run: npm ci
 
-      - name: "Build syntaxes, client and server. "
+      - name: 'Build syntaxes, client and server. '
         run: npx nx run-many --target=build
 
-      - name: "Package extension"
-        run: npx vsce package
-
-      - name: "Semantic Release"
+      - name: 'Semantic Release'
         run: npx semantic-release
