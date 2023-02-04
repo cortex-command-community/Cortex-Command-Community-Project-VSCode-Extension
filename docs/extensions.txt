@@ -6,3 +6,5 @@
 
 
 (ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)
+
+package the damn thing correctly
