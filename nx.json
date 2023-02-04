@@ -19,6 +19,9 @@
     },
     "build": {
       "dependsOn": ["^build"]
+    },
+    "watch": {
+      "dependsOn": ["^watch"]
     }
   },
   "workspaceLayout": {
@@ -36,5 +39,6 @@
       "linter": "eslint",
       "unitTestRunner": "jest"
     }
-  }
+  },
+  "pluginsConfig": {}
 }

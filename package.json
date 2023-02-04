@@ -30,13 +30,13 @@
       "type": "object",
       "title": "Cortex Command INI Language Options",
       "properties": {
-        "cortex-command-community-project-language-support.maxNumberOfProblems": {
+        "cortexCommandLanguageSupport.maxNumberOfProblems": {
           "scope": "resource",
           "type": "number",
           "default": 100,
           "description": "Controls the maximum number of problems produced by the server."
         },
-        "cortex-command-community-project-language-support.trace.server": {
+        "cortexCommandLanguageSupport.trace.server": {
           "scope": "window",
           "type": "string",
           "enum": [
@@ -47,12 +47,12 @@
           "default": "verbose",
           "description": "Traces the communication between VS Code and the language server."
         },
-        "cortex-command-community-project-language-support.gameDirectoryPath": {
+        "cortexCommandLanguageSupport.gameDirectoryPath": {
           "scope": "resource",
           "type": "string",
           "default": ".",
           "description": "The path to the Cortex Command game directory. Required if developing the mod outside the game directory.",
-          "format": "uri"
+          "format": "string"
         }
       }
     },
@@ -125,6 +125,7 @@
     "ts-jest": "28.0.5",
     "ts-loader": "^9.4.2",
     "ts-node": "10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.9.4"
   },
   "scripts": {
@@ -140,6 +141,7 @@
     "vscode-languageclient": "^7.0.0",
     "vscode-languageserver": "^7.0.0",
     "vscode-languageserver-textdocument": "^1.0.8",
-    "vscode-test": "^1.6.1"
+    "vscode-test": "^1.6.1",
+    "vscode-uri": "^3.0.7"
   }
 }

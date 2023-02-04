@@ -5,7 +5,7 @@
 'use strict';
 
 import * as path from 'path';
-import { ExtensionContext, window as Window } from 'vscode';
+import { ExtensionContext, window as Window, workspace } from 'vscode';
 import {
   LanguageClient,
   LanguageClientOptions,
@@ -33,14 +33,22 @@ export function activate(context: ExtensionContext): void {
 
   const clientOptions: LanguageClientOptions = {
     documentSelector: [{ scheme: 'file', language: 'ccini' }],
-    diagnosticCollectionName: 'sample',
-    revealOutputChannelOn: RevealOutputChannelOn.Never,
+    revealOutputChannelOn: RevealOutputChannelOn.Error,
     progressOnInitialization: true,
+    synchronize: {
+      fileEvents: workspace.createFileSystemWatcher(
+        '**/*.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}'
+      ),
+    },
   };
 
   let client: LanguageClient;
   try {
-    client = new LanguageClient('UI Sample', serverOptions, clientOptions);
+    client = new LanguageClient(
+      'Cortex Command Client',
+      serverOptions,
+      clientOptions
+    );
   } catch (err) {
     Window.showErrorMessage(
       `The extension couldn't be started. See the output channel for details.`

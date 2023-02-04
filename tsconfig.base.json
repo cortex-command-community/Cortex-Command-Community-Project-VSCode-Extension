@@ -10,7 +10,12 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "shared": [
+        "packages/shared/src/index.ts",
+        "dist/packages/node_modules/shared/src/index.js"
+      ]
+    },
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "strict": true,
