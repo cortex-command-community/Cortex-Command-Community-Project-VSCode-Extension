@@ -47,14 +47,24 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
     vscode: 'commonjs vscode', // ignored because it doesn't exist
   };
 
-  config.output.libraryTarget = 'commonjs';
+  config.output.libraryTarget = 'commonjs2';
+  // config.output.filename = 'extension.js';
+
+  config.output.publicPath = path.join(
+    __dirname,
+    'dist',
+    'packages',
+    'server',
+    'src',
+    'extension.js'
+  );
 
   // yes, really source maps
   config.devtool = 'source-map';
 
   config.context = path.join(__dirname);
   config.entry = {
-    extension: './src/sampleServer.ts',
+    extension: './src/extension.ts',
   };
 
   return config;

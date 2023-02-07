@@ -12,11 +12,10 @@
       "options": {
         "outputPath": "dist/packages/server/src",
         "compiler": "babel",
-        "main": "packages/server/src/sampleServer.ts",
+        "main": "packages/server/src/extension.ts",
         "tsConfig": "packages/server/tsconfig.app.json",
         "webpackConfig": "packages/server/webpack.config.js",
-        "target": "node",
-        "outputFileName": "server.js"
+        "target": "node"
       },
       "configurations": {
         "production": {}
@@ -27,7 +26,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/packages/server",
-        "main": "packages/server/src/sampleServer.ts",
+        "main": "packages/server/src/extension.ts",
         "tsConfig": "packages/server/tsconfig.app.json"
       }
     },

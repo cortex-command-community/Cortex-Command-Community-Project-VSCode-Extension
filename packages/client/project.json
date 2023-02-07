@@ -15,8 +15,7 @@
         "main": "packages/client/src/extension.ts",
         "tsConfig": "packages/client/tsconfig.app.json",
         "webpackConfig": "packages/client/webpack.config.js",
-        "target": "node",
-        "outputFileName": "extension.js"
+        "target": "node"
       },
       "configurations": {
         "production": {}
