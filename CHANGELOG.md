@@ -1,3 +1,11 @@
+## [1.3.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.1...v1.3.2) (2023-02-07)
+
+
+### Bug Fixes
+
+* resolve webpack build issues, start server correctly ([70b5aaf](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/70b5aaf77ae02e36056bf448d1d36720ff7d27e3))
+* stop DataModule syntax highlighting breaking on empty lines ([367f17a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/367f17a030704e4530e164cf0f7faffafc359226))
+
 ## [1.3.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.0...v1.3.1) (2023-02-04)
 
 
