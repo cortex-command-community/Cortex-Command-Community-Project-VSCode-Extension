@@ -16,7 +16,7 @@ import {
 
 export function activate(context: ExtensionContext): void {
   const serverModule = context.asAbsolutePath(
-    path.join('dist', 'packages', 'server', 'src', 'sampleServer.js')
+    path.join('dist', 'packages', 'server', 'src', 'extension.js')
   );
   const serverOptions: ServerOptions = {
     run: {
