@@ -36,3 +36,11 @@ jobs:
 
       - name: 'Semantic Release'
         run: npx semantic-release
+
+      - name: Update dev branch.
+        run: |
+          git fetch --unshallow
+          git checkout development
+          git pull
+          git merge main
+          git push
