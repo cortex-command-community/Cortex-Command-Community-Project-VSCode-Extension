@@ -18,7 +18,7 @@ repository:
     beginCaptures:
       '1':
         name: keyword
-    end: ^(?!\t+)
+    end: ^(?!\t+|$)
     patterns:
       - include: '#comments'
       - include: '#assignments'
