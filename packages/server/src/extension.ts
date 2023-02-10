@@ -13,11 +13,14 @@ import {
   DiagnosticSeverity,
   DidChangeConfigurationNotification,
   DidChangeWatchedFilesNotification,
+  DidRenameFilesNotification,
+  FileOperationRegistrationOptions,
   InitializeParams,
   InitializeResult,
   Position,
   ProposedFeatures,
   Range,
+  RenameFile,
   TextDocumentEdit,
   TextDocuments,
   TextDocumentSyncKind,
@@ -57,14 +60,10 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   const result: InitializeResult = {
     capabilities: {
-      // codeActionProvider: true,
       textDocumentSync: {
         openClose: true,
         change: TextDocumentSyncKind.Incremental,
       },
-      // executeCommandProvider: {
-      //   commands: ['sample.fixMe'],
-      // },
     },
   };
 
@@ -93,6 +92,20 @@ connection.onInitialized(() => {
   }
 
   connection.client.register(DidChangeWatchedFilesNotification.type);
+  const p: FileOperationRegistrationOptions = {
+    filters: [
+      {
+        pattern: {
+          glob: '**/*.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}',
+        },
+      },
+    ],
+  };
+  connection.client.register(DidRenameFilesNotification.type, p);
+
+  connection.workspace.onDidRenameFiles((params) => {
+    console.log(params);
+  });
 
   if (configService.hasWorkspaceFolderCapability) {
     connection.workspace.onDidChangeWorkspaceFolders((_event) => {
@@ -116,13 +129,9 @@ connection.onDidChangeConfiguration((change) => {
 });
 
 connection.onDidChangeWatchedFiles((changes) => {
-  console.log(changes);
+  // console.log(changes);
   fileSystemService.updateFileList();
   documents.all().forEach(validate);
-
-  // change.changes.forEach((change) => {
-  //   connection.console.log(change.type.toString() + change.uri);
-  // });
 });
 
 function validate(document: TextDocument): void {

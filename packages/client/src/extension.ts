@@ -55,6 +55,7 @@ export function activate(context: ExtensionContext): void {
     );
     return;
   }
+
   client.registerProposedFeatures();
 
   context.subscriptions.push(client.start());
