@@ -106,6 +106,10 @@ connection.onInitialized(() => {
 
   connection.workspace.onDidRenameFiles((params) => {
     console.log(params);
+    params.files.forEach((file) => {
+      console.log('old:', fileSystemService.trimWorkspaceFromURI(file.oldUri));
+      console.log('new:', fileSystemService.trimWorkspaceFromURI(file.newUri));
+    });
   });
 
   if (configService.hasWorkspaceFolderCapability) {

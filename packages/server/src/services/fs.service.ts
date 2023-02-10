@@ -13,10 +13,6 @@ class FileSystemService {
     this.updateFileList();
   }
 
-  //   public init(rootUri: URI): void {
-  //     this.fileList = this.getAllFiles(rootUri);
-  //   }
-
   public updateFileList(): void {
     this.moduleFileList = [];
     this.workspaces.forEach((folder) => {
@@ -27,6 +23,19 @@ class FileSystemService {
         this.moduleFileList.push(relative(workspacePath, file));
       }
     });
+  }
+
+  public trimWorkspaceFromURI(uri: string): string {
+    const path = uri;
+    for (const workspace of this.workspaces) {
+      if (path.startsWith(workspace.uri)) {
+        return path.substring(workspace.uri.length + 1);
+      }
+    }
+    console.error(
+      `TRIED TO TRIM THE URI ${uri.toString()} which doesn't exist in a workspace folder!`
+    );
+    return uri;
   }
 
   private getAllFiles(dirPath: string, isRoot = true): string[] {
