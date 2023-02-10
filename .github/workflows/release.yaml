@@ -37,7 +37,7 @@ jobs:
       - name: 'Semantic Release'
         run: npx semantic-release
 
-  push_changes:
+  synchronise:
     needs: release
     runs-on: ubuntu-latest
 
