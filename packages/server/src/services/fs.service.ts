@@ -1,5 +1,6 @@
 import { readdirSync, statSync } from 'fs';
 import { join, relative } from 'path';
+import { moduleDirectoryExtension } from 'shared';
 import { WorkspaceFolder } from 'vscode-languageserver';
 import { URI } from 'vscode-uri';
 
@@ -34,15 +35,15 @@ class FileSystemService {
     const foundFileList: string[] = [];
 
     files.forEach((file) => {
-      if (isRoot && !file.endsWith('.rte')) {
+      if (isRoot && !file.endsWith(moduleDirectoryExtension)) {
         return;
       }
-
-      const fileStats = statSync(dirPath + '/' + file);
+      const filepath = join(dirPath, file);
+      const fileStats = statSync(filepath);
       if (fileStats.isDirectory()) {
-        foundFileList.push(...this.getAllFiles(join(dirPath, file), false));
+        foundFileList.push(...this.getAllFiles(filepath, false));
       } else {
-        foundFileList.push(join(dirPath, file));
+        foundFileList.push(filepath);
       }
     });
 

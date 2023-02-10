@@ -34,6 +34,7 @@ import {
 } from './services/configuration.service';
 import { validateFilePaths } from './validations/validateFilePath';
 import { fileSystemService } from './services/fs.service';
+import { legalFileGlob } from 'shared';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -96,7 +97,7 @@ connection.onInitialized(() => {
     filters: [
       {
         pattern: {
-          glob: '**/*.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}',
+          glob: legalFileGlob,
         },
       },
     ],
