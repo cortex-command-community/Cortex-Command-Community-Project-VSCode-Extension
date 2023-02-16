@@ -35,6 +35,7 @@ import {
 import { validateFilePaths } from './validations/validateFilePath';
 import { fileSystemService } from './services/fs.service';
 import { legalFileGlob } from 'shared';
+import { renameFilesHandler } from './providers/didRenameFiles';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -93,7 +94,7 @@ connection.onInitialized(() => {
   }
 
   connection.client.register(DidChangeWatchedFilesNotification.type);
-  const p: FileOperationRegistrationOptions = {
+  const registrationOptions: FileOperationRegistrationOptions = {
     filters: [
       {
         pattern: {
@@ -102,15 +103,12 @@ connection.onInitialized(() => {
       },
     ],
   };
-  connection.client.register(DidRenameFilesNotification.type, p);
 
-  connection.workspace.onDidRenameFiles((params) => {
-    console.log(params);
-    params.files.forEach((file) => {
-      console.log('old:', fileSystemService.trimWorkspaceFromURI(file.oldUri));
-      console.log('new:', fileSystemService.trimWorkspaceFromURI(file.newUri));
-    });
-  });
+  connection.client.register(
+    DidRenameFilesNotification.type,
+    registrationOptions
+  );
+  connection.workspace.onDidRenameFiles(renameFilesHandler);
 
   if (configService.hasWorkspaceFolderCapability) {
     connection.workspace.onDidChangeWorkspaceFolders((_event) => {

@@ -3,5 +3,14 @@ import {
   NotificationHandler,
   RenameFilesParams,
 } from 'vscode-languageserver';
+import { fileSystemService } from '../services/fs.service';
 
-export class handler implements NotificationHandler<RenameFilesParams> {}
+export const renameFilesHandler: NotificationHandler<RenameFilesParams> = (
+  params: RenameFilesParams
+): void => {
+  console.log(params);
+  params.files.forEach((file) => {
+    console.log('old:', fileSystemService.trimWorkspaceFromURI(file.oldUri));
+    console.log('new:', fileSystemService.trimWorkspaceFromURI(file.newUri));
+  });
+};
