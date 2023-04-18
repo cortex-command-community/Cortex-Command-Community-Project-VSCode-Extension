@@ -5,7 +5,6 @@
   "projectType": "library",
   "targets": {
     "compile": {
-      "dependsOn": ["build"],
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter generate"],
@@ -21,6 +20,7 @@
     },
 
     "build": {
+      "dependsOn": ["compile"],
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -29,8 +29,10 @@
         "tsConfig": "packages/parser/tsconfig.lib.json",
         "assets": [
           "packages/parser/*.md",
-          "packages/parser/grammar.js",
-          "packages/parser/corpus/*.txt"
+          "packages/parser/bindings/",
+          "packages/parser/src/",
+          "packages/parser/binding.gyp",
+          "packages/parser/Cargo.toml"
         ]
       }
     },
