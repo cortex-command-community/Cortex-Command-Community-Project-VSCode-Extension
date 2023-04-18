@@ -1,5 +1,14 @@
 {
   "name": "parser",
   "version": "0.0.1",
-  "type": "commonjs"
+  "type": "commonjs",
+  "tree-sitter": [
+    {
+      "scope": "source.ccini",
+      "file-types": [
+        "ini"
+      ]
+    }
+  ],
+  "main": "bindings/node"
 }

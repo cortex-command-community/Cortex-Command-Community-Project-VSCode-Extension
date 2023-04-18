@@ -4,14 +4,34 @@
   "sourceRoot": "packages/parser/src",
   "projectType": "library",
   "targets": {
+    "compile": {
+      "dependsOn": ["build"],
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx tree-sitter generate"],
+        "outputPath": "packages/parser",
+        "cwd": "packages/parser"
+      },
+
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "configurations": {
+        "production": {}
+      }
+    },
+
     "build": {
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/parser",
+        "outputPath": "dist/packages/node_modules/parser",
         "main": "packages/parser/src/index.ts",
         "tsConfig": "packages/parser/tsconfig.lib.json",
-        "assets": ["packages/parser/*.md"]
+        "assets": [
+          "packages/parser/*.md",
+          "packages/parser/grammar.js",
+          "packages/parser/corpus/*.txt"
+        ]
       }
     },
     "lint": {
