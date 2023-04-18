@@ -1,0 +1,26 @@
+{
+  "name": "parser",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/parser/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/parser",
+        "main": "packages/parser/src/index.ts",
+        "tsConfig": "packages/parser/tsconfig.lib.json",
+        "assets": ["packages/parser/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/parser/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
