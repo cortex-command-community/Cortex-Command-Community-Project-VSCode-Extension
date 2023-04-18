@@ -12,11 +12,7 @@
         "cwd": "packages/parser"
       },
 
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
-      "configurations": {
-        "production": {}
-      }
+      "outputs": ["{options.outputPath}"]
     },
 
     "build": {
@@ -42,6 +38,16 @@
       "options": {
         "lintFilePatterns": ["packages/parser/**/*.ts"]
       }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "commands": ["npx tree-sitter test"],
+        "outputPath": "packages/parser",
+        "cwd": "packages/parser"
+      },
+
+      "outputs": ["{options.outputPath}"]
     }
   },
   "tags": []
