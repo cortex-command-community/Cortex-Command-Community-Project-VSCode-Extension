@@ -8,5 +8,8 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  },
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
   }
 }
