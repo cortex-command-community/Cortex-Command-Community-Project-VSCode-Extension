@@ -209,6 +209,78 @@ namespace
           indent_length += 8;
           skip(lexer);
         }
+        // Comment handling
+        else if (lexer->lookahead == '/')
+        {
+          lexer->advance(lexer, false);
+
+          if (lexer->lookahead == '/')
+          {
+            lexer->advance(lexer, false);
+
+            for (;;)
+            {
+              switch (lexer->lookahead)
+              {
+              case '\n':
+                lexer->advance(lexer, false);
+              case '\0':
+                lexer->result_symbol = COMMENT;
+                return true;
+              default:
+                lexer->advance(lexer, false);
+                break;
+              }
+            }
+          }
+          else if (lexer->lookahead == '*')
+          {
+            lexer->advance(lexer, false);
+
+            bool after_star = false;
+            unsigned nesting_depth = 1;
+            for (;;)
+            {
+              switch (lexer->lookahead)
+              {
+              case '\0':
+                return false;
+              case '*':
+                lexer->advance(lexer, false);
+                after_star = true;
+                break;
+              case '/':
+                if (after_star)
+                {
+                  lexer->advance(lexer, false);
+                  after_star = false;
+                  nesting_depth--;
+                  if (nesting_depth == 0)
+                  {
+                    lexer->result_symbol = OCAML_COMMENT;
+                    return true;
+                  }
+                }
+                else
+                {
+                  lexer->advance(lexer, false);
+                  after_star = false;
+                  if (lexer->lookahead == '*')
+                  {
+                    nesting_depth++;
+                    lexer->advance(lexer, false);
+                  }
+                }
+                break;
+              default:
+                lexer->advance(lexer, false);
+                after_star = false;
+                break;
+              }
+            }
+          }
+        }
+
         else if (lexer->lookahead == '#')
         {
           if (first_comment_indent_length == -1)
