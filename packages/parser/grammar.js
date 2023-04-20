@@ -14,6 +14,7 @@ module.exports = grammar({
     // structure by returning dedent tokens whenever a dedent occurs, even
     // if no dedent is expected.
     $.comment,
+    $.block_comment,
   ],
 
   rules: {

@@ -17,6 +17,7 @@ namespace
     INDENT,
     DEDENT,
     COMMENT,
+    BLOCK_COMMENT
   };
 
   struct Delimiter
@@ -212,30 +213,30 @@ namespace
         // Comment handling
         else if (lexer->lookahead == '/')
         {
-          lexer->advance(lexer, false);
+          advance(lexer);
 
           if (lexer->lookahead == '/')
           {
-            lexer->advance(lexer, false);
+            advance(lexer);
 
             for (;;)
             {
               switch (lexer->lookahead)
               {
               case '\n':
-                lexer->advance(lexer, false);
+                advance(lexer);
               case '\0':
                 lexer->result_symbol = COMMENT;
                 return true;
               default:
-                lexer->advance(lexer, false);
+                advance(lexer);
                 break;
               }
             }
           }
           else if (lexer->lookahead == '*')
           {
-            lexer->advance(lexer, false);
+            advance(lexer);
 
             bool after_star = false;
             unsigned nesting_depth = 1;
@@ -246,34 +247,34 @@ namespace
               case '\0':
                 return false;
               case '*':
-                lexer->advance(lexer, false);
+                advance(lexer);
                 after_star = true;
                 break;
               case '/':
                 if (after_star)
                 {
-                  lexer->advance(lexer, false);
+                  advance(lexer);
                   after_star = false;
                   nesting_depth--;
                   if (nesting_depth == 0)
                   {
-                    lexer->result_symbol = OCAML_COMMENT;
+                    lexer->result_symbol = COMMENT;
                     return true;
                   }
                 }
                 else
                 {
-                  lexer->advance(lexer, false);
+                  advance(lexer);
                   after_star = false;
                   if (lexer->lookahead == '*')
                   {
                     nesting_depth++;
-                    lexer->advance(lexer, false);
+                    advance(lexer);
                   }
                 }
                 break;
               default:
-                lexer->advance(lexer, false);
+                advance(lexer);
                 after_star = false;
                 break;
               }
@@ -281,19 +282,19 @@ namespace
           }
         }
 
-        else if (lexer->lookahead == '#')
-        {
-          if (first_comment_indent_length == -1)
-          {
-            first_comment_indent_length = (int32_t)indent_length;
-          }
-          while (lexer->lookahead && lexer->lookahead != '\n')
-          {
-            skip(lexer);
-          }
-          skip(lexer);
-          indent_length = 0;
-        }
+        // else if (lexer->lookahead == '#')
+        // {
+        //   if (first_comment_indent_length == -1)
+        //   {
+        //     first_comment_indent_length = (int32_t)indent_length;
+        //   }
+        //   while (lexer->lookahead && lexer->lookahead != '\n')
+        //   {
+        //     skip(lexer);
+        //   }
+        //   skip(lexer);
+        //   indent_length = 0;
+        // }
         else if (lexer->lookahead == '\\')
         {
           skip(lexer);
