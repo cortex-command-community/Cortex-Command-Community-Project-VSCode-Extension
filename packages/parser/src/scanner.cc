@@ -16,13 +16,7 @@ namespace
     NEWLINE,
     INDENT,
     DEDENT,
-    STRING_START,
-    STRING_CONTENT,
-    STRING_END,
     COMMENT,
-    CLOSE_PAREN,
-    CLOSE_BRACKET,
-    CLOSE_BRACE,
   };
 
   struct Delimiter
@@ -187,118 +181,6 @@ namespace
       bool error_recovery_mode = valid_symbols[STRING_CONTENT] && valid_symbols[INDENT];
       bool within_brackets = valid_symbols[CLOSE_BRACE] || valid_symbols[CLOSE_PAREN] || valid_symbols[CLOSE_BRACKET];
 
-      if (valid_symbols[STRING_CONTENT] && !delimiter_stack.empty() && !error_recovery_mode)
-      {
-        Delimiter delimiter = delimiter_stack.back();
-        int32_t end_character = delimiter.end_character();
-        bool has_content = false;
-        while (lexer->lookahead)
-        {
-          if ((lexer->lookahead == '{' || lexer->lookahead == '}') && delimiter.is_format())
-          {
-            lexer->mark_end(lexer);
-            lexer->result_symbol = STRING_CONTENT;
-            return has_content;
-          }
-          else if (lexer->lookahead == '\\')
-          {
-            if (delimiter.is_raw())
-            {
-              // Step over the backslash.
-              lexer->advance(lexer, false);
-              // Step over any escaped quotes.
-              if (lexer->lookahead == delimiter.end_character() || lexer->lookahead == '\\')
-              {
-                lexer->advance(lexer, false);
-              }
-              continue;
-            }
-            else if (delimiter.is_bytes())
-            {
-              lexer->mark_end(lexer);
-              lexer->advance(lexer, false);
-              if (lexer->lookahead == 'N' || lexer->lookahead == 'u' || lexer->lookahead == 'U')
-              {
-                // In bytes string, \N{...}, \uXXXX and \UXXXXXXXX are not escape sequences
-                // https://docs.python.org/3/reference/lexical_analysis.html#string-and-bytes-literals
-                lexer->advance(lexer, false);
-              }
-              else
-              {
-                lexer->result_symbol = STRING_CONTENT;
-                return has_content;
-              }
-            }
-            else
-            {
-              lexer->mark_end(lexer);
-              lexer->result_symbol = STRING_CONTENT;
-              return has_content;
-            }
-          }
-          else if (lexer->lookahead == end_character)
-          {
-            if (delimiter.is_triple())
-            {
-              lexer->mark_end(lexer);
-              lexer->advance(lexer, false);
-              if (lexer->lookahead == end_character)
-              {
-                lexer->advance(lexer, false);
-                if (lexer->lookahead == end_character)
-                {
-                  if (has_content)
-                  {
-                    lexer->result_symbol = STRING_CONTENT;
-                  }
-                  else
-                  {
-                    lexer->advance(lexer, false);
-                    lexer->mark_end(lexer);
-                    delimiter_stack.pop_back();
-                    lexer->result_symbol = STRING_END;
-                  }
-                  return true;
-                }
-                else
-                {
-                  lexer->mark_end(lexer);
-                  lexer->result_symbol = STRING_CONTENT;
-                  return true;
-                }
-              }
-              else
-              {
-                lexer->mark_end(lexer);
-                lexer->result_symbol = STRING_CONTENT;
-                return true;
-              }
-            }
-            else
-            {
-              if (has_content)
-              {
-                lexer->result_symbol = STRING_CONTENT;
-              }
-              else
-              {
-                lexer->advance(lexer, false);
-                delimiter_stack.pop_back();
-                lexer->result_symbol = STRING_END;
-              }
-              lexer->mark_end(lexer);
-              return true;
-            }
-          }
-          else if (lexer->lookahead == '\n' && has_content && !delimiter.is_triple())
-          {
-            return false;
-          }
-          advance(lexer);
-          has_content = true;
-        }
-      }
-
       lexer->mark_end(lexer);
 
       bool found_end_of_line = false;
@@ -406,84 +288,6 @@ namespace
         {
           lexer->result_symbol = NEWLINE;
           return true;
-        }
-      }
-
-      if (first_comment_indent_length == -1 && valid_symbols[STRING_START])
-      {
-        Delimiter delimiter;
-
-        bool has_flags = false;
-        while (lexer->lookahead)
-        {
-          if (lexer->lookahead == 'f' || lexer->lookahead == 'F')
-          {
-            delimiter.set_format();
-          }
-          else if (lexer->lookahead == 'r' || lexer->lookahead == 'R')
-          {
-            delimiter.set_raw();
-          }
-          else if (lexer->lookahead == 'b' || lexer->lookahead == 'B')
-          {
-            delimiter.set_bytes();
-          }
-          else if (lexer->lookahead != 'u' && lexer->lookahead != 'U')
-          {
-            break;
-          }
-          has_flags = true;
-          advance(lexer);
-        }
-
-        if (lexer->lookahead == '`')
-        {
-          delimiter.set_end_character('`');
-          advance(lexer);
-          lexer->mark_end(lexer);
-        }
-        else if (lexer->lookahead == '\'')
-        {
-          delimiter.set_end_character('\'');
-          advance(lexer);
-          lexer->mark_end(lexer);
-          if (lexer->lookahead == '\'')
-          {
-            advance(lexer);
-            if (lexer->lookahead == '\'')
-            {
-              advance(lexer);
-              lexer->mark_end(lexer);
-              delimiter.set_triple();
-            }
-          }
-        }
-        else if (lexer->lookahead == '"')
-        {
-          delimiter.set_end_character('"');
-          advance(lexer);
-          lexer->mark_end(lexer);
-          if (lexer->lookahead == '"')
-          {
-            advance(lexer);
-            if (lexer->lookahead == '"')
-            {
-              advance(lexer);
-              lexer->mark_end(lexer);
-              delimiter.set_triple();
-            }
-          }
-        }
-
-        if (delimiter.end_character())
-        {
-          delimiter_stack.push_back(delimiter);
-          lexer->result_symbol = STRING_START;
-          return true;
-        }
-        else if (has_flags)
-        {
-          return false;
         }
       }
 
