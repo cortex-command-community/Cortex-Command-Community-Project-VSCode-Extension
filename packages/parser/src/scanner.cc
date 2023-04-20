@@ -20,115 +20,16 @@ namespace
     BLOCK_COMMENT
   };
 
-  struct Delimiter
-  {
-    enum
-    {
-      SingleQuote = 1 << 0,
-      DoubleQuote = 1 << 1,
-      BackQuote = 1 << 2,
-      Raw = 1 << 3,
-      Format = 1 << 4,
-      Triple = 1 << 5,
-      Bytes = 1 << 6,
-    };
-
-    Delimiter() : flags(0) {}
-
-    bool is_format() const
-    {
-      return flags & Format;
-    }
-
-    bool is_raw() const
-    {
-      return flags & Raw;
-    }
-
-    bool is_triple() const
-    {
-      return flags & Triple;
-    }
-
-    bool is_bytes() const
-    {
-      return flags & Bytes;
-    }
-
-    int32_t end_character() const
-    {
-      if (flags & SingleQuote)
-        return '\'';
-      if (flags & DoubleQuote)
-        return '"';
-      if (flags & BackQuote)
-        return '`';
-      return 0;
-    }
-
-    void set_format()
-    {
-      flags |= Format;
-    }
-
-    void set_raw()
-    {
-      flags |= Raw;
-    }
-
-    void set_triple()
-    {
-      flags |= Triple;
-    }
-
-    void set_bytes()
-    {
-      flags |= Bytes;
-    }
-
-    void set_end_character(int32_t character)
-    {
-      switch (character)
-      {
-      case '\'':
-        flags |= SingleQuote;
-        break;
-      case '"':
-        flags |= DoubleQuote;
-        break;
-      case '`':
-        flags |= BackQuote;
-        break;
-      default:
-        assert(false);
-      }
-    }
-
-    char flags;
-  };
-
   struct Scanner
   {
     Scanner()
     {
-      assert(sizeof(Delimiter) == sizeof(char));
       deserialize(NULL, 0);
     }
 
     unsigned serialize(char *buffer)
     {
       size_t i = 0;
-
-      size_t delimiter_count = delimiter_stack.size();
-      if (delimiter_count > UINT8_MAX)
-        delimiter_count = UINT8_MAX;
-      buffer[i++] = delimiter_count;
-
-      if (delimiter_count > 0)
-      {
-        memcpy(&buffer[i], delimiter_stack.data(), delimiter_count);
-      }
-      i += delimiter_count;
 
       vector<uint16_t>::iterator
           iter = indent_length_stack.begin() + 1,
@@ -144,21 +45,12 @@ namespace
 
     void deserialize(const char *buffer, unsigned length)
     {
-      delimiter_stack.clear();
       indent_length_stack.clear();
       indent_length_stack.push_back(0);
 
       if (length > 0)
       {
         size_t i = 0;
-
-        size_t delimiter_count = (uint8_t)buffer[i++];
-        delimiter_stack.resize(delimiter_count);
-        if (delimiter_count > 0)
-        {
-          memcpy(delimiter_stack.data(), &buffer[i], delimiter_count);
-        }
-        i += delimiter_count;
 
         for (; i < length; i++)
         {
@@ -368,7 +260,6 @@ namespace
     }
 
     vector<uint16_t> indent_length_stack;
-    vector<Delimiter> delimiter_stack;
   };
 
 }
