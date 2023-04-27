@@ -149,7 +149,7 @@ namespace
                   nesting_depth--;
                   if (nesting_depth == 0)
                   {
-                    lexer->result_symbol = COMMENT;
+                    lexer->result_symbol = BLOCK_COMMENT;
                     return true;
                   }
                 }
@@ -272,7 +272,7 @@ extern "C"
   }
 
   bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer,
-                                                const bool *valid_symbols)
+                                               const bool *valid_symbols)
   {
     Scanner *scanner = static_cast<Scanner *>(payload);
     return scanner->scan(lexer, valid_symbols);
