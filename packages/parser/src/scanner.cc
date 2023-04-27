@@ -71,8 +71,7 @@ namespace
 
     bool scan(TSLexer *lexer, const bool *valid_symbols)
     {
-      bool error_recovery_mode = valid_symbols[STRING_CONTENT] && valid_symbols[INDENT];
-      bool within_brackets = valid_symbols[CLOSE_BRACE] || valid_symbols[CLOSE_PAREN] || valid_symbols[CLOSE_BRACKET];
+      bool error_recovery_mode = valid_symbols[INDENT];
 
       lexer->mark_end(lexer);
 
@@ -236,7 +235,7 @@ namespace
           }
 
           if (
-              (valid_symbols[DEDENT] || (!valid_symbols[NEWLINE] && !within_brackets)) &&
+              (valid_symbols[DEDENT] || !valid_symbols[NEWLINE]) &&
               indent_length < current_indent_length &&
 
               // Wait to create a dedent token until we've consumed any comments
