@@ -5,6 +5,14 @@
     "fields": {}
   },
   {
+    "type": "block_comment",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
     "type": "hello",
     "named": false
   }
