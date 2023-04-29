@@ -5,7 +5,9 @@
 Comment (line) 
 ==================
 
-// test comment
+/
+// test
+hello
 
 ---
 

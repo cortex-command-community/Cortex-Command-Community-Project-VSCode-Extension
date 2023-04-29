@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: 'ccini',
 
-  extras: ($) => [$.comment, /[\s\f\uFEFF\u2060\u200B]|\\\r?\n/],
+  extras: ($) => [$.block_comment, $.comment, /\s/],
 
   externals: ($) => [
     $._newline,
