@@ -10,10 +10,4 @@ SettingsMan
 
 ---
 
-(source_file
-  (function_definition
-    (identifier)
-    (parameter_list)
-    (primitive_type)
-    (block
-      (return_statement (number)))))
+(source_file)

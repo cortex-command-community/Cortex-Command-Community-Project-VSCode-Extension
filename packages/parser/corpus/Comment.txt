@@ -5,10 +5,7 @@
 Comment (line) 
 ==================
 
-/
-// test
 hello
-
 ---
 
 (source_file
