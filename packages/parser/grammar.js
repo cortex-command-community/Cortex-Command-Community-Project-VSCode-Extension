@@ -24,21 +24,23 @@ module.exports = grammar({
     _definition: ($) =>
       choice($.includeFile, $.dataModule, $.settings, $.presetDefinition),
 
-    includeFile: ($) => seq('IncludeFile', '=', $.modulePath),
-    dataModule: ($) => seq('DataModule', $._indent, $.block),
-    settings: ($) => seq('SettingsMan', $._indent, $.block),
+    includeFile: ($) => seq('IncludeFile', $._assignment, $.modulePath),
+    dataModule: ($) => seq('DataModule', $._indent, $._block),
+    settings: ($) => seq('SettingsMan', $._indent, $._block),
 
     presetDefinition: ($) =>
-      seq(alias(/\w+/, $._property), '=', $.classDefinition),
+      seq(alias(/\w+/, $.property), $._assignment, $.classDefinition),
 
-    block: ($) => seq(repeat1($._statement), $._dedent),
+    _block: ($) => seq(repeat1($.statement), $._dedent),
 
-    _statement: ($) => seq($._property, '=', $._value),
+    statement: ($) => seq($.property, $._assignment, $._value),
 
-    _property: ($) => /w+/,
-    _value: ($) => choice($.classDefinition, $._number, $._string),
+    property: ($) => /\w+/,
+    _value: ($) => choice($.classDefinition, $.modulePath, $.number, $.string),
 
-    classDefinition: ($) => seq($.className, $._indent, $.block),
+    classDefinition: ($) => seq($.className, $._indent, $._block),
+
+    _assignment: ($) => /\s+=\s+/,
 
     className: ($) =>
       choice(
@@ -112,18 +114,13 @@ module.exports = grammar({
         'GameActivity'
       ),
 
-    _number: ($) => choice($._integer, $._float),
+    modulePath: ($) =>
+      /(([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.)(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac))/,
+
+    number: ($) => choice($._integer, $._float),
     _integer: ($) => /(-?[0-9]+)/,
     _float: ($) => /(-?[0-9]+\.[0-9]+)/,
 
-    _string: ($) => choice($.modulePath, /.*/),
-
-    modulePath: ($) =>
-      seq(
-        /(([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.))/,
-        $.fileExtension
-      ),
-
-    fileExtension: ($) => /(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)/,
+    string: ($) => /.+/,
   },
 });

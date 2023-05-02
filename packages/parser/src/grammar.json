@@ -37,8 +37,8 @@
           "value": "IncludeFile"
         },
         {
-          "type": "STRING",
-          "value": "="
+          "type": "SYMBOL",
+          "name": "_assignment"
         },
         {
           "type": "SYMBOL",
@@ -59,7 +59,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "block"
+          "name": "_block"
         }
       ]
     },
@@ -76,7 +76,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "block"
+          "name": "_block"
         }
       ]
     },
@@ -90,11 +90,11 @@
             "value": "\\w+"
           },
           "named": true,
-          "value": "_property"
+          "value": "property"
         },
         {
-          "type": "STRING",
-          "value": "="
+          "type": "SYMBOL",
+          "name": "_assignment"
         },
         {
           "type": "SYMBOL",
@@ -102,14 +102,14 @@
         }
       ]
     },
-    "block": {
+    "_block": {
       "type": "SEQ",
       "members": [
         {
           "type": "REPEAT1",
           "content": {
             "type": "SYMBOL",
-            "name": "_statement"
+            "name": "statement"
           }
         },
         {
@@ -118,16 +118,16 @@
         }
       ]
     },
-    "_statement": {
+    "statement": {
       "type": "SEQ",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_property"
+          "name": "property"
         },
         {
-          "type": "STRING",
-          "value": "="
+          "type": "SYMBOL",
+          "name": "_assignment"
         },
         {
           "type": "SYMBOL",
@@ -135,9 +135,9 @@
         }
       ]
     },
-    "_property": {
+    "property": {
       "type": "PATTERN",
-      "value": "w+"
+      "value": "\\w+"
     },
     "_value": {
       "type": "CHOICE",
@@ -148,11 +148,15 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_number"
+          "name": "modulePath"
         },
         {
           "type": "SYMBOL",
-          "name": "_string"
+          "name": "number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "string"
         }
       ]
     },
@@ -169,9 +173,13 @@
         },
         {
           "type": "SYMBOL",
-          "name": "block"
+          "name": "_block"
         }
       ]
+    },
+    "_assignment": {
+      "type": "PATTERN",
+      "value": "\\s+=\\s+"
     },
     "className": {
       "type": "CHOICE",
@@ -450,7 +458,11 @@
         }
       ]
     },
-    "_number": {
+    "modulePath": {
+      "type": "PATTERN",
+      "value": "(([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.)(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac))"
+    },
+    "number": {
       "type": "CHOICE",
       "members": [
         {
@@ -471,35 +483,9 @@
       "type": "PATTERN",
       "value": "(-?[0-9]+\\.[0-9]+)"
     },
-    "_string": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "modulePath"
-        },
-        {
-          "type": "PATTERN",
-          "value": ".*"
-        }
-      ]
-    },
-    "modulePath": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "(([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.))"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "fileExtension"
-        }
-      ]
-    },
-    "fileExtension": {
+    "string": {
       "type": "PATTERN",
-      "value": "(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)"
+      "value": ".+"
     }
   },
   "extras": [

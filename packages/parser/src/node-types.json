@@ -1,24 +1,5 @@
 [
   {
-    "type": "block",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "classDefinition",
-          "named": true
-        },
-        {
-          "type": "modulePath",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "classDefinition",
     "named": true,
     "fields": {},
@@ -27,11 +8,11 @@
       "required": true,
       "types": [
         {
-          "type": "block",
+          "type": "className",
           "named": true
         },
         {
-          "type": "className",
+          "type": "statement",
           "named": true
         }
       ]
@@ -47,11 +28,11 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "block",
+          "type": "statement",
           "named": true
         }
       ]
@@ -73,19 +54,9 @@
     }
   },
   {
-    "type": "modulePath",
+    "type": "number",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "fileExtension",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "presetDefinition",
@@ -96,26 +67,31 @@
       "required": true,
       "types": [
         {
-          "type": "_property",
+          "type": "classDefinition",
           "named": true
         },
         {
-          "type": "classDefinition",
+          "type": "property",
           "named": true
         }
       ]
     }
   },
   {
+    "type": "property",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "settings",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
-      "required": true,
+      "multiple": true,
+      "required": false,
       "types": [
         {
-          "type": "block",
+          "type": "statement",
           "named": true
         }
       ]
@@ -149,8 +125,35 @@
     }
   },
   {
-    "type": "=",
-    "named": false
+    "type": "statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "classDefinition",
+          "named": true
+        },
+        {
+          "type": "modulePath",
+          "named": true
+        },
+        {
+          "type": "number",
+          "named": true
+        },
+        {
+          "type": "property",
+          "named": true
+        },
+        {
+          "type": "string",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "ACDropShip",
@@ -437,10 +440,6 @@
     "named": false
   },
   {
-    "type": "_property",
-    "named": true
-  },
-  {
     "type": "block_comment",
     "named": true
   },
@@ -449,7 +448,11 @@
     "named": true
   },
   {
-    "type": "fileExtension",
+    "type": "modulePath",
+    "named": true
+  },
+  {
+    "type": "string",
     "named": true
   }
 ]
