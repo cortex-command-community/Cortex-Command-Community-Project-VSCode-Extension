@@ -54,6 +54,21 @@
     }
   },
   {
+    "type": "modulePath",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "fileExtension",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "number",
     "named": true,
     "fields": {}
@@ -448,7 +463,7 @@
     "named": true
   },
   {
-    "type": "modulePath",
+    "type": "fileExtension",
     "named": true
   },
   {

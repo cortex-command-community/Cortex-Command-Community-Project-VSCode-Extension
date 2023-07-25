@@ -459,8 +459,17 @@
       ]
     },
     "modulePath": {
-      "type": "PATTERN",
-      "value": "(([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.)(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac))"
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PATTERN",
+          "value": "(([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.))"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "fileExtension"
+        }
+      ]
     },
     "number": {
       "type": "CHOICE",
@@ -486,6 +495,10 @@
     "string": {
       "type": "PATTERN",
       "value": ".+"
+    },
+    "fileExtension": {
+      "type": "PATTERN",
+      "value": "(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)"
     }
   },
   "extras": [
