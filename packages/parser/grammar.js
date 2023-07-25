@@ -130,5 +130,8 @@ module.exports = grammar({
     _float: ($) => /(-?[0-9]+\.[0-9]+)/,
 
     string: ($) => token(prec(-1, /.+/)),
+
+    comment: ($) => token(seq('//', /[^\n]*/)),
+    block_comment: ($) => token(seq('/*', /.*/, '*/')),
   },
 });
