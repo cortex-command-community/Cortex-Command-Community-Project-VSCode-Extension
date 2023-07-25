@@ -2,11 +2,91 @@
 
 
 ==================
-SettingsMan (settings.ini) definition
+SettingsMan Header only
+==================
+
+SettingsMan
+
+---
+
+(source_file)
+
+
+==================
+SettingsMan (settings.ini) single setting
 ==================
 
 SettingsMan
 	EnableVSync = 1
+
+---
+
+(source_file)
+
+
+==================
+SettingsMan Multiple Settings
+==================
+
+SettingsMan
+	PaletteFile = ContentFile
+		FilePath = Data/Base.rte/palette.bmp
+	ResolutionX = 960
+	ResolutionY = 540
+	ResolutionMultiplier = 1
+	EnableVSync = 1
+	IgnoreMultiDisplays = 1
+	TwoPlayerSplitscreenVertSplit = 0
+
+---
+
+(source_file)
+
+==================
+SettingsMan Multiple Settings (complex)
+==================
+
+SettingsMan
+	IgnoreMultiDisplays = 1
+	PaletteFile = ContentFile
+		FilePath = Data/Base.rte/palette.bmp
+	ResolutionX = 960
+
+
+---
+
+(source_file)
+
+==================
+SettingsMan with Comment spacers
+==================
+
+SettingsMan
+////////////////////////////////////////////////////////////////////////
+// Display Settings
+
+	PaletteFile = ContentFile
+		FilePath = Data/Base.rte/palette.bmp
+	ResolutionX = 960
+	ResolutionY = 540
+	ResolutionMultiplier = 1
+	EnableVSync = 1
+	IgnoreMultiDisplays = 1
+	TwoPlayerSplitscreenVertSplit = 0
+
+
+////////////////////////////////////////////////////////////////////////
+// Audio Settings
+
+	MasterVolume = 2
+	MuteMaster = 0
+	MusicVolume = 100
+	MuteMusic = 0
+	SoundVolume = 100
+	MuteSounds = 0
+	SoundPanningEffectStrength = 0.5
+	ListenerZOffset = 400
+	MinimumDistanceForPanning = 30
 
 ---
 

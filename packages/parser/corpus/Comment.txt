@@ -1,12 +1,20 @@
 
-
-
 ==================
 Comment (line) 
 ==================
 
-hello
+// single line comment
 ---
 
 (source_file
   (comment))
+
+==================
+Block Comment 
+==================
+
+/* single line block */
+---
+
+(source_file
+  (block_comment))

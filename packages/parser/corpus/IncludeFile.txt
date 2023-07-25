@@ -1,5 +1,18 @@
 
 
+==================
+IncludeFile (single) 
+==================
+
+IncludeFile = Base.rte/GUIs.ini
+
+---
+
+(source_file
+  (includeFile
+    (modulePath
+      (fileExtension))))
+
 
 ==================
 IncludeFile (multiple) 
