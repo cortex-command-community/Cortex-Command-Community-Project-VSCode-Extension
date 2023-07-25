@@ -25,8 +25,8 @@ module.exports = grammar({
       choice($.includeFile, $.dataModule, $.settings, $.presetDefinition),
 
     includeFile: ($) => seq('IncludeFile', $._assignment, $.modulePath),
-    dataModule: ($) => seq('DataModule', $._indent, $._block),
-    settings: ($) => seq('SettingsMan', $._indent, $._block),
+    dataModule: ($) => seq('DataModule', optional(seq($._indent, $._block))),
+    settings: ($) => seq('SettingsMan', optional(seq($._indent, $._block))),
 
     presetDefinition: ($) =>
       seq(alias(/\w+/, $.property), $._assignment, $.classDefinition),
