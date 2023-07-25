@@ -22,8 +22,13 @@ DataModule
 ---
 
 (source_file
-  (dataModule))
-
+  (dataModule
+	(statement
+		(property)
+		(string))
+	(statement
+		(property)
+		(number))))
 
 ==================
 DataModule Complete 
@@ -49,4 +54,24 @@ DataModule
 ---
 
 (source_file
-  (dataModule))
+  (dataModule
+	(statement
+		(property)
+		(string))
+	(statement
+		(property)
+		(number))
+	(statement
+		(property)
+		(classDefinition
+			(className)
+			(statement
+				(property)
+				(modulePath
+					(fileExtension)))))
+	(statement
+		(property)
+		(string))
+	(statement
+		(property)
+		(number))))
