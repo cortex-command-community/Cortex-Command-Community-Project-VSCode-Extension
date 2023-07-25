@@ -52,29 +52,34 @@ SettingsMan
 				(statement
 					(property)
 					(modulePath
-						(fileExtension)))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-				(statement
-					(property)
-					(number))
-))))
+						(fileExtension)
+					)
+				)
+			)
+		)
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(number))
+		(statement
+			(property)
+			(number))
+		(statement
+			(property)
+			(number))
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 SettingsMan Multiple Settings (complex)
@@ -88,40 +93,27 @@ SettingsMan
 
 
 ---
-
-(source_file)
-
-==================
-SettingsMan with Comment spacers
-==================
-
-SettingsMan
-////////////////////////////////////////////////////////////////////////
-// Display Settings
-
-	PaletteFile = ContentFile
-		FilePath = Data/Base.rte/palette.bmp
-	ResolutionX = 960
-	ResolutionY = 540
-	ResolutionMultiplier = 1
-	EnableVSync = 1
-	IgnoreMultiDisplays = 1
-	TwoPlayerSplitscreenVertSplit = 0
-
-
-////////////////////////////////////////////////////////////////////////
-// Audio Settings
-
-	MasterVolume = 2
-	MuteMaster = 0
-	MusicVolume = 100
-	MuteMusic = 0
-	SoundVolume = 100
-	MuteSounds = 0
-	SoundPanningEffectStrength = 0.5
-	ListenerZOffset = 400
-	MinimumDistanceForPanning = 30
-
----
-
-(source_file)
+(source_file
+	(settings
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(classDefinition
+				(className)
+				(statement
+					(property)
+					(modulePath
+						(fileExtension
+					))
+				)	
+			)
+		)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
