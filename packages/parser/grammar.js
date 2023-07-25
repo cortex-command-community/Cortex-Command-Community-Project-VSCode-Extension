@@ -115,16 +115,20 @@ module.exports = grammar({
       ),
 
     modulePath: ($) =>
-      seq(
-        /(([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.))/,
-        $.fileExtension
+      prec(
+        3,
+        seq(
+          /((Data\/|UserData\/|Mods\/)?([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.))/,
+          $.fileExtension
+        )
       ),
+
+    fileExtension: ($) => /(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)/,
 
     number: ($) => choice($._integer, $._float),
     _integer: ($) => /(-?[0-9]+)/,
     _float: ($) => /(-?[0-9]+\.[0-9]+)/,
 
-    string: ($) => /.+/,
-    fileExtension: ($) => /(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)/,
+    string: ($) => token(prec(-1, /.+/)),
   },
 });

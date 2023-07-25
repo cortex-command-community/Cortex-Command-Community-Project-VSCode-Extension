@@ -54,12 +54,25 @@
           "value": "DataModule"
         },
         {
-          "type": "SYMBOL",
-          "name": "_indent"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_block"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_indent"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_block"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -71,12 +84,25 @@
           "value": "SettingsMan"
         },
         {
-          "type": "SYMBOL",
-          "name": "_indent"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "_block"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_indent"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "_block"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -459,17 +485,25 @@
       ]
     },
     "modulePath": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "PATTERN",
-          "value": "(([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.))"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "fileExtension"
-        }
-      ]
+      "type": "PREC",
+      "value": 3,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "((Data\\/|UserData\\/|Mods\\/)?([A-Z][A-z0-9 ]*\\.rte)(\\/[A-z0-9 ]*)*(\\/[A-z0-9 ]+\\.))"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "fileExtension"
+          }
+        ]
+      }
+    },
+    "fileExtension": {
+      "type": "PATTERN",
+      "value": "(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)"
     },
     "number": {
       "type": "CHOICE",
@@ -493,12 +527,51 @@
       "value": "(-?[0-9]+\\.[0-9]+)"
     },
     "string": {
-      "type": "PATTERN",
-      "value": ".+"
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": -1,
+        "content": {
+          "type": "PATTERN",
+          "value": ".+"
+        }
+      }
     },
-    "fileExtension": {
-      "type": "PATTERN",
-      "value": "(ini|txt|lua|cfg|bmp|png|jpg|jpeg|wav|ogg|mp3|flac)"
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "//"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\\n]*"
+          }
+        ]
+      }
+    },
+    "block_comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/*"
+          },
+          {
+            "type": "PATTERN",
+            "value": ".*"
+          },
+          {
+            "type": "STRING",
+            "value": "*/"
+          }
+        ]
+      }
     }
   },
   "extras": [
