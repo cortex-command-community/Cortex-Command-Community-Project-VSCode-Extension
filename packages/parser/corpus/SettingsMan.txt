@@ -9,7 +9,8 @@ SettingsMan
 
 ---
 
-(source_file)
+(source_file
+	(settings))
 
 
 ==================
@@ -20,9 +21,11 @@ SettingsMan
 	EnableVSync = 1
 
 ---
-
-(source_file)
-
+(source_file
+	(settings
+		(statement
+			(property)
+			(number))))
 
 ==================
 SettingsMan Multiple Settings
@@ -40,7 +43,38 @@ SettingsMan
 
 ---
 
-(source_file)
+(source_file
+	(settings
+		(statement
+			(property)
+			(classDefinition
+				(className)
+				(statement
+					(property)
+					(modulePath
+						(fileExtension)))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+				(statement
+					(property)
+					(number))
+))))
 
 ==================
 SettingsMan Multiple Settings (complex)
