@@ -18,3 +18,57 @@ Block Comment
 
 (source_file
   (block_comment))
+
+
+==================
+Block Comment removing property
+==================
+
+DataModule
+	/*ModuleName = Browncoats*/
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+
+==================
+Line Comment removing property
+==================
+
+DataModule
+	//ModuleName = Browncoats
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+
+==================
+Mixed comments: Line then block
+==================
+
+DataModule
+	//ModuleName = /*Browncoats
+	IsFaction = 1
+  */
+---
+
+(source_file
+  (block_comment))
+
+==================
+Mixed comments: Block then Line
+==================
+
+DataModule
+	/*ModuleName = //Browncoats */
+	IsFaction = 1
+---
+
+(source_file
+  (block_comment))
