@@ -71,26 +71,19 @@ struct Scanner {
       }
       // Comment handling
       else if (lexer->lookahead == '/') {
-        advance(lexer);
+        skip(lexer);
 
         if (lexer->lookahead == '/') {
           if (first_comment_indent_length == -1) {
             first_comment_indent_length = (int32_t)indent_length;
           }
-          advance(lexer);
+          skip(lexer);
 
-          while (lexer->lookahead) {
-            switch (lexer->lookahead) {
-              case '\n':
-                advance(lexer);
-              case '\0':
-                lexer->result_symbol = COMMENT;
-                return true;
-              default:
-                advance(lexer);
-                break;
-            }
+          while (lexer->lookahead && !lexer->eof && lexer->lookahead != '\n') {
+            skip(lexer);
           }
+          skip(lexer);
+          indent_length = 0;
         }
         // else if (lexer->lookahead == '*')
         // {
