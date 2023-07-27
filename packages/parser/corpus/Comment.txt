@@ -21,7 +21,7 @@ Block Comment
 
 
 ==================
-Block Comment removing property
+Block Comment removing property 1
 ==================
 
 DataModule
@@ -33,6 +33,23 @@ DataModule
 (source_file
   (block_comment))
 
+==================
+Block Comment removing property 2
+==================
+
+DataModule
+	/*
+	ModuleName = Browncoats
+	*/
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+
+
 
 ==================
 Line Comment removing property
@@ -40,6 +57,108 @@ Line Comment removing property
 
 DataModule
 	//ModuleName = Browncoats
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+==================
+Line Comment Divider ("/////")
+==================
+
+DataModule
+	IsFaction = 1
+///////////////
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+==================
+Empty Line comment (mid-block)
+==================
+
+DataModule
+	IsFaction = 1
+	//
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+==================
+Empty Line comment (pre)
+==================
+
+//
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+==================
+Empty Line comment (post)
+==================
+
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+//
+
+---
+
+(source_file
+  (block_comment))
+
+
+
+==================
+Consecutive Line Comments
+==================
+
+DataModule
+//  IsFaction = 1
+//  IsFaction = 1
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+
+==================
+Consecutive Line Comments (Spacer)
+==================
+
+DataModule
+//  IsFaction = 1
+/////////////
+	IsFaction = 1
+
+---
+
+(source_file
+  (block_comment))
+
+
+==================
+Consecutive Block Comments
+==================
+
+DataModule
+/* */
+/* */
 	IsFaction = 1
 
 ---
@@ -72,3 +191,17 @@ DataModule
 
 (source_file
   (block_comment))
+
+
+==================
+Unclosed Block Comment
+==================
+
+DataModule
+	/*
+	IsFaction = 1
+---
+
+(source_file
+  (block_comment))
+
