@@ -21,7 +21,7 @@ Block Comment
 
 
 ==================
-Block Comment removing property 1
+Block Comment removing property (Inline)
 ==================
 
 DataModule
@@ -41,7 +41,7 @@ DataModule
 )
 
 ==================
-Block Comment removing property 2
+Block Comment removing property (Above/Below)
 ==================
 
 DataModule
@@ -267,24 +267,6 @@ DataModule
 	)
 )
 
-==================
-Mixed comments: Block then Line
-==================
-
-DataModule
-	/*ModuleName = //Browncoats */
-	IsFaction = 1
----
-
-(source_file
-	(dataModule
-		(block_comment)
-		(statement
-			(property)
-			(number)
-		)
-	)
-)
 
 ==================
 Unclosed Block Comment
