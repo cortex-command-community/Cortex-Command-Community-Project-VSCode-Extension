@@ -31,7 +31,14 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Block Comment removing property 2
@@ -46,10 +53,14 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
-
-
-
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Line Comment removing property
@@ -62,7 +73,14 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Line Comment Divider ("/////")
@@ -76,7 +94,18 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(statement
+			(property)
+			(number)
+		)
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Empty Line comment (mid-block)
@@ -90,7 +119,18 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(statement
+			(property)
+			(number)
+		)
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Empty Line comment (pre)
@@ -104,7 +144,18 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(comment)
+	(dataModule
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Empty Line comment (post)
@@ -118,8 +169,18 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
-
+	(dataModule
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(number)
+		)
+		(comment)
+	)
+)
 
 
 ==================
@@ -134,7 +195,15 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(comment)
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 
 ==================
@@ -149,7 +218,15 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(comment)
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 
 ==================
@@ -164,8 +241,15 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
-
+	(dataModule
+		(block_comment)
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Mixed comments: Line then block
@@ -178,7 +262,10 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule
+		(block_comment)
+	)
+)
 
 ==================
 Mixed comments: Block then Line
@@ -190,8 +277,14 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
-
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
 
 ==================
 Unclosed Block Comment
@@ -203,5 +296,8 @@ DataModule
 ---
 
 (source_file
-  (block_comment))
+	(dataModule(
+		(block_comment))
+	)
+)
 

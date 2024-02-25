@@ -84,53 +84,33 @@ struct Scanner {
           }
           skip(lexer);
           indent_length = 0;
+        } else if (lexer->lookahead == '*') {
+          skip(lexer);
+          bool in_comment = true;
+          bool after_star = false;
+          unsigned nesting_depth = 1;
+          while (in_comment) {
+            switch (lexer->lookahead) {
+              case '\0':
+                return false;
+              case '*':
+                skip(lexer);
+                after_star = true;
+                break;
+              case '/':
+                if (after_star) {
+                  skip(lexer);
+                  after_star = false;
+                  in_comment = false;
+                }
+                break;
+              default:
+                skip(lexer);
+                after_star = false;
+                break;
+            }
+          }
         }
-        // else if (lexer->lookahead == '*')
-        // {
-        //   advance(lexer);
-
-        //   bool after_star = false;
-        //   unsigned nesting_depth = 1;
-        //   for (;;)
-        //   {
-        //     switch (lexer->lookahead)
-        //     {
-        //     case '\0':
-        //       return false;
-        //     case '*':
-        //       advance(lexer);
-        //       after_star = true;
-        //       break;
-        //     case '/':
-        //       if (after_star)
-        //       {
-        //         advance(lexer);
-        //         after_star = false;
-        //         nesting_depth--;
-        //         if (nesting_depth == 0)
-        //         {
-        //           lexer->result_symbol = BLOCK_COMMENT;
-        //           return true;
-        //         }
-        //       }
-        //       else
-        //       {
-        //         advance(lexer);
-        //         after_star = false;
-        //         if (lexer->lookahead == '*')
-        //         {
-        //           nesting_depth++;
-        //           advance(lexer);
-        //         }
-        //       }
-        //       break;
-        //     default:
-        //       advance(lexer);
-        //       after_star = false;
-        //       break;
-        //     }
-        //   }
-        // }
       }
 
       // else if (lexer->lookahead == '#')
