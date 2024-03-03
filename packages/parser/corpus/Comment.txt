@@ -260,8 +260,8 @@ Consecutive Block Comments
 ==================
 
 DataModule
-/* */
-/* */
+/* comment 1 */
+/* comment 2 */
 	IsFaction = 1
 
 ---
@@ -278,18 +278,21 @@ DataModule
 )
 
 ==================
-Mixed comments: Line then block
+Nested comments: Line then block
 ==================
 
 DataModule
-	//ModuleName = /*Browncoats
+	//ModuleName = /*Browncoats */
 	IsFaction = 1
-  */
 ---
 
 (source_file
 	(dataModule
-		(block_comment)
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
 	)
 )
 
@@ -304,9 +307,8 @@ DataModule
 ---
 
 (source_file
-	(dataModule(
-		(ERROR
-			(UNEXPECTED '\t')))
-	)
+	(dataModule)
+	(ERROR
+		(UNEXPECTED '\0'))
 )
 
