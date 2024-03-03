@@ -158,13 +158,39 @@ DataModule
 )
 
 ==================
-Empty Line comment (post)
+Line Comment at end of indentation (outside)
 ==================
 
 DataModule
 	IsFaction = 1
 	IsFaction = 1
 //
+
+---
+
+(source_file
+	(dataModule
+		(statement
+			(property)
+			(number)
+		)
+		(statement
+			(property)
+			(number)
+		)
+	)
+	(comment)
+)
+
+
+==================
+Line Comment at end of indentation (same level)
+==================
+
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+	//
 
 ---
 
@@ -279,7 +305,8 @@ DataModule
 
 (source_file
 	(dataModule(
-		(block_comment))
+		(ERROR
+			(UNEXPECTED '\t')))
 	)
 )
 
