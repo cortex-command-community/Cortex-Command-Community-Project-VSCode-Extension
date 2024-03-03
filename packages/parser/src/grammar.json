@@ -552,6 +552,26 @@
           }
         ]
       }
+    },
+    "block_comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "(.*|\\n)"
+          },
+          {
+            "type": "STRING",
+            "value": "*/"
+          }
+        ]
+      }
     }
   },
   "extras": [

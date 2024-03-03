@@ -127,35 +127,6 @@ struct Scanner {
         }
       }
 
-      // else if (lexer->lookahead == '#')
-      // {
-      //   if (first_comment_indent_length == -1)
-      //   {
-      //     first_comment_indent_length = (int32_t)indent_length;
-      //   }
-      //   while (lexer->lookahead && lexer->lookahead != '\n')
-      //   {
-      //     skip(lexer);
-      //   }
-      //   skip(lexer);
-      //   indent_length = 0;
-      // }
-      // else if (lexer->lookahead == '\\')
-      // {
-      //   skip(lexer);
-      //   if (lexer->lookahead == '\r')
-      //   {
-      //     skip(lexer);
-      //   }
-      //   if (lexer->lookahead == '\n')
-      //   {
-      //     skip(lexer);
-      //   }
-      //   else
-      //   {
-      //     return false;
-      //   }
-      // }
       else if (lexer->lookahead == '\f') {
         indent_length = 0;
         skip(lexer);
