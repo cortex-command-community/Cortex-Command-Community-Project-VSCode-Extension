@@ -132,7 +132,7 @@ module.exports = grammar({
 
     string: ($) => token(prec(-1, /.+/)),
 
-    block_comment: ($) => token(seq('/*', /(.*|\n)/, '*/')),
+    block_comment: ($) => token(/\/\*(.*|\s*)*?\*\//),
     comment: ($) => token(seq('//', /[^\n]*/)),
   },
 });
