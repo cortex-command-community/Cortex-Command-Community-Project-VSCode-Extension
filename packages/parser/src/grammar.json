@@ -428,6 +428,10 @@
         },
         {
           "type": "STRING",
+          "value": "BuyMenuTheme"
+        },
+        {
+          "type": "STRING",
           "value": "ADSensor"
         },
         {
@@ -537,22 +541,6 @@
         }
       }
     },
-    "comment": {
-      "type": "TOKEN",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "//"
-          },
-          {
-            "type": "PATTERN",
-            "value": "[^\\n]*"
-          }
-        ]
-      }
-    },
     "block_comment": {
       "type": "TOKEN",
       "content": {
@@ -569,6 +557,22 @@
           {
             "type": "STRING",
             "value": "*/"
+          }
+        ]
+      }
+    },
+    "comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "//"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^\\n]*"
           }
         ]
       }
@@ -605,11 +609,11 @@
     },
     {
       "type": "SYMBOL",
-      "name": "comment"
+      "name": "block_comment"
     },
     {
       "type": "SYMBOL",
-      "name": "block_comment"
+      "name": "comment"
     }
   ],
   "inline": [],

@@ -74,4 +74,41 @@ DataModule
 		(string))
 	(statement
 		(property)
-		(number))))
+		(number))
+	(statement
+		(property)
+		(classDefinition
+			(className)
+			(statement
+				(property)
+				(modulePath
+					(fileExtension)))
+			(statement
+				(property)
+				(number))
+			(statement
+				(property)
+				(modulePath
+					(fileExtension)))))
+	(statement
+		(property)
+		(modulePath
+			(fileExtension)))
+	(statement
+		(property)
+		(modulePath
+			(fileExtension)))
+	(statement
+		(property)
+		(modulePath
+			(fileExtension)))
+	(statement
+		(property)
+		(modulePath
+			(fileExtension)))
+	(statement
+		(property)
+		(modulePath
+			(fileExtension)))
+))
+					

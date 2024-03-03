@@ -15,8 +15,8 @@ enum TokenType {
   NEWLINE,
   INDENT,
   DEDENT,
+  BLOCK_COMMENT,
   COMMENT,
-  BLOCK_COMMENT
 };
 
 struct Scanner {

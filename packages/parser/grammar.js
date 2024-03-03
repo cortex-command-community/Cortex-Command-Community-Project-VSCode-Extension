@@ -13,8 +13,8 @@ module.exports = grammar({
     // error recovery, because the external scanner can maintain the overall
     // structure by returning dedent tokens whenever a dedent occurs, even
     // if no dedent is expected.
-    $.comment,
     $.block_comment,
+    $.comment,
   ],
 
   rules: {
@@ -98,6 +98,7 @@ module.exports = grammar({
         'Arm',
         'AHuman',
         'AEmitter',
+        'BuyMenuTheme',
         'ADSensor',
         'ADoor',
         'Actor',
@@ -131,7 +132,7 @@ module.exports = grammar({
 
     string: ($) => token(prec(-1, /.+/)),
 
-    comment: ($) => token(seq('//', /[^\n]*/)),
     block_comment: ($) => token(seq('/*', /(.*|\n)/, '*/')),
+    comment: ($) => token(seq('//', /[^\n]*/)),
   },
 });

@@ -243,6 +243,10 @@
     "named": false
   },
   {
+    "type": "BuyMenuTheme",
+    "named": false
+  },
+  {
     "type": "Color",
     "named": false
   },
