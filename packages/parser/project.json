@@ -7,7 +7,7 @@
     "compile": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx tree-sitter generate"],
+        "commands": ["npx tree-sitter generate -0"],
         "outputPath": "packages/parser",
         "cwd": "packages/parser"
       },

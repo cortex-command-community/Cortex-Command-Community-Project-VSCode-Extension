@@ -544,8 +544,21 @@
     "block_comment": {
       "type": "TOKEN",
       "content": {
-        "type": "PATTERN",
-        "value": "\\/\\*(.*|\\s*)*?\\*\\/"
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "/*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "[^*]*\\*+([^/*][^*]*\\*+)*"
+          },
+          {
+            "type": "STRING",
+            "value": "/"
+          }
+        ]
       }
     },
     "comment": {
@@ -559,7 +572,7 @@
           },
           {
             "type": "PATTERN",
-            "value": "[^\\n]*"
+            "value": "(\\\\+(.|\\r?\\n)|[^\\\\\\n])*"
           }
         ]
       }
