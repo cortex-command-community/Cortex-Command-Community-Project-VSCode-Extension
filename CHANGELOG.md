@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.2...v1.4.0) (2024-06-02)
+
+
+### Bug Fixes
+
+* **ci:** update github actions node version ([cdc6913](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/cdc691335f20ef280d2ade43e61e5dcf8fa53f14))
+
+
+### Features
+
+* add minimal renaming detection ([30311d4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/30311d490d428ac919c6d8172aa58e0857833d70))
+* add new fileSystem service method to trim URIs to workspace ([618d69a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/618d69aa1b2c0ff1dfbbfbe5daeb861069a481f4))
+* create `didRenameFile` provider ([2849cfb](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2849cfb11479b5a67135a3468dea05d70b11857c))
+
 ## [1.3.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.1...v1.3.2) (2023-02-07)
 
 
