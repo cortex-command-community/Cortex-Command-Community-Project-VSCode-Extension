@@ -1,12 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/nx-cloud",
-      "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e", "watch"],
-        "accessToken": "MzZlZTRmZGMtYTI3Ny00NmIxLThlNjctMmZhM2E3MGM4ZDcwfHJlYWQtd3JpdGU="
-      }
+  "tasksRunnerOptions": {},
+  "default": {
+    "runner": "@nrwl/nx-cloud",
+    "options": {
+      "cacheableOperations": ["build", "lint", "test", "e2e", "watch"]
     }
   },
   "defaultBase": "main",
@@ -40,5 +38,6 @@
       "unitTestRunner": "jest"
     }
   },
-  "pluginsConfig": {}
+  "pluginsConfig": {},
+  "nxCloudAccessToken": "OTgwZjc4MDctMmE1Zi00MDI1LWJmYTctMmJhODhhMDM0NWJlfHJlYWQtd3JpdGU="
 }
