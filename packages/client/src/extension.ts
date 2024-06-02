@@ -5,6 +5,7 @@
 'use strict';
 
 import * as path from 'path';
+import { legalFileGlob } from 'shared';
 import { ExtensionContext, window as Window, workspace } from 'vscode';
 import {
   LanguageClient,
@@ -36,9 +37,7 @@ export function activate(context: ExtensionContext): void {
     revealOutputChannelOn: RevealOutputChannelOn.Error,
     progressOnInitialization: true,
     synchronize: {
-      fileEvents: workspace.createFileSystemWatcher(
-        '**/*.{ini,txt,lua,cfg,bmp,png,jpg,jpeg,wav,ogg,mp3,flac}'
-      ),
+      fileEvents: workspace.createFileSystemWatcher(legalFileGlob),
     },
   };
 
@@ -55,6 +54,7 @@ export function activate(context: ExtensionContext): void {
     );
     return;
   }
+
   client.registerProposedFeatures();
 
   context.subscriptions.push(client.start());

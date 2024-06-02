@@ -37,9 +37,18 @@ jobs:
       - name: 'Semantic Release'
         run: npx semantic-release
 
-      - name: Update dev branch.
+  synchronise:
+    needs: release
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: 'Push changes to development'
         run: |
-          git fetch --unshallow
+          git fetch
           git checkout development
           git pull
           git merge main

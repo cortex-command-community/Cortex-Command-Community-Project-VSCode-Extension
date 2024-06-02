@@ -13,11 +13,14 @@ import {
   DiagnosticSeverity,
   DidChangeConfigurationNotification,
   DidChangeWatchedFilesNotification,
+  DidRenameFilesNotification,
+  FileOperationRegistrationOptions,
   InitializeParams,
   InitializeResult,
   Position,
   ProposedFeatures,
   Range,
+  RenameFile,
   TextDocumentEdit,
   TextDocuments,
   TextDocumentSyncKind,
@@ -31,6 +34,8 @@ import {
 } from './services/configuration.service';
 import { validateFilePaths } from './validations/validateFilePath';
 import { fileSystemService } from './services/fs.service';
+import { legalFileGlob } from 'shared';
+import { renameFilesHandler } from './providers/didRenameFiles';
 
 const connection = createConnection(ProposedFeatures.all);
 
@@ -57,14 +62,10 @@ connection.onInitialize((params: InitializeParams): InitializeResult => {
 
   const result: InitializeResult = {
     capabilities: {
-      // codeActionProvider: true,
       textDocumentSync: {
         openClose: true,
         change: TextDocumentSyncKind.Incremental,
       },
-      // executeCommandProvider: {
-      //   commands: ['sample.fixMe'],
-      // },
     },
   };
 
@@ -93,6 +94,21 @@ connection.onInitialized(() => {
   }
 
   connection.client.register(DidChangeWatchedFilesNotification.type);
+  const registrationOptions: FileOperationRegistrationOptions = {
+    filters: [
+      {
+        pattern: {
+          glob: legalFileGlob,
+        },
+      },
+    ],
+  };
+
+  connection.client.register(
+    DidRenameFilesNotification.type,
+    registrationOptions
+  );
+  connection.workspace.onDidRenameFiles(renameFilesHandler);
 
   if (configService.hasWorkspaceFolderCapability) {
     connection.workspace.onDidChangeWorkspaceFolders((_event) => {
@@ -116,13 +132,9 @@ connection.onDidChangeConfiguration((change) => {
 });
 
 connection.onDidChangeWatchedFiles((changes) => {
-  console.log(changes);
+  // console.log(changes);
   fileSystemService.updateFileList();
   documents.all().forEach(validate);
-
-  // change.changes.forEach((change) => {
-  //   connection.console.log(change.type.toString() + change.uri);
-  // });
 });
 
 function validate(document: TextDocument): void {
