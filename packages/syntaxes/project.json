@@ -3,9 +3,11 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/syntaxes/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "nx:run-commands",
+      "inputs": ["{projectRoot}/**/*"],
       "options": {
         "commands": [
           "npx mkdirp \"dist/packages/syntaxes\"",
@@ -13,14 +15,13 @@
           "cp packages/syntaxes/src/snippets.jsonc dist/packages/syntaxes/snippets.json",
           "cp packages/syntaxes/src/language-configuration.json dist/packages/syntaxes/language-configuration.json"
         ],
-        "outputPath": "dist/packages/syntaxes"
+        "parallel": false
       },
-      "outputs": ["{options.outputPath}"],
+      "outputs": ["{workspaceRoot}/dist/packages/syntaxes"],
       "defaultConfiguration": "production",
       "configurations": {
         "production": {}
       }
     }
-  },
-  "tags": []
+  }
 }
