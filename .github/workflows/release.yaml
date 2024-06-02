@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      GH_TOKEN: ${{ secrets.GH_PAT }}
-      GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
 
     steps:
