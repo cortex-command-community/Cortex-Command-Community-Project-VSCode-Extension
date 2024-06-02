@@ -8,6 +8,7 @@
     "build": {
       "executor": "nx:run-commands",
       "inputs": ["{projectRoot}/**/*"],
+      "outputs": ["{workspaceRoot}/dist/packages/syntaxes"],
       "options": {
         "commands": [
           "npx mkdirp \"dist/packages/syntaxes\"",
@@ -17,7 +18,6 @@
         ],
         "parallel": false
       },
-      "outputs": ["{workspaceRoot}/dist/packages/syntaxes"],
       "defaultConfiguration": "production",
       "configurations": {
         "production": {}
