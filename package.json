@@ -93,7 +93,6 @@
     "@nrwl/js": "19.1.1",
     "@nrwl/linter": "19.1.1",
     "@nrwl/node": "19.1.1",
-    "@nrwl/nx-cloud": "19.0.0",
     "@nrwl/web": "19.1.1",
     "@nrwl/webpack": "19.1.1",
     "@nrwl/workspace": "19.1.1",
@@ -126,7 +125,8 @@
     "ts-loader": "^9.4.2",
     "ts-node": "10.9.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.4",
+    "nx-cloud": "19.0.0"
   },
   "scripts": {
     "prepare": "husky install"
