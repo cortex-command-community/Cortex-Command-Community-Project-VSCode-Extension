@@ -13,11 +13,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    env:
-      GH_TOKEN: ${{ secrets.GH_PAT }}
-      GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-      VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -36,6 +31,10 @@ jobs:
 
       - name: 'Semantic Release'
         run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
 
   synchronise:
     needs: release
@@ -53,3 +52,7 @@ jobs:
           git pull
           git merge main
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
