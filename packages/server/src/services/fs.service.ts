@@ -1,8 +1,12 @@
 import { readdirSync, statSync } from 'fs';
 import { join, relative } from 'path';
-import { moduleDirectoryExtension } from 'shared';
+import {
+  DATA_DIRECTORY,
+  MOD_DIRECTORY,
+  moduleDirectoryExtension,
+} from 'shared';
 import { WorkspaceFolder } from 'vscode-languageserver';
-import { URI } from 'vscode-uri';
+import { URI, Utils } from 'vscode-uri';
 
 class FileSystemService {
   public moduleFileList: string[] = [];
@@ -14,13 +18,23 @@ class FileSystemService {
   }
 
   public updateFileList(): void {
+    console.log('Updating file list');
     this.moduleFileList = [];
     this.workspaces.forEach((folder) => {
-      const workspacePath = URI.parse(folder.uri).fsPath;
-      const workspaceFileList = this.getAllFiles(workspacePath);
+      const workspaceUri = URI.parse(folder.uri);
 
-      for (const file of workspaceFileList) {
-        this.moduleFileList.push(relative(workspacePath, file));
+      const dataPathUri = Utils.joinPath(workspaceUri, DATA_DIRECTORY);
+      const modsPathUri = Utils.joinPath(workspaceUri, MOD_DIRECTORY);
+
+      const workspaceDataFileList = this.getAllFiles(dataPathUri.fsPath);
+      const workspaceModFileList = this.getAllFiles(modsPathUri.fsPath);
+
+      for (const file of workspaceDataFileList) {
+        this.moduleFileList.push(relative(dataPathUri.fsPath, file));
+      }
+
+      for (const file of workspaceModFileList) {
+        this.moduleFileList.push(relative(modsPathUri.fsPath, file));
       }
     });
   }

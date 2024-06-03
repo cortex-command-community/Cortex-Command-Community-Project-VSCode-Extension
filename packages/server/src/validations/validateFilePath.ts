@@ -76,6 +76,12 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 }
 
 function checkIfPathExists(filePath: string): boolean {
+  console.log('checking if file exists: ', filePath);
+  console.log(
+    'fileSystemService.moduleFileList',
+    fileSystemService.moduleFileList.slice(0, 5)
+  );
+
   if (fileSystemService.moduleFileList.includes(filePath)) {
     return true;
   }
