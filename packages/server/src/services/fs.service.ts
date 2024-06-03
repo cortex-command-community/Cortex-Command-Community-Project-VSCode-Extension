@@ -18,7 +18,6 @@ class FileSystemService {
   }
 
   public updateFileList(): void {
-    console.log('Updating file list');
     this.moduleFileList = [];
     this.workspaces.forEach((folder) => {
       const workspaceUri = URI.parse(folder.uri);
