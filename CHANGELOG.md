@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.4.0...v1.4.1) (2024-06-03)
+
+
+### Bug Fixes
+
+* target CCCP 6.0 to correctly validate filepaths in new Mods/Data folders ([2ed8c78](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2ed8c78c3394745908258d3eedda4255de2c818f))
+
 # [1.4.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.2...v1.4.0) (2024-06-02)
 
 
