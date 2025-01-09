@@ -13,11 +13,6 @@ jobs:
   release:
     runs-on: ubuntu-latest
 
-    env:
-      GH_TOKEN: ${{ secrets.GH_PAT }}
-      GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-      VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
-
     steps:
       - uses: actions/checkout@v3
         with:
@@ -25,7 +20,7 @@ jobs:
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
           cache: 'npm'
 
       - name: 'Install dependencies'
@@ -35,7 +30,10 @@ jobs:
         run: npx nx run-many --target=build
 
       - name: 'Semantic Release'
-        run: npx semantic-release
+        run: GH_TOKEN=${{ secrets.GH_PAT }} npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}
 
   synchronise:
     needs: release
@@ -53,3 +51,6 @@ jobs:
           git pull
           git merge main
           git push
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}
+          VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}

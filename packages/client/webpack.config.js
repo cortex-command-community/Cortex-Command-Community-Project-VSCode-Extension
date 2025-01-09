@@ -68,5 +68,10 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
     extension: './src/extension.ts',
   };
 
+  config.output.devtoolModuleFilenameTemplate = function (info) {
+    const rel = path.relative(process.cwd(), info.absoluteResourcePath);
+    return `webpack:///./${rel}`;
+  };
+
   return config;
 });
