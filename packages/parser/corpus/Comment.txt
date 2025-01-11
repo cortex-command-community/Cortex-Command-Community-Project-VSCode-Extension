@@ -1,6 +1,6 @@
 
 ==================
-Comment (line) 
+Comment (line)
 ==================
 
 // single line comment
@@ -10,7 +10,7 @@ Comment (line)
   (comment))
 
 ==================
-Block Comment 
+Block Comment
 ==================
 
 /* single line block */
@@ -278,7 +278,7 @@ DataModule
 )
 
 ==================
-Nested comments: Line then block
+Nested comments: Block inside line
 ==================
 
 DataModule
@@ -289,6 +289,107 @@ DataModule
 (source_file
 	(dataModule
 		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Nested comments: Unclosed Block inside line
+==================
+
+DataModule
+	//ModuleName = /*Browncoats foo bar
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Nested comments: Line inside line
+==================
+
+DataModule
+	//ModuleName = //Browncoats
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Line inside Block
+==================
+
+DataModule
+	/*ModuleName = //Browncoats */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Block inside Block
+==================
+
+DataModule
+	/*ModuleName = /*Browncoats */ */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Unclosed block inside Block
+==================
+
+DataModule
+	/*ModuleName = /*Browncoats  */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
 		(statement
 			(property)
 			(number)

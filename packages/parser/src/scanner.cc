@@ -112,8 +112,8 @@ struct Scanner {
                 after_star = true;
                 break;
               case '/':
+                skip(lexer);
                 if (after_star) {
-                  skip(lexer);
                   after_star = false;
                   in_comment = false;
                 }
