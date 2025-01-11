@@ -3,18 +3,16 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/parser/src",
   "projectType": "library",
+  "tags": [],
   "targets": {
     "compile": {
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter generate -0"],
-        "outputPath": "packages/parser",
         "cwd": "packages/parser"
       },
-
-      "outputs": ["{options.outputPath}"]
+      "outputs": ["{workspaceRoot}/packages/parser"]
     },
-
     "build": {
       "dependsOn": ["compile"],
       "executor": "@nrwl/js:tsc",
@@ -44,12 +42,9 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter test"],
-        "outputPath": "packages/parser",
         "cwd": "packages/parser"
       },
-
-      "outputs": ["{options.outputPath}"]
+      "outputs": ["{workspaceRoot}/packages/parser"]
     }
-  },
-  "tags": []
+  }
 }
