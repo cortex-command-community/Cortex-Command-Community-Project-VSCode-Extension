@@ -11,7 +11,15 @@
         "commands": ["npx tree-sitter generate -0"],
         "cwd": "packages/parser"
       },
-      "outputs": ["{workspaceRoot}/packages/parser"]
+      "outputs": [
+        "{workspaceRoot}/bindings",
+        "{workspaceRoot}/binding.gyp",
+        "{workspaceRoot}/Cargo.toml",
+        "{workspaceRoot}/src/parser.c",
+        "{workspaceRoot}/src/tree_sitter",
+        "{workspaceRoot}/src/*.json"
+      ],
+      "inputs": ["{workspaceRoot}/src/scanner.cc", "{workspaceRoot}/grammar.js"]
     },
     "build": {
       "dependsOn": ["compile"],
