@@ -44,7 +44,12 @@
         "commands": ["npx tree-sitter test"],
         "cwd": "packages/parser"
       },
-      "outputs": ["{workspaceRoot}/packages/parser"]
+      "configurations": {
+        "debug": {
+          "commands": ["npx tree-sitter test -d"]
+        }
+      },
+      "inputs": ["{projectRoot}/corpus"]
     }
   }
 }
