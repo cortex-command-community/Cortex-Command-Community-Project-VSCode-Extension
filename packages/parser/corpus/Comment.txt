@@ -361,7 +361,7 @@ Nested comments: Block inside Block
 ==================
 
 DataModule
-	/*ModuleName = /*Browncoats */ */
+	/*XXXX = /*Browncoats */ */
 	IsFaction = 1
 
 ---

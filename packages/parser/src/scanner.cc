@@ -52,6 +52,12 @@ struct Scanner {
 
   void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
+  typedef enum {
+    AfterAsterisk,
+    AfterSlash,
+    Continuing,
+  } BlockCommentState;
+
   bool scan(TSLexer *lexer, const bool *valid_symbols) {
     bool error_recovery_mode = valid_symbols[INDENT];
 
@@ -98,30 +104,37 @@ struct Scanner {
             first_comment_indent_length = (int32_t)indent_length;
           }
 
-          bool in_comment = true;
           bool after_star = false;
           unsigned nesting_depth = 1;
-          while (in_comment) {
+          BlockCommentState commentState = BlockCommentState::Continuing;
+          while (nesting_depth > 0) {
             switch (lexer->lookahead) {
               case '\0':
                 found_end_of_line = true;
-                in_comment = false;
+                nesting_depth = 0;
                 break;
               case '*':
-                skip(lexer);
-                after_star = true;
+                if (commentState == BlockCommentState::AfterSlash) {
+                  nesting_depth++;
+                  commentState = BlockCommentState::Continuing;
+                } else {
+                  commentState = BlockCommentState::AfterAsterisk;
+                }
                 break;
               case '/':
-                skip(lexer);
-                if (after_star) {
-                  after_star = false;
-                  in_comment = false;
+                if (commentState == BlockCommentState::AfterAsterisk) {
+                  nesting_depth--;
+                  commentState = BlockCommentState::Continuing;
+                } else {
+                  commentState = BlockCommentState::AfterSlash;
                 }
                 break;
               default:
-                skip(lexer);
-                after_star = false;
+                commentState = BlockCommentState::Continuing;
                 break;
+            }
+            if (lexer->lookahead != '\0') {
+              skip(lexer);
             }
           }
         }

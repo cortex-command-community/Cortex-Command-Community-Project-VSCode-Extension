@@ -1,3 +1,6 @@
+//@ts-check
+/* eslint-disable no-undef */
+
 module.exports = grammar({
   name: 'ccini',
 
@@ -132,7 +135,7 @@ module.exports = grammar({
 
     string: ($) => token(prec(-1, /.+/)),
 
-    block_comment: ($) => token(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
+    block_comment: ($) => token(seq('/*', repeat(choice(/.|\n|\r/)), '*/')),
     comment: ($) => token(seq('//', /(\\+(.|\r?\n)|[^\\\n])*/)),
   },
 });
