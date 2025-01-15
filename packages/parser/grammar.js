@@ -1,3 +1,4 @@
+/// <reference types="tree-sitter-cli/dsl" />
 //@ts-check
 /* eslint-disable no-undef */
 
