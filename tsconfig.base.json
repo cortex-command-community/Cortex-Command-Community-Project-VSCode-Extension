@@ -9,6 +9,7 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
       "parser": ["packages/parser/src/index.ts"],

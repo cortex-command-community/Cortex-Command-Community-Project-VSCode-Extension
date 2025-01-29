@@ -1,0 +1,35 @@
+{
+  "grammars": [
+    {
+      "name": "ccini",
+      "camelcase": "CcIni",
+      "scope": "source.ccini",
+      "file-types": [
+        ".ccini",
+        ".ini"
+      ],
+      "injection-regex": "^ccini$"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A parser to read Cortex Command (Communuity Project) ini data files",
+    "authors": [
+      {
+        "name": "traunts"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}

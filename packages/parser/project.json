@@ -30,11 +30,11 @@
         "main": "packages/parser/src/index.ts",
         "tsConfig": "packages/parser/tsconfig.lib.json",
         "assets": [
-          "packages/parser/*.md",
-          "packages/parser/bindings/",
-          "packages/parser/src/",
-          "packages/parser/binding.gyp",
-          "packages/parser/Cargo.toml"
+          "{projectRoot}/*.md",
+          "{projectRoot}/bindings/**",
+          "{projectRoot}/src/**",
+          "{projectRoot}/binding.gyp",
+          "{projectRoot}/Cargo.toml"
         ]
       }
     },
