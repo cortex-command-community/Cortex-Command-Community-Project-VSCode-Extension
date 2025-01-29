@@ -277,6 +277,29 @@ DataModule
 	)
 )
 
+
+==================
+Consecutive Block Comments (Property inbetween)
+==================
+
+DataModule
+/* comment 1 */
+	IsFaction = 1
+/* comment 2 */
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(statement
+			(property)
+			(number)
+		)
+		(block_comment)
+	)
+)
+
 ==================
 Nested comments: Block inside line
 ==================
