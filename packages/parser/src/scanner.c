@@ -92,7 +92,7 @@ static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
-bool tree_sitter_python_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
+bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
     Scanner *scanner = (Scanner *)payload;
 
     bool error_recovery_mode = valid_symbols[STRING_CONTENT] && valid_symbols[INDENT];
@@ -360,7 +360,7 @@ bool tree_sitter_python_external_scanner_scan(void *payload, TSLexer *lexer, con
     return false;
 }
 
-unsigned tree_sitter_python_external_scanner_serialize(void *payload, char *buffer) {
+unsigned tree_sitter_ccini_external_scanner_serialize(void *payload, char *buffer) {
     Scanner *scanner = (Scanner *)payload;
 
     size_t size = 0;
@@ -388,7 +388,7 @@ unsigned tree_sitter_python_external_scanner_serialize(void *payload, char *buff
     return size;
 }
 
-void tree_sitter_python_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
+void tree_sitter_ccini_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
     Scanner *scanner = (Scanner *)payload;
 
     array_delete(&scanner->delimiters);
@@ -415,7 +415,7 @@ void tree_sitter_python_external_scanner_deserialize(void *payload, const char *
     }
 }
 
-void *tree_sitter_python_external_scanner_create() {
+void *tree_sitter_ccini_external_scanner_create() {
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
     _Static_assert(sizeof(Delimiter) == sizeof(char), "");
 #else
@@ -424,11 +424,11 @@ void *tree_sitter_python_external_scanner_create() {
     Scanner *scanner = calloc(1, sizeof(Scanner));
     array_init(&scanner->indents);
     array_init(&scanner->delimiters);
-    tree_sitter_python_external_scanner_deserialize(scanner, NULL, 0);
+    tree_sitter_ccini_external_scanner_deserialize(scanner, NULL, 0);
     return scanner;
 }
 
-void tree_sitter_python_external_scanner_destroy(void *payload) {
+void tree_sitter_ccini_external_scanner_destroy(void *payload) {
     Scanner *scanner = (Scanner *)payload;
     array_delete(&scanner->indents);
     array_delete(&scanner->delimiters);
