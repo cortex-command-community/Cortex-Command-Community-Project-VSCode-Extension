@@ -5,37 +5,19 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "compile": {
+    "generate": {
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter generate -0"],
         "cwd": "packages/parser"
-      },
-      "outputs": [
-        "{workspaceRoot}/bindings",
-        "{workspaceRoot}/binding.gyp",
-        "{workspaceRoot}/Cargo.toml",
-        "{workspaceRoot}/src/parser.c",
-        "{workspaceRoot}/src/tree_sitter",
-        "{workspaceRoot}/src/*.json"
-      ],
-      "inputs": ["{workspaceRoot}/src/scanner.cc", "{workspaceRoot}/grammar.js"]
+      }
     },
     "build": {
-      "dependsOn": ["compile"],
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
+      "dependsOn": ["generate"],
+      "executor": "nx:run-commands",
       "options": {
-        "outputPath": "dist/packages/node_modules/parser",
-        "main": "packages/parser/src/index.ts",
-        "tsConfig": "packages/parser/tsconfig.lib.json",
-        "assets": [
-          "{projectRoot}/*.md",
-          "{projectRoot}/bindings/**",
-          "{projectRoot}/src/**",
-          "{projectRoot}/binding.gyp",
-          "{projectRoot}/Cargo.toml"
-        ]
+        "commands": ["npx tree-sitter build -o ../../dist/packages/parser"],
+        "cwd": "packages/parser"
       }
     },
     "lint": {
