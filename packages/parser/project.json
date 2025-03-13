@@ -16,7 +16,7 @@
       "dependsOn": ["generate"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx tree-sitter build -o ../../dist/packages/parser"],
+        "commands": ["npx tree-sitter build"],
         "cwd": "packages/parser"
       }
     },
@@ -39,7 +39,7 @@
           "commands": ["npx tree-sitter test -d"]
         }
       },
-      "inputs": ["{projectRoot}/corpus"]
+      "inputs": ["{projectRoot}/tests/corpus"]
     }
   }
 }
