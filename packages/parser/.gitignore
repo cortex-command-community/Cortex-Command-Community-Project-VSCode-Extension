@@ -26,6 +26,9 @@ dist/
 *.dll
 *.pc
 
+*.dll
+*.exp
+
 # Example dirs
 /examples/*/
 
