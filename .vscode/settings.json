@@ -18,5 +18,12 @@
   "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
   "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
   "C_Cpp.doxygen.generatedStyle": "/**",
-  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0}"
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0}",
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.codeAnalysis.runAutomatically": true,
+  "files.associations": {
+    "compare": "c"
+  }
 }
