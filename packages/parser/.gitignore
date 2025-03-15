@@ -28,6 +28,7 @@ dist/
 
 *.dll
 *.exp
+*.lib
 
 # Example dirs
 /examples/*/
@@ -36,6 +37,9 @@ dist/
 *.wasm
 *.obj
 *.o
+
+src/**
+!src/scanner.c
 
 # Archives
 *.tar.gz
