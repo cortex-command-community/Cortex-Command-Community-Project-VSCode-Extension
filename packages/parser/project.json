@@ -31,13 +31,6 @@
         "{projectRoot}/scanner.obj"
       ]
     },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["packages/parser/**/*.ts"]
-      }
-    },
     "test": {
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
