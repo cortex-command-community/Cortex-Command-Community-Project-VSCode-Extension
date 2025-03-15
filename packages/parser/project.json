@@ -10,7 +10,9 @@
       "options": {
         "commands": ["npx tree-sitter generate -0"],
         "cwd": "packages/parser"
-      }
+      },
+      "inputs": ["{projectRoot}/grammar.js", "{projectRoot}/src/scanner.c"],
+      "outputs": ["{projectRoot}/src/**", "!{projectRoot}/src/scanner.c"]
     },
     "build": {
       "dependsOn": ["generate"],
@@ -18,7 +20,16 @@
       "options": {
         "commands": ["npx tree-sitter build"],
         "cwd": "packages/parser"
-      }
+      },
+      "inputs": [
+        "{projectRoot}/src/**",
+        "{projectRoot}/grammar.js",
+        "{projectRoot}/tree-sitter.json"
+      ],
+      "outputs": [
+        "{projectRoot}/parser.{dll,exp,lib,obj}",
+        "{projectRoot}/scanner.obj"
+      ]
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
