@@ -9,7 +9,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter generate -0"],
-        "cwd": "packages/parser"
+        "cwd": "{projectRoot}"
       },
       "inputs": ["{projectRoot}/grammar.js", "{projectRoot}/src/scanner.c"],
       "outputs": ["{projectRoot}/src/**", "!{projectRoot}/src/scanner.c"]
@@ -19,7 +19,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter build"],
-        "cwd": "packages/parser"
+        "cwd": "{projectRoot}"
       },
       "inputs": [
         "{projectRoot}/src/**",
