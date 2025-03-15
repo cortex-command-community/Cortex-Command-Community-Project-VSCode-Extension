@@ -10,7 +10,7 @@ enum TokenType {
   NEWLINE,
   INDENT,
   DEDENT,
-  BLOCK_COMMENT,
+  BLOCK_COMMENT_CONTENT,
   COMMENT
 };
 
@@ -39,12 +39,104 @@ static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
 
 static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
 
+typedef enum {
+  LeftForwardSlash,
+  LeftAsterisk,
+  Continuing,
+} BlockCommentState;
+
+typedef struct {
+  BlockCommentState state;
+  unsigned nestingDepth;
+} BlockCommentProcessing;
+
+static inline void process_left_forward_slash(BlockCommentProcessing *processing, char current) {
+  if (current == '*') {
+    fprintf(stderr, "Incrementing Nesting Depth\n");
+    processing->nestingDepth += 1;
+  }
+  processing->state = Continuing;
+};
+
+static inline void process_left_asterisk(BlockCommentProcessing *processing, char current, TSLexer *lexer) {
+  if (current == '*') {
+    lexer->mark_end(lexer);
+    processing->state = LeftAsterisk;
+    return;
+  }
+
+  if (current == '/') {
+    fprintf(stderr, "Decrementing Nesting Depth\n");
+    processing->nestingDepth -= 1;
+  }
+
+  processing->state = Continuing;
+}
+
+static inline void process_continuing(BlockCommentProcessing *processing, char current) {
+  switch (current) {
+    case '/':
+      processing->state = LeftForwardSlash;
+      break;
+    case '*':
+      processing->state = LeftAsterisk;
+      break;
+  }
+}
+
+static inline void process_block_comment(TSLexer *lexer, const bool *valid_symbols) {
+  char first = (char)lexer->lookahead;
+  bool foundEol = false;
+
+  BlockCommentProcessing processing = {Continuing, 1};
+
+  // For the purposes of actually parsing rust code, this
+  // is incorrect as it considers an unterminated block comment
+  // to be an error. However, for the purposes of syntax highlighting
+  // this should be considered successful as otherwise you are not able
+  // to syntax highlight a block of code prior to closing the
+  // block comment
+  while (!lexer->eof(lexer) && processing.nestingDepth != 0) {
+    first = (char)lexer->lookahead;
+    if (first == '\n') {
+      foundEol = true;
+    }
+    switch (processing.state) {
+      case LeftForwardSlash:
+        process_left_forward_slash(&processing, first);
+        break;
+      case LeftAsterisk:
+        process_left_asterisk(&processing, first, lexer);
+        break;
+      case Continuing:
+        lexer->mark_end(lexer);
+        process_continuing(&processing, first);
+        break;
+      default:
+        break;
+    }
+
+    advance(lexer);
+    if (first == '/' && processing.nestingDepth != 0) {
+      lexer->mark_end(lexer);
+    }
+  }
+
+  return;
+}
+
 bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   Scanner *scanner = (Scanner *)payload;
 
   bool error_recovery_mode = valid_symbols[INDENT];
 
   lexer->mark_end(lexer);
+
+  if (valid_symbols[BLOCK_COMMENT_CONTENT]) {
+    process_block_comment(lexer, valid_symbols);
+    lexer->result_symbol = BLOCK_COMMENT_CONTENT;
+    return true;
+  }
 
   bool found_end_of_line = false;
   uint16_t indent_length = 0;
@@ -65,22 +157,35 @@ bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer, cons
       skip(lexer);
     } else if (lexer->lookahead == '/' && (valid_symbols[INDENT] || valid_symbols[DEDENT] ||
                                            valid_symbols[NEWLINE])) {
-      // If we haven't found an EOL yet,
-      // then this is a comment after an expression:
-      //   foo = bar # comment
-      // Just return, since we don't want to generate an indent/dedent
-      // token.
-      if (!found_end_of_line) {
-        return false;
+      skip(lexer);
+      if (!(lexer->lookahead == '/' || lexer->lookahead == '*')) {
+        break;
       }
+
       if (first_comment_indent_length == -1) {
         first_comment_indent_length = (int32_t)indent_length;
       }
-      while (lexer->lookahead && lexer->lookahead != '\n') {
+
+      if (lexer->lookahead == '/') {
+        // If we haven't found an EOL yet,
+        // then this is a comment after an expression:
+        //   foo = bar # comment
+        // Just return, since we don't want to generate an indent/dedent
+        // token.
+        if (!found_end_of_line) {
+          return false;
+        }
+
+        while (lexer->lookahead && lexer->lookahead != '\n') {
+          skip(lexer);
+        }
         skip(lexer);
+        indent_length = 0;
+
+      } else if (lexer->lookahead == '*') {
+        skip(lexer);
+        break;
       }
-      skip(lexer);
-      indent_length = 0;
 
     } else if (lexer->lookahead == '\\') {
       skip(lexer);

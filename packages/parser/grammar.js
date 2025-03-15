@@ -5,7 +5,7 @@
 module.exports = grammar({
   name: 'ccini',
 
-  extras: ($) => [$.block_comment, $.comment, /\s/],
+  extras: ($) => [/\s/, $.comment, $.block_comment],
 
   externals: ($) => [
     $._newline,
@@ -17,7 +17,7 @@ module.exports = grammar({
     // error recovery, because the external scanner can maintain the overall
     // structure by returning dedent tokens whenever a dedent occurs, even
     // if no dedent is expected.
-    $.block_comment,
+    $._block_comment_content,
     $.comment,
   ],
 
@@ -136,5 +136,7 @@ module.exports = grammar({
 
     string: ($) => token(prec(-1, /.+/)),
     comment: ($) => token(seq('//', /(\\+(.|\r?\n)|[^\\\n])*/)),
+
+    block_comment: ($) => seq('/*', optional($._block_comment_content), '*/'),
   },
 });

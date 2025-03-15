@@ -296,8 +296,8 @@ DataModule
 			(property)
 			(number)
 		)
-		(block_comment)
 	)
+	(block_comment)
 )
 
 ==================
@@ -411,13 +411,10 @@ DataModule
 ---
 
 (source_file
-	(dataModule
-		(block_comment)
-		(statement
-			(property)
-			(number)
-		)
-	)
+	(dataModule)
+	(ERROR
+		(UNEXPECTED '\0'))
+	
 )
 
 
@@ -432,7 +429,6 @@ DataModule
 
 (source_file
 	(dataModule)
-	(ERROR
-		(UNEXPECTED '\0'))
+	(ERROR)
 )
 
