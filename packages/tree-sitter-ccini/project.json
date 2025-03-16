@@ -1,7 +1,7 @@
 {
-  "name": "parser",
+  "name": "tree-sitter-ccini",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/parser/src",
+  "sourceRoot": "packages/tree-sitter-ccini/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -36,7 +36,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter test"],
-        "cwd": "packages/parser"
+        "cwd": "packages/tree-sitter-ccini"
       },
       "configurations": {
         "debug": {

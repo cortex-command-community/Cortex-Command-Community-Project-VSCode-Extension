@@ -4,10 +4,7 @@
       "name": "ccini",
       "camelcase": "CcIni",
       "scope": "source.ccini",
-      "file-types": [
-        ".ccini",
-        ".ini"
-      ],
+      "file-types": ["ccini", "ini"],
       "injection-regex": "^ccini$"
     }
   ],

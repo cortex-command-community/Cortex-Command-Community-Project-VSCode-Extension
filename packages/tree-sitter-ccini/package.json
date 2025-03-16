@@ -1,5 +1,5 @@
 {
-  "name": "parser",
+  "name": "tree-sitter-ccini",
   "version": "0.0.1",
   "type": "commonjs",
   "main": "bindings/node"

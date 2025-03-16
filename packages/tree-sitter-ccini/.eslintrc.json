@@ -9,9 +9,8 @@
     {
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
-        "project": ["packages/parser/tsconfig.*?.json"]
+        "project": ["packages/tree-sitter-ccini/tsconfig.*?.json"]
       },
-
       "rules": {}
     },
     {

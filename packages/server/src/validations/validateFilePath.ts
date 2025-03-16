@@ -4,6 +4,8 @@ import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 import { fileSystemService } from '../services/fs.service';
 import { imageFileExtensions } from 'shared';
+import Parser, { Language } from 'tree-sitter';
+import ccini from 'tree-sitter-ccini';
 
 export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // In this simple example we get the settings for every validate run.
@@ -12,11 +14,10 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // The validator creates diagnostics for all uppercase words length 2 and more
   const text = textDocument.getText();
 
-  const pattern =
-    /(?:\/\*.*?(?=\*\/))|(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*?)(?=(?:$|\/\/|\/\*|(?:\s+(?:\/\/.*|\/\*.*))))/dgms;
+  const parser = new Parser();
+  parser.setLanguage(ccini as Language);
 
-  const commentPattern = /(\/\/[^\n]*[\r\n])|(\/\*.*(\*\/))/dgms;
-  const commentRanges = text.matchAll(commentPattern);
+  const tree = parser.parse(text);
 
   let m: RegExpExecArray | null;
 
@@ -27,24 +28,7 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
     (m = pattern.exec(text)) &&
     problems < configService.globalSettings.maxNumberOfProblems
   ) {
-    let skip = false;
-    for (const comment of text.matchAll(commentPattern)) {
-      if (!comment.index) {
-        continue;
-      }
-
-      skip =
-        (comment.index <= m.index &&
-          comment.index + comment[0].length >= m.index) ||
-        (comment.index >= m.index && comment.index <= m.index + m[0].length);
-
-      if (skip) {
-        break;
-      }
-    }
-
-    const normalizedPath = m[2] ? normalize(m[2].trim()) : null;
-    if (!skip && normalizedPath && !checkIfPathExists(normalizedPath)) {
+    if (!checkIfPathExists(normalizedPath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,
