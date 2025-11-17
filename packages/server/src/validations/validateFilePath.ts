@@ -1,11 +1,11 @@
-import { extname, normalize } from 'path';
-import { Diagnostic, DiagnosticSeverity } from 'vscode-languageserver';
+import { extname } from 'path';
+import { Diagnostic } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 import { fileSystemService } from '../services/fs.service';
 import { imageFileExtensions } from 'shared';
-import Parser, { Language } from 'tree-sitter';
-import ccini from 'tree-sitter-ccini';
+import Parser, { Language, Query } from '@keqingmoe/tree-sitter';
+import language from 'tree-sitter-ccini';
 
 export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // In this simple example we get the settings for every validate run.
@@ -15,44 +15,59 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   const text = textDocument.getText();
 
   const parser = new Parser();
-  parser.setLanguage(ccini as Language);
+  parser.setLanguage(language as Language);
+
+  const queryString = `\
+(assignment
+  key: (property) @key
+  value: (modulePath
+    extension: (fileExtension) @extension
+  ) @modulePathValue
+) @assignment`;
+
+  const filepathQuery = new Query(language as Language, queryString);
 
   const tree = parser.parse(text);
 
-  let m: RegExpExecArray | null;
+  const captures = filepathQuery.captures(tree.rootNode);
 
-  let problems = 0;
+  const problems = 0;
   const diagnostics: Diagnostic[] = [];
 
-  while (
-    (m = pattern.exec(text)) &&
-    problems < configService.globalSettings.maxNumberOfProblems
-  ) {
-    if (!checkIfPathExists(normalizedPath)) {
-      problems++;
-      const diagnostic: Diagnostic = {
-        severity: DiagnosticSeverity.Error,
-        range: {
-          start: textDocument.positionAt(m.index + m[1].length),
-          end: textDocument.positionAt(m.index + m[0].length),
-        },
-        message: `Cannot find the file ${m[2]}`,
-        source: 'CC Language Features',
-      };
-      if (configService.hasDiagnosticRelatedInformationCapability) {
-        diagnostic.relatedInformation = [
-          {
-            location: {
-              uri: textDocument.uri,
-              range: Object.assign({}, diagnostic.range),
-            },
-            message:
-              'This may be due to a bad file extension/path, or incorrect capitalization.',
-          },
-        ];
-      }
-      diagnostics.push(diagnostic);
+  for (const capture of captures) {
+    if (problems >= configService.globalSettings.maxNumberOfProblems) {
+      break;
     }
+
+    console.log(capture.name);
+    console.log(capture.node.text);
+    const normalizedPath = capture.name;
+
+    // if (!checkIfPathExists(normalizedPath)) {
+    //   problems++;
+    //   const diagnostic: Diagnostic = {
+    //     severity: DiagnosticSeverity.Error,
+    //     range: {
+    //       start: textDocument.positionAt(captures.index + captures[1].length),
+    //       end: textDocument.positionAt(captures.index + captures[0].length),
+    //     },
+    //     message: `Cannot find the file ${captures[2]}`,
+    //     source: 'CC Language Features',
+    //   };
+    //   if (configService.hasDiagnosticRelatedInformationCapability) {
+    //     diagnostic.relatedInformation = [
+    //       {
+    //         location: {
+    //           uri: textDocument.uri,
+    //           range: Object.assign({}, diagnostic.range),
+    //         },
+    //         message:
+    //           'This may be due to a bad file extension/path, or incorrect capitalization.',
+    //       },
+    //     ];
+    //   }
+    //   diagnostics.push(diagnostic);
+    // }
   }
 
   // Send the computed diagnostics to VSCode.
