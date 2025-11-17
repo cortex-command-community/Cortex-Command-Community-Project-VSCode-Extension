@@ -16,6 +16,10 @@
     {
       "files": ["*.js", "*.jsx"],
       "rules": {}
+    },
+    {
+      "files": ["package.json"],
+      "rules": {}
     }
   ]
 }
