@@ -35,9 +35,10 @@ module.exports = grammar({
     presetDefinition: ($) =>
       seq(alias(/\w+/, $.property), $._assignment, $.classDefinition),
 
-    _block: ($) => seq(repeat1($.statement), $._dedent),
+    _block: ($) => seq(repeat1($.assignment), $._dedent),
 
-    statement: ($) => seq($.property, $._assignment, $._value),
+    assignment: ($) =>
+      seq(field('key', $.property), $._assignment, field('value', $._value)),
 
     property: ($) => /\w+/,
     _value: ($) => choice($.classDefinition, $.modulePath, $.number, $.string),
@@ -124,7 +125,7 @@ module.exports = grammar({
         3,
         seq(
           /((Data\/|UserData\/|Mods\/)?([A-Z][A-z0-9 ]*\.rte)(\/[A-z0-9 ]*)*(\/[A-z0-9 ]+\.))/,
-          $.fileExtension
+          field('extension', $.fileExtension)
         )
       ),
 

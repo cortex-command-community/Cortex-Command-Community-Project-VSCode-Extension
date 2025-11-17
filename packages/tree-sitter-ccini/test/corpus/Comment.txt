@@ -33,7 +33,7 @@ DataModule
 (source_file
 	(dataModule
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -55,7 +55,7 @@ DataModule
 (source_file
 	(dataModule
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -75,7 +75,7 @@ DataModule
 (source_file
 	(dataModule
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -95,12 +95,12 @@ DataModule
 
 (source_file
 	(dataModule
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -120,12 +120,12 @@ DataModule
 
 (source_file
 	(dataModule
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -146,11 +146,11 @@ DataModule
 (source_file
 	(comment)
 	(dataModule
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -170,11 +170,11 @@ DataModule
 
 (source_file
 	(dataModule
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -196,11 +196,11 @@ DataModule
 
 (source_file
 	(dataModule
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -224,7 +224,7 @@ DataModule
 	(dataModule
 		(comment)
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -247,7 +247,7 @@ DataModule
 	(dataModule
 		(comment)
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -270,7 +270,7 @@ DataModule
 	(dataModule
 		(block_comment)
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -292,7 +292,7 @@ DataModule
 (source_file
 	(dataModule
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -312,7 +312,7 @@ DataModule
 (source_file
 	(dataModule
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -331,7 +331,7 @@ DataModule
 (source_file
 	(dataModule
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -350,7 +350,7 @@ DataModule
 (source_file
 	(dataModule
 		(comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -371,7 +371,7 @@ DataModule
 (source_file
 	(dataModule
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -392,7 +392,7 @@ DataModule
 (source_file
 	(dataModule
 		(block_comment)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)

@@ -23,10 +23,10 @@ DataModule
 
 (source_file
   (dataModule
-	(statement
+	(assignment
 		(property)
 		(string))
-	(statement
+	(assignment
 		(property)
 		(number))))
 
@@ -55,58 +55,58 @@ DataModule
 
 (source_file
   (dataModule
-	(statement
+	(assignment
 		(property)
 		(string))
-	(statement
+	(assignment
 		(property)
 		(number))
-	(statement
+	(assignment
 		(property)
 		(classDefinition
 			(className)
-			(statement
+			(assignment
 				(property)
 				(modulePath
 					(fileExtension)))))
-	(statement
+	(assignment
 		(property)
 		(string))
-	(statement
+	(assignment
 		(property)
 		(number))
-	(statement
+	(assignment
 		(property)
 		(classDefinition
 			(className)
-			(statement
+			(assignment
 				(property)
 				(modulePath
 					(fileExtension)))
-			(statement
+			(assignment
 				(property)
 				(number))
-			(statement
+			(assignment
 				(property)
 				(modulePath
 					(fileExtension)))))
-	(statement
+	(assignment
 		(property)
 		(modulePath
 			(fileExtension)))
-	(statement
+	(assignment
 		(property)
 		(modulePath
 			(fileExtension)))
-	(statement
+	(assignment
 		(property)
 		(modulePath
 			(fileExtension)))
-	(statement
+	(assignment
 		(property)
 		(modulePath
 			(fileExtension)))
-	(statement
+	(assignment
 		(property)
 		(modulePath
 			(fileExtension)))

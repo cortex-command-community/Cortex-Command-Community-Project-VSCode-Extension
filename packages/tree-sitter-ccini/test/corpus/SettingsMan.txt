@@ -23,7 +23,7 @@ SettingsMan
 ---
 (source_file
 	(settings
-		(statement
+		(assignment
 			(property)
 			(number))))
 
@@ -45,11 +45,11 @@ SettingsMan
 
 (source_file
 	(settings
-		(statement
+		(assignment
 			(property)
 			(classDefinition
 				(className)
-				(statement
+				(assignment
 					(property)
 					(modulePath
 						(fileExtension)
@@ -57,24 +57,24 @@ SettingsMan
 				)
 			)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(number))
-		(statement
+		(assignment
 			(property)
 			(number))
-		(statement
+		(assignment
 			(property)
 			(number))
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
@@ -95,15 +95,15 @@ SettingsMan
 ---
 (source_file
 	(settings
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
-		(statement
+		(assignment
 			(property)
 			(classDefinition
 				(className)
-				(statement
+				(assignment
 					(property)
 					(modulePath
 						(fileExtension
@@ -111,7 +111,7 @@ SettingsMan
 				)	
 			)
 		)
-		(statement
+		(assignment
 			(property)
 			(number)
 		)
