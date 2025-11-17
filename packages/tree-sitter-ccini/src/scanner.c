@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "tree_sitter/alloc.h"
 #include "tree_sitter/array.h"
 #include "tree_sitter/parser.h"
 
@@ -35,9 +36,9 @@ typedef struct {
   Array(Delimiter) delimiters;
 } Scanner;
 
-static inline void advance(TSLexer *lexer) { lexer->advance(lexer, false); }
+static inline void advance(TSLexer* lexer) { lexer->advance(lexer, false); }
 
-static inline void skip(TSLexer *lexer) { lexer->advance(lexer, true); }
+static inline void skip(TSLexer* lexer) { lexer->advance(lexer, true); }
 
 typedef enum {
   LeftForwardSlash,
@@ -50,15 +51,14 @@ typedef struct {
   unsigned nestingDepth;
 } BlockCommentProcessing;
 
-static inline void process_left_forward_slash(BlockCommentProcessing *processing, char current) {
+static inline void process_left_forward_slash(BlockCommentProcessing* processing, char current) {
   if (current == '*') {
-    fprintf(stderr, "Incrementing Nesting Depth\n");
     processing->nestingDepth += 1;
   }
   processing->state = Continuing;
 };
 
-static inline void process_left_asterisk(BlockCommentProcessing *processing, char current, TSLexer *lexer) {
+static inline void process_left_asterisk(BlockCommentProcessing* processing, char current, TSLexer* lexer) {
   if (current == '*') {
     lexer->mark_end(lexer);
     processing->state = LeftAsterisk;
@@ -66,14 +66,13 @@ static inline void process_left_asterisk(BlockCommentProcessing *processing, cha
   }
 
   if (current == '/') {
-    fprintf(stderr, "Decrementing Nesting Depth\n");
     processing->nestingDepth -= 1;
   }
 
   processing->state = Continuing;
 }
 
-static inline void process_continuing(BlockCommentProcessing *processing, char current) {
+static inline void process_continuing(BlockCommentProcessing* processing, char current) {
   switch (current) {
     case '/':
       processing->state = LeftForwardSlash;
@@ -84,7 +83,7 @@ static inline void process_continuing(BlockCommentProcessing *processing, char c
   }
 }
 
-static inline void process_block_comment(TSLexer *lexer, const bool *valid_symbols) {
+static inline void process_block_comment(TSLexer* lexer, const bool* valid_symbols) {
   char first = (char)lexer->lookahead;
   bool foundEol = false;
 
@@ -125,8 +124,8 @@ static inline void process_block_comment(TSLexer *lexer, const bool *valid_symbo
   return;
 }
 
-bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
-  Scanner *scanner = (Scanner *)payload;
+bool tree_sitter_ccini_external_scanner_scan(void* payload, TSLexer* lexer, const bool* valid_symbols) {
+  Scanner* scanner = (Scanner*)payload;
 
   bool error_recovery_mode = valid_symbols[INDENT];
 
@@ -238,8 +237,8 @@ bool tree_sitter_ccini_external_scanner_scan(void *payload, TSLexer *lexer, cons
   return false;
 }
 
-unsigned tree_sitter_ccini_external_scanner_serialize(void *payload, char *buffer) {
-  Scanner *scanner = (Scanner *)payload;
+unsigned tree_sitter_ccini_external_scanner_serialize(void* payload, char* buffer) {
+  Scanner* scanner = (Scanner*)payload;
 
   size_t size = 0;
 
@@ -264,8 +263,8 @@ unsigned tree_sitter_ccini_external_scanner_serialize(void *payload, char *buffe
   return size;
 }
 
-void tree_sitter_ccini_external_scanner_deserialize(void *payload, const char *buffer, unsigned length) {
-  Scanner *scanner = (Scanner *)payload;
+void tree_sitter_ccini_external_scanner_deserialize(void* payload, const char* buffer, unsigned length) {
+  Scanner* scanner = (Scanner*)payload;
 
   array_delete(&scanner->delimiters);
   array_delete(&scanner->indents);
@@ -289,21 +288,21 @@ void tree_sitter_ccini_external_scanner_deserialize(void *payload, const char *b
   }
 }
 
-void *tree_sitter_ccini_external_scanner_create() {
+void* tree_sitter_ccini_external_scanner_create() {
 #if defined(__STDC_VERSION__) && (__STDC_VERSION__ >= 201112L)
   _Static_assert(sizeof(Delimiter) == sizeof(char), "");
 #else
   assert(sizeof(Delimiter) == sizeof(char));
 #endif
-  Scanner *scanner = calloc(1, sizeof(Scanner));
+  Scanner* scanner = calloc(1, sizeof(Scanner));
   array_init(&scanner->indents);
   array_init(&scanner->delimiters);
   tree_sitter_ccini_external_scanner_deserialize(scanner, NULL, 0);
   return scanner;
 }
 
-void tree_sitter_ccini_external_scanner_destroy(void *payload) {
-  Scanner *scanner = (Scanner *)payload;
+void tree_sitter_ccini_external_scanner_destroy(void* payload) {
+  Scanner* scanner = (Scanner*)payload;
   array_delete(&scanner->indents);
   array_delete(&scanner->delimiters);
   free(scanner);

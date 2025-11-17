@@ -7,7 +7,7 @@
       "rules": {}
     },
     {
-      "files": ["*.ts", "*.tsx"],
+      "files": ["*.ts", "*.tsx", "!./bindings/**"],
       "parserOptions": {
         "project": ["packages/tree-sitter-ccini/tsconfig.*?.json"]
       },
@@ -15,6 +15,10 @@
     },
     {
       "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["package.json"],
       "rules": {}
     }
   ]
