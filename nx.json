@@ -4,14 +4,7 @@
   "default": {
     "runner": "@nrwl/nx-cloud",
     "options": {
-      "cacheableOperations": [
-        "compile",
-        "build",
-        "lint",
-        "test",
-        "e2e",
-        "watch"
-      ]
+      "cacheableOperations": ["compile", "build", "lint", "test", "e2e"]
     }
   },
   "defaultBase": "main",
@@ -28,10 +21,12 @@
       "cache": true,
       "dependsOn": ["^build"]
     },
-    "watch": {
-      "dependsOn": ["^watch"]
-    },
+
     "generate": {
+      "cache": true
+    },
+
+    "bundle": {
       "cache": true
     }
   },

@@ -2,4 +2,32 @@ node_modules
 *.vsix
 dist/**
 tmp/**
-.nx
+temp.*
+.nx/**
+
+# C artifacts
+*.a
+*.so
+*.so.*
+*.dylib
+*.dll
+*.pc
+
+*.dll
+*.exp
+*.lib
+
+# Example dirs
+/examples/*/
+
+# Grammar volatiles
+*.wasm
+*.obj
+*.o
+
+
+# Archives
+*.tar.gz
+*.tgz
+*.zip
+

@@ -53,7 +53,6 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
   config.output.publicPath = path.join(
     __dirname,
     'dist',
-    'packages',
     'server',
     'src',
     'extension.js'

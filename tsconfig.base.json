@@ -12,11 +12,11 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "shared": [
-        "dist/packages/node_modules/shared/src/index.js",
-        "packages/shared/src/index.ts"
-      ],
-      "tree-sitter-ccini": ["packages/tree-sitter-ccini"]
+      "shared": ["dist/shared", "packages/shared/src/index.ts"],
+      "tree-sitter-ccini": [
+        "./dist/tree-sitter-ccini/bindings/node",
+        "./packages/tree-sitter-ccini/bindings/node"
+      ]
     },
     "noImplicitAny": true,
     "noImplicitReturns": true,

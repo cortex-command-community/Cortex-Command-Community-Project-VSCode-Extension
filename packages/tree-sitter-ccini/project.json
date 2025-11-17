@@ -8,27 +8,65 @@
     "generate": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx tree-sitter generate -0"],
+        "commands": ["tree-sitter init", "tree-sitter generate -0"],
         "cwd": "{projectRoot}"
       },
-      "inputs": ["{projectRoot}/grammar.js", "{projectRoot}/src/scanner.c"],
-      "outputs": ["{projectRoot}/src/**", "!{projectRoot}/src/scanner.c"]
+      "inputs": [
+        "{projectRoot}/grammar.js",
+        "{projectRoot}/src/scanner.c",
+        "{projectRoot}/binding.gyp"
+      ],
+      "outputs": [
+        "{projectRoot}/src/**",
+        "{projectRoot}/bindings/**",
+        "!{projectRoot}/src/scanner.c"
+      ]
     },
-    "build": {
+    "bundle": {
       "dependsOn": ["generate"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx tree-sitter build"],
+        "parallel": false,
+        "commands": [
+          "mkdirp ../../dist/tree-sitter-ccini",
+          "cp -r ./src ../../dist/tree-sitter-ccini",
+          "cp -r ./bindings ../../dist/tree-sitter-ccini",
+          "cp -r binding.gyp ../../dist/tree-sitter-ccini",
+          "cp -r grammar.js ../../dist/tree-sitter-ccini",
+          "cp -r package.json ../../dist/tree-sitter-ccini",
+          "cp -r tree-sitter.json ../../dist/tree-sitter-ccini"
+        ],
         "cwd": "{projectRoot}"
       },
       "inputs": [
         "{projectRoot}/src/**",
+        "{projectRoot}/bindings/**",
+        "{projectRoot}/binding.gyp",
         "{projectRoot}/grammar.js",
+        "{projectRoot}/package.json",
         "{projectRoot}/tree-sitter.json"
       ],
+      "outputs": ["{workspaceRoot}/dist/tree-sitter-ccini/**"]
+    },
+    "build": {
+      "dependsOn": ["bundle"],
+      "executor": "nx:run-commands",
+      "options": {
+        "parallel": false,
+        "commands": [
+          "prebuildify --electron-compat",
+          "npx tree-sitter build --wasm"
+        ],
+        "cwd": "{workspaceRoot}/dist/tree-sitter-ccini"
+      },
+      "inputs": [
+        "{workspaceRoot}/dist/tree-sitter-ccini/**",
+        "!{workspaceRoot}/dist/tree-sitter-ccini/*.wasm",
+        "!{workspaceRoot}/dist/tree-sitter-ccini/prebuilds/**"
+      ],
       "outputs": [
-        "{projectRoot}/parser.{dll,exp,lib,obj}",
-        "{projectRoot}/scanner.obj"
+        "{workspaceRoot}/dist/tree-sitter-ccini/*.wasm",
+        "{workspaceRoot}/dist/tree-sitter-ccini/prebuilds/**"
       ]
     },
     "test": {
@@ -36,7 +74,7 @@
       "executor": "nx:run-commands",
       "options": {
         "commands": ["npx tree-sitter test"],
-        "cwd": "packages/tree-sitter-ccini"
+        "cwd": "{projectRoot}"
       },
       "configurations": {
         "debug": {

@@ -10,7 +10,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/client/src",
+        "generatePackageJson": true,
+        "outputPath": "dist/client/src",
         "compiler": "babel",
         "main": "packages/client/src/extension.ts",
         "tsConfig": "packages/client/tsconfig.app.json",
@@ -21,20 +22,14 @@
         "production": {}
       }
     },
-    "watch": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/client",
-        "main": "packages/client/src/extension.ts",
-        "tsConfig": "packages/client/tsconfig.app.json"
-      }
-    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/client/**/*.ts"]
+        "lintFilePatterns": [
+          "{projectRoot}/**/*.ts",
+          "{projectRoot}/package.json"
+        ]
       }
     },
     "test": {

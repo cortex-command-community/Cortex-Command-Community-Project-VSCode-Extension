@@ -1,7 +1,9 @@
+//@ts-check
+
 const { composePlugins, withNx, withWeb } = require('@nrwl/webpack');
 
 const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withWeb(), (config) => {
@@ -54,7 +56,6 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
   config.output.publicPath = path.join(
     __dirname,
     'dist',
-    'packages',
     'client',
     'src',
     'extension.js'

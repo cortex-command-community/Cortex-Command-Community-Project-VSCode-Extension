@@ -9,16 +9,7 @@
       "executor": "@nrwl/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/packages/node_modules/shared",
-        "main": "packages/shared/src/index.ts",
-        "tsConfig": "packages/shared/tsconfig.lib.json"
-      }
-    },
-    "watch": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/node_modules/shared",
+        "outputPath": "dist/shared",
         "main": "packages/shared/src/index.ts",
         "tsConfig": "packages/shared/tsconfig.lib.json"
       }
@@ -27,7 +18,10 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/shared/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/shared/**/*.ts",
+          "{projectRoot}/package.json"
+        ]
       }
     },
     "test": {

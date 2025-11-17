@@ -1,5 +1,5 @@
 {
-  "parser-directories": ["./packages", "./dist/packages"],
+  "parser-directories": ["./packages", "./dist/node_modules"],
   "theme": {
     "variable.builtin": {
       "bold": true

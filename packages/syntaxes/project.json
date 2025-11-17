@@ -8,13 +8,13 @@
     "build": {
       "executor": "nx:run-commands",
       "inputs": ["{projectRoot}/**/*"],
-      "outputs": ["{workspaceRoot}/dist/packages/syntaxes"],
+      "outputs": ["{workspaceRoot}/dist/syntaxes"],
       "options": {
         "commands": [
-          "npx mkdirp \"dist/packages/syntaxes\"",
-          "npx js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/packages/syntaxes/ccini.tmLanguage.json",
-          "cp packages/syntaxes/src/snippets.jsonc dist/packages/syntaxes/snippets.json",
-          "cp packages/syntaxes/src/language-configuration.json dist/packages/syntaxes/language-configuration.json"
+          "mkdirp \"dist/syntaxes\"",
+          "js-yaml packages/syntaxes/src/ccini.tmLanguage.yaml > dist/syntaxes/ccini.tmLanguage.json",
+          "cp packages/syntaxes/src/snippets.jsonc dist/syntaxes/snippets.json",
+          "cp packages/syntaxes/src/language-configuration.json dist/syntaxes/language-configuration.json"
         ],
         "parallel": false
       },

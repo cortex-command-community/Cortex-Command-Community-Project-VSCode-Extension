@@ -23,7 +23,7 @@
     "CCCP",
     "Cortex Command Community Project"
   ],
-  "main": "dist/packages/client/src/extension.js",
+  "main": "dist/client/src/extension.js",
   "activationEvents": [],
   "contributes": {
     "configuration": {
@@ -66,20 +66,20 @@
         "extensions": [
           ".ini"
         ],
-        "configuration": "dist/packages/syntaxes/language-configuration.json"
+        "configuration": "dist/syntaxes/language-configuration.json"
       }
     ],
     "grammars": [
       {
         "language": "ccini",
         "scopeName": "source.ccini",
-        "path": "dist/packages/syntaxes/ccini.tmLanguage.json"
+        "path": "dist/syntaxes/ccini.tmLanguage.json"
       }
     ],
     "snippets": [
       {
         "language": "ccini",
-        "path": "dist/packages/syntaxes/snippets.json"
+        "path": "dist/syntaxes/snippets.json"
       }
     ]
   },
