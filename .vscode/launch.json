@@ -11,9 +11,9 @@
         "--extensionDevelopmentPath=${workspaceRoot}",
         "--disableExtension=cortex-command-community-project-language-support"
       ],
-      "outFiles": ["${workspaceRoot}/dist/client/out/**/*.js"],
+      "outFiles": ["${workspaceRoot}/dist/**/*.js"],
       "autoAttachChildProcesses": true,
-      "preLaunchTask": "watch"
+      "preLaunchTask": "build-affected"
     },
     {
       "name": "Language Server E2E Test",

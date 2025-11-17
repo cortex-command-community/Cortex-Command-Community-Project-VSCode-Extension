@@ -3,24 +3,16 @@
   "tasks": [
     {
       "type": "shell",
-      "command": "npx nx build syntaxes",
-      "label": "build_syntaxes",
-      "problemMatcher": ["$tsc"]
-    },
-    {
-      "type": "shell",
-      "label": "watch",
-      "command": "npx nx affected --verbose --target=watch --exclude=syntaxes",
-      "isBackground": true,
+      "label": "build-affected",
+      "detail": "Build all affected projects in the workspace",
+      "command": "npx nx run-many --verbose --target=build",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "presentation": {
         "panel": "dedicated"
-      },
-      "problemMatcher": ["$tsc-watch"],
-      "dependsOn": "build_syntaxes"
+      }
     }
   ]
 }
