@@ -9,11 +9,19 @@
       "runtimeExecutable": "${execPath}",
       "args": [
         "--extensionDevelopmentPath=${workspaceRoot}",
-        "--disableExtension=cortex-command-community-project-language-support"
+        "--disable-extensions"
       ],
       "outFiles": ["${workspaceRoot}/dist/**/*.js"],
       "autoAttachChildProcesses": true,
       "preLaunchTask": "build-affected"
+    },
+    {
+      "name": "Attach to Language Server",
+      "type": "node",
+      "request": "attach",
+      "outFiles": ["${workspaceRoot}/dist/**/*.js"],
+      "sourceMaps": true,
+      "restart": true
     },
     {
       "name": "Language Server E2E Test",
@@ -26,6 +34,12 @@
         "${workspaceRoot}/client/testFixture"
       ],
       "outFiles": ["${workspaceRoot}/client/out/test/**/*.js"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Client and Attach to Server",
+      "configurations": ["Launch Client", "Attach to Language Server"]
     }
   ]
 }
