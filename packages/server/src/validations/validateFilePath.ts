@@ -1,5 +1,5 @@
-import { extname } from 'path';
-import { Diagnostic } from 'vscode-languageserver';
+import { basename, extname } from 'path';
+import { Diagnostic, DiagnosticSeverity } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 import { fileSystemService } from '../services/fs.service';
@@ -19,11 +19,11 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 
   const queryString = `\
 (assignment
-  key: (property) @key
+  key: (property)
   value: (modulePath
-    extension: (fileExtension) @extension
+    extension: (fileExtension)
   ) @modulePathValue
-) @assignment`;
+)`;
 
   const filepathQuery = new Query(language as Language, queryString);
 
@@ -31,7 +31,7 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
 
   const captures = filepathQuery.captures(tree.rootNode);
 
-  const problems = 0;
+  let problems = 0;
   const diagnostics: Diagnostic[] = [];
 
   for (const capture of captures) {
@@ -39,41 +39,46 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
       break;
     }
 
-    console.log(capture.name);
-    console.log(capture.node.text);
-    const normalizedPath = capture.name;
+    const filePath = capture.node.text;
 
-    // if (!checkIfPathExists(normalizedPath)) {
-    //   problems++;
-    //   const diagnostic: Diagnostic = {
-    //     severity: DiagnosticSeverity.Error,
-    //     range: {
-    //       start: textDocument.positionAt(captures.index + captures[1].length),
-    //       end: textDocument.positionAt(captures.index + captures[0].length),
-    //     },
-    //     message: `Cannot find the file ${captures[2]}`,
-    //     source: 'CC Language Features',
-    //   };
-    //   if (configService.hasDiagnosticRelatedInformationCapability) {
-    //     diagnostic.relatedInformation = [
-    //       {
-    //         location: {
-    //           uri: textDocument.uri,
-    //           range: Object.assign({}, diagnostic.range),
-    //         },
-    //         message:
-    //           'This may be due to a bad file extension/path, or incorrect capitalization.',
-    //       },
-    //     ];
-    //   }
-    //   diagnostics.push(diagnostic);
-    // }
+    if (!checkIfPathExists(filePath)) {
+      problems++;
+      const diagnostic: Diagnostic = {
+        severity: DiagnosticSeverity.Error,
+        range: {
+          start: textDocument.positionAt(capture.node.startIndex),
+          end: textDocument.positionAt(capture.node.endIndex),
+        },
+        message: `Cannot find the file ${basename(filePath)} (${filePath})`,
+        source: 'CC Language Features',
+      };
+
+      if (configService.hasDiagnosticRelatedInformationCapability) {
+        diagnostic.relatedInformation = [
+          {
+            location: {
+              uri: textDocument.uri,
+              range: Object.assign({}, diagnostic.range),
+            },
+            message:
+              'This may be due to a bad file extension/path, or incorrect capitalization.',
+          },
+        ];
+      }
+      diagnostics.push(diagnostic);
+    }
   }
 
   // Send the computed diagnostics to VSCode.
   return diagnostics;
 }
 
+/**
+ * Checks if a given file path exists in the list of module files.
+ * If not found, and the filepath is an image, it checks if there is an image file representing a frame of a sprite (e.g. Img000.png).
+ * @param filePath a string representing the module file path to check. @example "Base.rte/Explosion.png"
+ * @returns True if the list of included module files contains the given file path or its sprite frame variant, false otherwise.
+ */
 function checkIfPathExists(filePath: string): boolean {
   if (fileSystemService.moduleFileList.includes(filePath)) {
     return true;
