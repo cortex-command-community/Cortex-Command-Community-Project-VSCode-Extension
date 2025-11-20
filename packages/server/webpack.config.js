@@ -58,7 +58,7 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
     'tree-sitter-ccini': 'commonjs ../../tree-sitter-ccini',
   };
 
-  config.output = config.output || {};
+  config.output = config.output ?? {};
 
   config.output.libraryTarget = 'commonjs2';
   // config.output.filename = 'extension.js';
