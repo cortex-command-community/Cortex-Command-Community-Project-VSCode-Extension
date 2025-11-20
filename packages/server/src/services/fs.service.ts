@@ -1,5 +1,5 @@
 import { readdirSync, statSync } from 'fs';
-import { join, relative } from 'path';
+import { join, relative } from 'path/posix';
 import {
   DATA_DIRECTORY,
   MOD_DIRECTORY,
