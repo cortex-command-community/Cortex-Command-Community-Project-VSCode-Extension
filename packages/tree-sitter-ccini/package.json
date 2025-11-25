@@ -1,0 +1,25 @@
+{
+  "name": "tree-sitter-ccini",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "main": "bindings/node",
+  "types": "bindings/node",
+  "dependencies": {
+    "node-addon-api": "^8.5.0",
+    "node-gyp-build": "^4.8.4"
+  },
+  "devDependencies": {
+    "prebuildify": "^6.0.1"
+  },
+  "peerDependencies": {
+    "@keqingmoe/tree-sitter": "^0.26.2"
+  },
+  "peerDependenciesMeta": {
+    "@keqingmoe/tree-sitter": {
+      "optional": true
+    }
+  },
+  "scripts": {
+    "install": "node-gyp-build"
+  }
+}

@@ -8,5 +8,25 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit"
-  }
+  },
+  "[c]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
+  },
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.block": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.function": "sameLine",
+  "C_Cpp.vcFormat.newLine.beforeOpenBrace.type": "sameLine",
+  "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyFunction": true,
+  "C_Cpp.vcFormat.newLine.closeBraceSameLine.emptyType": true,
+  "C_Cpp.doxygen.generatedStyle": "/**",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0}",
+  "C_Cpp.codeAnalysis.runAutomatically": true,
+  "nxConsole.commonNxCommands": [
+    "run",
+    "run-many",
+    "affected",
+    "affected --graph",
+    "list",
+    "run-many -t build --skip-nx-cache"
+  ],
+  "npm.exclude": ["**/.nx/**"]
 }

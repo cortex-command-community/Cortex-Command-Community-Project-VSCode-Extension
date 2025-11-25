@@ -5,26 +5,16 @@
 'use strict';
 
 import {
-  CodeAction,
-  CodeActionKind,
-  Command,
   createConnection,
-  Diagnostic,
-  DiagnosticSeverity,
   DidChangeConfigurationNotification,
   DidChangeWatchedFilesNotification,
   DidRenameFilesNotification,
   FileOperationRegistrationOptions,
   InitializeParams,
   InitializeResult,
-  Position,
   ProposedFeatures,
-  Range,
-  RenameFile,
-  TextDocumentEdit,
   TextDocuments,
   TextDocumentSyncKind,
-  TextEdit,
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 

@@ -4,3 +4,4 @@
 /coverage
 
 /.nx/cache
+/packages/tree-sitter-ccini/bindings/**

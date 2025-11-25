@@ -1,0 +1,434 @@
+
+==================
+Comment (line)
+==================
+
+// single line comment
+---
+
+(source_file
+  (comment))
+
+==================
+Block Comment
+==================
+
+/* single line block */
+---
+
+(source_file
+  (block_comment))
+
+
+==================
+Block Comment removing property (Inline)
+==================
+
+DataModule
+	/*ModuleName = Browncoats*/
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Block Comment removing property (Above/Below)
+==================
+
+DataModule
+	/*
+	ModuleName = Browncoats
+	*/
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Line Comment removing property
+==================
+
+DataModule
+	//ModuleName = Browncoats
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Line Comment Divider ("/////")
+==================
+
+DataModule
+	IsFaction = 1
+///////////////
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(assignment
+			(property)
+			(number)
+		)
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Empty Line comment (mid-block)
+==================
+
+DataModule
+	IsFaction = 1
+	//
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(assignment
+			(property)
+			(number)
+		)
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Empty Line comment (pre)
+==================
+
+//
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+
+---
+
+(source_file
+	(comment)
+	(dataModule
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Line Comment at end of indentation (outside)
+==================
+
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+//
+
+---
+
+(source_file
+	(dataModule
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+	(comment)
+)
+
+
+==================
+Line Comment at end of indentation (same level)
+==================
+
+DataModule
+	IsFaction = 1
+	IsFaction = 1
+	//
+
+---
+
+(source_file
+	(dataModule
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+		(comment)
+	)
+)
+
+
+==================
+Consecutive Line Comments
+==================
+
+DataModule
+//  IsFaction = 1
+//  IsFaction = 1
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Consecutive Line Comments (Spacer)
+==================
+
+DataModule
+//  IsFaction = 1
+/////////////
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Consecutive Block Comments
+==================
+
+DataModule
+/* comment 1 */
+/* comment 2 */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Consecutive Block Comments (Property inbetween)
+==================
+
+DataModule
+/* comment 1 */
+	IsFaction = 1
+/* comment 2 */
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+	(block_comment)
+)
+
+==================
+Nested comments: Block inside line
+==================
+
+DataModule
+	//ModuleName = /*Browncoats */
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Nested comments: Unclosed Block inside line
+==================
+
+DataModule
+	//ModuleName = /*Browncoats foo bar
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+Nested comments: Line inside line
+==================
+
+DataModule
+	//ModuleName = //Browncoats
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule
+		(comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Line inside Block
+==================
+
+DataModule
+	/*ModuleName = //Browncoats */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Block inside Block
+==================
+
+DataModule
+	/*XXXX = /*Browncoats */ */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule
+		(block_comment)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+
+==================
+Nested comments: Unclosed block inside Block
+==================
+
+DataModule
+	/*ModuleName = /*Browncoats  */
+	IsFaction = 1
+
+---
+
+(source_file
+	(dataModule)
+	(ERROR
+		(UNEXPECTED '\0'))
+	
+)
+
+
+==================
+Unclosed Block Comment
+==================
+
+DataModule
+	/*
+	IsFaction = 1
+---
+
+(source_file
+	(dataModule)
+	(ERROR)
+)
+

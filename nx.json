@@ -4,39 +4,30 @@
   "default": {
     "runner": "@nrwl/nx-cloud",
     "options": {
-      "cacheableOperations": [
-        "build",
-        "lint",
-        "test",
-        "e2e",
-        "watch"
-      ]
+      "cacheableOperations": ["compile", "build", "lint", "test", "e2e"]
     }
   },
   "defaultBase": "main",
   "targetDefaults": {
     "test": {
-      "inputs": [
-        "default",
-        "^default",
-        "{workspaceRoot}/jest.preset.js"
-      ]
+      "cache": true,
+      "inputs": ["default", "^default", "{workspaceRoot}/jest.preset.js"]
     },
     "lint": {
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json"
-      ]
+      "cache": true,
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     },
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "cache": true,
+      "dependsOn": ["^build"]
     },
-    "watch": {
-      "dependsOn": [
-        "^watch"
-      ]
+
+    "generate": {
+      "cache": true
+    },
+
+    "bundle": {
+      "cache": true
     }
   },
   "workspaceLayout": {

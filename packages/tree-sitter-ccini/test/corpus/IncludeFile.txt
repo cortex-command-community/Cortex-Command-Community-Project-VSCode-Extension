@@ -1,0 +1,37 @@
+
+
+==================
+IncludeFile (single) 
+==================
+
+IncludeFile = Base.rte/GUIs.ini
+
+---
+
+(source_file
+  (includeFile
+    (modulePath
+      (fileExtension))))
+
+
+==================
+IncludeFile (multiple) 
+==================
+
+	IncludeFile = Base.rte/GUIs.ini
+	IncludeFile = Base.rte/Materials.ini
+	IncludeFile = Base.rte/AtomGroups.ini
+
+---
+
+(source_file
+  (includeFile
+    (modulePath
+      (fileExtension)))
+  (includeFile
+    (modulePath
+      (fileExtension)))
+  (includeFile
+    (modulePath
+      (fileExtension)))
+)

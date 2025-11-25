@@ -1,101 +1,88 @@
 ## [1.4.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.4.0...v1.4.1) (2024-06-03)
 
-
 ### Bug Fixes
 
-* target CCCP 6.0 to correctly validate filepaths in new Mods/Data folders ([2ed8c78](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2ed8c78c3394745908258d3eedda4255de2c818f))
+- target CCCP 6.0 to correctly validate filepaths in new Mods/Data folders ([2ed8c78](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2ed8c78c3394745908258d3eedda4255de2c818f))
 
 # [1.4.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.2...v1.4.0) (2024-06-02)
 
-
 ### Bug Fixes
 
-* **ci:** update github actions node version ([cdc6913](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/cdc691335f20ef280d2ade43e61e5dcf8fa53f14))
-
+- **ci:** update github actions node version ([cdc6913](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/cdc691335f20ef280d2ade43e61e5dcf8fa53f14))
 
 ### Features
 
-* add minimal renaming detection ([30311d4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/30311d490d428ac919c6d8172aa58e0857833d70))
-* add new fileSystem service method to trim URIs to workspace ([618d69a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/618d69aa1b2c0ff1dfbbfbe5daeb861069a481f4))
-* create `didRenameFile` provider ([2849cfb](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2849cfb11479b5a67135a3468dea05d70b11857c))
+- add minimal renaming detection ([30311d4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/30311d490d428ac919c6d8172aa58e0857833d70))
+- add new fileSystem service method to trim URIs to workspace ([618d69a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/618d69aa1b2c0ff1dfbbfbe5daeb861069a481f4))
+- create `didRenameFile` provider ([2849cfb](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2849cfb11479b5a67135a3468dea05d70b11857c))
 
 ## [1.3.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.1...v1.3.2) (2023-02-07)
 
-
 ### Bug Fixes
 
-* resolve webpack build issues, start server correctly ([70b5aaf](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/70b5aaf77ae02e36056bf448d1d36720ff7d27e3))
-* stop DataModule syntax highlighting breaking on empty lines ([367f17a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/367f17a030704e4530e164cf0f7faffafc359226))
+- resolve webpack build issues, start server correctly ([70b5aaf](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/70b5aaf77ae02e36056bf448d1d36720ff7d27e3))
+- stop DataModule syntax highlighting breaking on empty lines ([367f17a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/367f17a030704e4530e164cf0f7faffafc359226))
 
 ## [1.3.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.3.0...v1.3.1) (2023-02-04)
 
-
 ### Bug Fixes
 
-* republish to package the correct version ([8b856f6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/8b856f6ededc33319510281aaa4c996bd51fdedc))
+- republish to package the correct version ([8b856f6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/8b856f6ededc33319510281aaa4c996bd51fdedc))
 
 # [1.3.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.2...v1.3.0) (2023-02-04)
 
-
 ### Bug Fixes
 
-* remove breaking references to `vscode` externals ([108c75a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/108c75a8693a24f84ac8efa95766f3d87263ced9))
-* stop file path validation firing on commented out lines ([183974d](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/183974deeb3d047be15cf40c3b4cbceb55ca464d))
-
+- remove breaking references to `vscode` externals ([108c75a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/108c75a8693a24f84ac8efa95766f3d87263ced9))
+- stop file path validation firing on commented out lines ([183974d](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/183974deeb3d047be15cf40c3b4cbceb55ca464d))
 
 ### Features
 
-* add crude filepath detection to flag errors ([6a44787](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/6a44787b4d7e88354b3756b7056a28f878e47baf))
-* add simple filepath validation to all ini files ([3186ac4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/3186ac4a05b29f16c5e5e62a09335906f362de8d))
-* ensure filepath validation accounts for image paths with trailing frame numbers ([d6b5bbc](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d6b5bbc8136a0d4c63d2eac149f04672fb614c50))
-* extend recognised file extension for syntax highlighting ([255221c](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255221cc44ef40b84c66af8554412046d2f8ca8b))
-* fix comments not disabling filepath validation ([4ce070f](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/4ce070f39449d85f0c1597b42179402209a39c1b))
-* generate module filelist on activation use it in validation ([ed2e4e2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/ed2e4e2572015493f4652987640fb1fb12c29971))
-* update configuration and revalidate files when extension config is changed ([d71c54a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d71c54a9899aa336d12d5775948a7d5a27546912))
-* update filetree when watched files are changed to revalidate text ([d57698b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d57698b0357b9c93434c9a56b4bdd766b7e976cd))
+- add crude filepath detection to flag errors ([6a44787](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/6a44787b4d7e88354b3756b7056a28f878e47baf))
+- add simple filepath validation to all ini files ([3186ac4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/3186ac4a05b29f16c5e5e62a09335906f362de8d))
+- ensure filepath validation accounts for image paths with trailing frame numbers ([d6b5bbc](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d6b5bbc8136a0d4c63d2eac149f04672fb614c50))
+- extend recognised file extension for syntax highlighting ([255221c](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255221cc44ef40b84c66af8554412046d2f8ca8b))
+- fix comments not disabling filepath validation ([4ce070f](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/4ce070f39449d85f0c1597b42179402209a39c1b))
+- generate module filelist on activation use it in validation ([ed2e4e2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/ed2e4e2572015493f4652987640fb1fb12c29971))
+- update configuration and revalidate files when extension config is changed ([d71c54a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d71c54a9899aa336d12d5775948a7d5a27546912))
+- update filetree when watched files are changed to revalidate text ([d57698b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/d57698b0357b9c93434c9a56b4bdd766b7e976cd))
 
 ## [1.2.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.1...v1.2.2) (2023-01-29)
 
-
 ### Bug Fixes
 
-* publish new docs ([37f2c54](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/37f2c547cbdfa015904c6d59c8d9052b1cc0e352))
+- publish new docs ([37f2c54](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/37f2c547cbdfa015904c6d59c8d9052b1cc0e352))
 
 ## [1.2.1](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.2.0...v1.2.1) (2023-01-29)
 
-
 ### Bug Fixes
 
-* update workplace extensions and republish docs ([16ff6a7](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/16ff6a79a36c867950950a9f09461c8e372cc1fe))
+- update workplace extensions and republish docs ([16ff6a7](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/16ff6a79a36c867950950a9f09461c8e372cc1fe))
 
 # [1.2.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.1.0...v1.2.0) (2023-01-29)
 
-
 ### Bug Fixes
 
-* empty newlines no longer break a block (and hence syntax highlighting) ([a9d3247](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/a9d3247f94515ccb17944f955722f4d38e8757cf))
-* language configurations are now correctly included in the build ([473b06b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/473b06b4f38dd2a11ec86b6865bea2e9fc9127c4))
-
+- empty newlines no longer break a block (and hence syntax highlighting) ([a9d3247](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/a9d3247f94515ccb17944f955722f4d38e8757cf))
+- language configurations are now correctly included in the build ([473b06b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/473b06b4f38dd2a11ec86b6865bea2e9fc9127c4))
 
 ### Features
 
-* add language snippets for several atomic classes ([9fa08b6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/9fa08b679ad5f193a99020b5f804968550b77e87))
-* update configuration properties and their titles for the language server ([255260b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255260be333fb9bed2c04bb0e448b0506047493d))
+- add language snippets for several atomic classes ([9fa08b6](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/9fa08b679ad5f193a99020b5f804968550b77e87))
+- update configuration properties and their titles for the language server ([255260b](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/255260be333fb9bed2c04bb0e448b0506047493d))
 
 # [1.1.0](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.2...v1.1.0) (2023-01-29)
 
-
 ### Bug Fixes
 
-* add empty `activationEvents` to manifest ([7081398](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/7081398a450fc8aaf3123ba040d98025c48cb3cc))
-* retarget extension client to launch the language server on ccini files ([2469a1a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2469a1a655443c6cd5bd6ab710771bc8b02958bd))
-
+- add empty `activationEvents` to manifest ([7081398](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/7081398a450fc8aaf3123ba040d98025c48cb3cc))
+- retarget extension client to launch the language server on ccini files ([2469a1a](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/2469a1a655443c6cd5bd6ab710771bc8b02958bd))
 
 ### Features
 
-* add language client and language server libraries ([5dd41e4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/5dd41e46cff8e08339d45cab6794e2e4fdb5c511))
-* add test extension configuration to specify game directory ([596709e](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/596709e95c490be9ffb71467265a6d14409b97ed))
-* update grammar syntax to group blocks and handle module indexes ([7b3bda9](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/7b3bda9484454c656d85f37554daf61bae8aeca1))
+- add language client and language server libraries ([5dd41e4](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/5dd41e46cff8e08339d45cab6794e2e4fdb5c511))
+- add test extension configuration to specify game directory ([596709e](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/596709e95c490be9ffb71467265a6d14409b97ed))
+- update grammar syntax to group blocks and handle module indexes ([7b3bda9](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/commit/7b3bda9484454c656d85f37554daf61bae8aeca1))
 
 ## [1.0.2](https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension/compare/v1.0.1...v1.0.2) (2023-01-19)
 
