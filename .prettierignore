@@ -5,3 +5,4 @@
 
 /.nx/cache
 /packages/tree-sitter-ccini/bindings/**
+/.nx/workspace-data

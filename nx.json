@@ -21,11 +21,9 @@
       "cache": true,
       "dependsOn": ["^build"]
     },
-
     "generate": {
       "cache": true
     },
-
     "bundle": {
       "cache": true
     }
@@ -33,19 +31,18 @@
   "workspaceLayout": {
     "libsDir": "packages"
   },
-  "generators": {
-    "@nrwl/web:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/web:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    }
-  },
+  "generators": {},
   "pluginsConfig": {},
-  "nxCloudAccessToken": "OTgwZjc4MDctMmE1Zi00MDI1LWJmYTctMmJhODhhMDM0NWJlfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "OTgwZjc4MDctMmE1Zi00MDI1LWJmYTctMmJhODhhMDM0NWJlfHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/webpack/plugin",
+      "options": {
+        "buildTargetName": "webpack:build",
+        "serveTargetName": "serve",
+        "previewTargetName": "preview",
+        "serveStaticTargetName": "serve-static"
+      }
+    }
+  ]
 }

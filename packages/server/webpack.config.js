@@ -1,6 +1,6 @@
 //@ts-check
 
-const { composePlugins, withNx, withWeb } = require('@nrwl/webpack');
+const { composePlugins, withNx, withWeb } = require('@nx/webpack');
 
 const path = require('path');
 const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
