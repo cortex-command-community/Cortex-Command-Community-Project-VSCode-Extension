@@ -47,14 +47,34 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
       },
       {
         test: /\.node$/,
-        loader: 'node-loader',
+        type: 'asset/resource',
+        generator: {
+          // Ensure that prebuilt `.node` files are placed in the correct relative path for `node-gyp-build` to find them
+          // "Prebuilds will be attempted loaded from `MODULE_PATH/prebuilds/...`"
+          filename: (/** @type {import('webpack').PathData} */ pathData) => {
+            if (!pathData.filename) {
+              return 'prebuilds/[name].[hash][ext]';
+            }
+
+            const parts = pathData.filename.split('/');
+
+            const prebuildsIndex = parts.indexOf('prebuilds');
+
+            if (prebuildsIndex === -1) {
+              return 'prebuilds/[name].[hash][ext]';
+            }
+
+            const prebuildDir = parts.slice(prebuildsIndex, -1).join('/');
+            const assetModulePath = `${prebuildDir}/[name].[hash][ext]`;
+
+            return assetModulePath;
+          },
+        },
       },
     ],
   };
   config.externals = {
     vscode: 'commonjs vscode', // ignored because it doesn't exist
-    'tree-sitter': 'commonjs tree-sitter',
-    '@keqingmoe/tree-sitter': 'commonjs @keqingmoe/tree-sitter',
     'tree-sitter-ccini': 'commonjs ../../tree-sitter-ccini',
   };
 
