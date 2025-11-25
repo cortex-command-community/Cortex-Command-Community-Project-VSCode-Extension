@@ -1,0 +1,25 @@
+{
+  "extends": ["../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx", "!./bindings/**"],
+      "parserOptions": {
+        "project": ["packages/tree-sitter-ccini/tsconfig.*?.json"]
+      },
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "rules": {}
+    },
+    {
+      "files": ["package.json"],
+      "rules": {}
+    }
+  ]
+}

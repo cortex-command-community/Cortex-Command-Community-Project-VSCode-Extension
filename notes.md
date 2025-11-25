@@ -1,4 +1,4 @@
-## Issues:
+## Issues
 
 - trailing spaces are trimmed, need to allow
 - Docs updates don't trigger releases.
@@ -7,7 +7,7 @@
       BackgroundColorIndex = 62
       LogoFile = Browncoats.rte/GUIs/BuyMenuLogo.png
 
-## TODO:
+## TODO
 
 - [ ] Unit tests for syntax highlighting
 - [x] Tags in Marketplace
@@ -31,3 +31,9 @@
   - [ ] update FilePaths (!!)
 - [ ] Linting
   - [ ] Auto Formatting
+
+Debugging the scanner
+
+```c
+  fprintf(stderr, "In line comment: %d\n", lineCommentLength++);
+```

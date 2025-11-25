@@ -1,0 +1,23 @@
+# Rust artifacts
+target/
+
+# Node artifacts
+build/
+prebuilds/
+node_modules/
+
+# Swift artifacts
+.build/
+
+# Go artifacts
+_obj/
+
+# Python artifacts
+.venv/
+dist/
+*.egg-info
+*.whl
+
+
+src/**
+!src/scanner.c

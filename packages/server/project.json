@@ -6,11 +6,12 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nrwl/webpack:webpack",
+      "executor": "@nx/webpack:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/packages/server/src",
+        "generatePackageJson": true,
+        "outputPath": "dist/server/src",
         "compiler": "babel",
         "main": "packages/server/src/extension.ts",
         "tsConfig": "packages/server/tsconfig.app.json",
@@ -21,20 +22,14 @@
         "production": {}
       }
     },
-    "watch": {
-      "executor": "@nrwl/js:tsc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "dist/packages/server",
-        "main": "packages/server/src/extension.ts",
-        "tsConfig": "packages/server/tsconfig.app.json"
-      }
-    },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["packages/server/**/*.ts"]
+        "lintFilePatterns": [
+          "packages/server/**/*.ts",
+          "{projectRoot}/package.json"
+        ]
       }
     },
     "test": {

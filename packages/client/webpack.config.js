@@ -1,7 +1,9 @@
-const { composePlugins, withNx, withWeb } = require('@nrwl/webpack');
+//@ts-check
+
+const { composePlugins, withNx, withWeb } = require('@nx/webpack');
 
 const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const { TsconfigPathsPlugin } = require('tsconfig-paths-webpack-plugin');
 
 // Nx plugins for webpack.
 module.exports = composePlugins(withNx(), withWeb(), (config) => {
@@ -48,13 +50,14 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
     vscode: 'commonjs vscode', // ignored because it doesn't exist
   };
 
+  config.output = config.output ?? {};
+
   config.output.libraryTarget = 'commonjs2';
   // config.output.filename = 'extension.js';
 
   config.output.publicPath = path.join(
     __dirname,
     'dist',
-    'packages',
     'client',
     'src',
     'extension.js'
@@ -68,7 +71,9 @@ module.exports = composePlugins(withNx(), withWeb(), (config) => {
     extension: './src/extension.ts',
   };
 
-  config.output.devtoolModuleFilenameTemplate = function (info) {
+  config.output.devtoolModuleFilenameTemplate = function (
+    /** @type {{ absoluteResourcePath: string; }} */ info
+  ) {
     const rel = path.relative(process.cwd(), info.absoluteResourcePath);
     return `webpack:///./${rel}`;
   };

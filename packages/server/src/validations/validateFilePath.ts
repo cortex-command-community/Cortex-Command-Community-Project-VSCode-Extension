@@ -1,9 +1,11 @@
-import { extname, normalize } from 'path';
+import { basename, extname } from 'path';
 import { Diagnostic, DiagnosticSeverity } from 'vscode-languageserver';
 import { TextDocument } from 'vscode-languageserver-textdocument';
 import { configService } from '../services/configuration.service';
 import { fileSystemService } from '../services/fs.service';
 import { imageFileExtensions } from 'shared';
+import Parser, { Language, Query } from '@keqingmoe/tree-sitter';
+import language from 'tree-sitter-ccini';
 
 export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // In this simple example we get the settings for every validate run.
@@ -12,49 +14,45 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   // The validator creates diagnostics for all uppercase words length 2 and more
   const text = textDocument.getText();
 
-  const pattern =
-    /(?:\/\*.*?(?=\*\/))|(\t*(?:ScriptPath|IncludeFile|LogoFile|FilePath|SkinFile)\s*=\s*)(.*?)(?=(?:$|\/\/|\/\*|(?:\s+(?:\/\/.*|\/\*.*))))/dgms;
+  const parser = new Parser();
+  parser.setLanguage(language as Language);
 
-  const commentPattern = /(\/\/[^\n]*[\r\n])|(\/\*.*(\*\/))/dgms;
-  const commentRanges = text.matchAll(commentPattern);
+  const queryString = `\
+(assignment
+  key: (property)
+  value: (modulePath
+    extension: (fileExtension)
+  ) @modulePathValue
+)`;
 
-  let m: RegExpExecArray | null;
+  const filepathQuery = new Query(language as Language, queryString);
+
+  const tree = parser.parse(text);
+
+  const captures = filepathQuery.captures(tree.rootNode);
 
   let problems = 0;
   const diagnostics: Diagnostic[] = [];
 
-  while (
-    (m = pattern.exec(text)) &&
-    problems < configService.globalSettings.maxNumberOfProblems
-  ) {
-    let skip = false;
-    for (const comment of text.matchAll(commentPattern)) {
-      if (!comment.index) {
-        continue;
-      }
-
-      skip =
-        (comment.index <= m.index &&
-          comment.index + comment[0].length >= m.index) ||
-        (comment.index >= m.index && comment.index <= m.index + m[0].length);
-
-      if (skip) {
-        break;
-      }
+  for (const capture of captures) {
+    if (problems >= configService.globalSettings.maxNumberOfProblems) {
+      break;
     }
 
-    const normalizedPath = m[2] ? normalize(m[2].trim()) : null;
-    if (!skip && normalizedPath && !checkIfPathExists(normalizedPath)) {
+    const filePath = capture.node.text;
+
+    if (!checkIfPathExists(filePath)) {
       problems++;
       const diagnostic: Diagnostic = {
         severity: DiagnosticSeverity.Error,
         range: {
-          start: textDocument.positionAt(m.index + m[1].length),
-          end: textDocument.positionAt(m.index + m[0].length),
+          start: textDocument.positionAt(capture.node.startIndex),
+          end: textDocument.positionAt(capture.node.endIndex),
         },
-        message: `Cannot find the file ${m[2]}`,
+        message: `Cannot find the file ${basename(filePath)} (${filePath})`,
         source: 'CC Language Features',
       };
+
       if (configService.hasDiagnosticRelatedInformationCapability) {
         diagnostic.relatedInformation = [
           {
@@ -75,6 +73,12 @@ export function validateFilePaths(textDocument: TextDocument): Diagnostic[] {
   return diagnostics;
 }
 
+/**
+ * Checks if a given file path exists in the list of module files.
+ * If not found, and the filepath is an image, it checks if there is an image file representing a frame of a sprite (e.g. Img000.png).
+ * @param filePath a string representing the module file path to check. @example "Base.rte/Explosion.png"
+ * @returns True if the list of included module files contains the given file path or its sprite frame variant, false otherwise.
+ */
 function checkIfPathExists(filePath: string): boolean {
   if (fileSystemService.moduleFileList.includes(filePath)) {
     return true;

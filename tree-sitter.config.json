@@ -1,0 +1,52 @@
+{
+  "parser-directories": ["./packages", "./dist/node_modules"],
+  "theme": {
+    "variable.builtin": {
+      "bold": true
+    },
+    "punctuation.delimiter": 239,
+    "tag": 18,
+    "comment": {
+      "italic": true,
+      "color": 245
+    },
+    "function": 26,
+    "string.special": 30,
+    "number": {
+      "color": 94,
+      "bold": true
+    },
+    "module": 136,
+    "operator": {
+      "color": 239,
+      "bold": true
+    },
+    "constant": 94,
+    "embedded": null,
+    "function.builtin": {
+      "bold": true,
+      "color": 26
+    },
+    "property": 124,
+    "keyword": 56,
+    "type": 23,
+    "type.builtin": {
+      "color": 23,
+      "bold": true
+    },
+    "variable.parameter": {
+      "underline": true
+    },
+    "constructor": 136,
+    "string": 28,
+    "constant.builtin": {
+      "bold": true,
+      "color": 94
+    },
+    "punctuation.bracket": 239,
+    "attribute": {
+      "italic": true,
+      "color": 124
+    }
+  }
+}

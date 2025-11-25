@@ -17,8 +17,9 @@ import {
 
 export function activate(context: ExtensionContext): void {
   const serverModule = context.asAbsolutePath(
-    path.join('dist', 'packages', 'server', 'src', 'extension.js')
+    path.join('dist', 'server', 'src', 'extension.js')
   );
+
   const serverOptions: ServerOptions = {
     run: {
       module: serverModule,
@@ -28,7 +29,7 @@ export function activate(context: ExtensionContext): void {
     debug: {
       module: serverModule,
       transport: TransportKind.ipc,
-      options: { cwd: process.cwd() },
+      options: { cwd: process.cwd(), execArgv: ['--nolazy', '--inspect'] },
     },
   };
 

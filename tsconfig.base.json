@@ -9,11 +9,13 @@
     "importHelpers": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "shared": [
-        "packages/shared/src/index.ts",
-        "dist/packages/node_modules/shared/src/index.js"
+      "shared": ["dist/shared", "packages/shared/src/index.ts"],
+      "tree-sitter-ccini": [
+        "./dist/tree-sitter-ccini/bindings/node",
+        "./packages/tree-sitter-ccini/bindings/node"
       ]
     },
     "noImplicitAny": true,

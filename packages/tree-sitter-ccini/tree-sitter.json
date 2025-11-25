@@ -1,0 +1,36 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "ccini",
+      "camelcase": "CcIni",
+      "title": "Cortex Command ini",
+      "scope": "source.ccini",
+      "file-types": ["ccini", "ini"],
+      "injection-regex": "^ccini$",
+      "class-name": "TreeSitterCcini"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "A parser to read Cortex Command (Communuity Project) ini data files",
+    "authors": [
+      {
+        "name": "traunts"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/cortex-command-community/Cortex-Command-Community-Project-VSCode-Extension"
+    }
+  },
+  "bindings": {
+    "c": false,
+    "go": false,
+    "node": true,
+    "python": false,
+    "rust": false,
+    "swift": false,
+    "zig": false
+  }
+}

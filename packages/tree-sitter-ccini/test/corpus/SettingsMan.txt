@@ -1,0 +1,119 @@
+
+
+
+==================
+SettingsMan Header only
+==================
+
+SettingsMan
+
+---
+
+(source_file
+	(settings))
+
+
+==================
+SettingsMan (settings.ini) single setting
+==================
+
+SettingsMan
+	EnableVSync = 1
+
+---
+(source_file
+	(settings
+		(assignment
+			(property)
+			(number))))
+
+==================
+SettingsMan Multiple Settings
+==================
+
+SettingsMan
+	PaletteFile = ContentFile
+		FilePath = Data/Base.rte/palette.bmp
+	ResolutionX = 960
+	ResolutionY = 540
+	ResolutionMultiplier = 1
+	EnableVSync = 1
+	IgnoreMultiDisplays = 1
+	TwoPlayerSplitscreenVertSplit = 0
+
+---
+
+(source_file
+	(settings
+		(assignment
+			(property)
+			(classDefinition
+				(className)
+				(assignment
+					(property)
+					(modulePath
+						(fileExtension)
+					)
+				)
+			)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(number))
+		(assignment
+			(property)
+			(number))
+		(assignment
+			(property)
+			(number))
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
+
+==================
+SettingsMan Multiple Settings (complex)
+==================
+
+SettingsMan
+	IgnoreMultiDisplays = 1
+	PaletteFile = ContentFile
+		FilePath = Data/Base.rte/palette.bmp
+	ResolutionX = 960
+
+
+---
+(source_file
+	(settings
+		(assignment
+			(property)
+			(number)
+		)
+		(assignment
+			(property)
+			(classDefinition
+				(className)
+				(assignment
+					(property)
+					(modulePath
+						(fileExtension
+					))
+				)	
+			)
+		)
+		(assignment
+			(property)
+			(number)
+		)
+	)
+)
