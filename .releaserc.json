@@ -19,8 +19,8 @@
     [
       "@semantic-release/exec",
       {
-        "prepareCmd": "npx vsce package --no-git-tag-version ${nextRelease.version}",
-        "publishCmd": "npx vsce publish --no-git-tag-version ${nextRelease.version}"
+        "prepareCmd": "pnpm vsce package --no-git-tag-version ${nextRelease.version}",
+        "publishCmd": "pnpm vsce publish --no-git-tag-version ${nextRelease.version}"
       }
     ],
     [
