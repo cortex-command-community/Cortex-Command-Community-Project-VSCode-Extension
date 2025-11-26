@@ -5,7 +5,7 @@
       "type": "shell",
       "label": "build-affected",
       "detail": "Build all affected projects in the workspace",
-      "command": "npx nx run-many --verbose --target=build",
+      "command": "pnpm nx run-many --verbose --target=build",
       "group": {
         "kind": "build",
         "isDefault": true

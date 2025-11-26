@@ -8,7 +8,7 @@
     "generate": {
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["tree-sitter init", "tree-sitter generate -0"],
+        "commands": ["pnpm tree-sitter init", "pnpm tree-sitter generate -0"],
         "cwd": "{projectRoot}"
       },
       "inputs": [
@@ -54,8 +54,8 @@
       "options": {
         "parallel": false,
         "commands": [
-          "prebuildify --electron-compat",
-          "npx tree-sitter build --wasm"
+          "pnpm prebuildify --electron-compat",
+          "pnpm tree-sitter build --wasm"
         ],
         "cwd": "{workspaceRoot}/dist/tree-sitter-ccini"
       },
@@ -73,15 +73,16 @@
       "dependsOn": ["build"],
       "executor": "nx:run-commands",
       "options": {
-        "commands": ["npx tree-sitter test"],
+        "commands": ["pnpm tree-sitter test"],
         "cwd": "{projectRoot}"
       },
       "configurations": {
         "debug": {
-          "commands": ["npx tree-sitter test -d"]
+          "commands": ["pnpm tree-sitter test -d"]
         }
       },
       "inputs": ["{projectRoot}/tests/corpus"]
     }
   }
 }
+

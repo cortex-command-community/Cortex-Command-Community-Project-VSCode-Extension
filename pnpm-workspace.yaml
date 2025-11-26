@@ -1,0 +1,10 @@
+onlyBuiltDependencies:
+  - '@keqingmoe/tree-sitter'
+  - '@parcel/watcher'
+  - '@vscode/vsce-sign'
+  - core-js
+  - cypress
+  - keytar
+  - nx
+  - tree-sitter
+  - tree-sitter-cli

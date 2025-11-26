@@ -18,19 +18,22 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - uses: actions/setup-node@v3
         with:
           node-version: 24
-          cache: 'npm'
-
-      - name: 'Install dependencies'
-        run: npm ci
+          cache: 'pnpm'
+      - name: 'Install dependencies (pnpm)'
+        run: pnpm install --frozen-lockfile
 
       - name: 'Build syntaxes, client and server. '
-        run: npx nx run-many --target=build
+        run: pnpm nx run-many --target=build
 
       - name: 'Semantic Release'
-        run: GH_TOKEN=${{ secrets.GH_PAT }} npx semantic-release
+        run: GH_TOKEN=${{ secrets.GH_PAT }} pnpm semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_PAT }}
           VSCE_PAT: ${{ secrets.AZUREDEVOPS_PAT }}

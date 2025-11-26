@@ -1,6 +1,17 @@
 // A launch configuration that compiles the extension and then opens it inside a new window
 {
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Launch Client and Attach to Server",
+      "configurations": ["Launch Client", "Attach to Language Server"],
+      "stopAll": true,
+      "presentation": {
+        "group": "launch",
+        "order": 1
+      }
+    }
+  ],
   "configurations": [
     {
       "type": "extensionHost",
@@ -13,7 +24,10 @@
       ],
       "outFiles": ["${workspaceRoot}/dist/**/*.js"],
       "autoAttachChildProcesses": true,
-      "preLaunchTask": "build-affected"
+      "preLaunchTask": "build-affected",
+      "presentation": {
+        "group": "launch"
+      }
     },
     {
       "name": "Attach to Language Server",
@@ -21,7 +35,10 @@
       "request": "attach",
       "outFiles": ["${workspaceRoot}/dist/**/*.js"],
       "sourceMaps": true,
-      "restart": true
+      "restart": true,
+      "presentation": {
+        "group": "launch"
+      }
     },
     {
       "name": "Language Server E2E Test",
@@ -33,13 +50,10 @@
         "--extensionTestsPath=${workspaceRoot}/client/out/test/index",
         "${workspaceRoot}/client/testFixture"
       ],
-      "outFiles": ["${workspaceRoot}/client/out/test/**/*.js"]
-    }
-  ],
-  "compounds": [
-    {
-      "name": "Launch Client and Attach to Server",
-      "configurations": ["Launch Client", "Attach to Language Server"]
+      "outFiles": ["${workspaceRoot}/client/out/test/**/*.js"],
+      "presentation": {
+        "group": "test"
+      }
     }
   ]
 }
